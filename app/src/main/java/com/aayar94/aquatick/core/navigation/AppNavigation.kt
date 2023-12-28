@@ -12,8 +12,8 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.aayar94.aquatick.ui.screen.drink.drinkGraph
 import com.aayar94.aquatick.ui.screen.home.homeGraph
+import com.aayar94.aquatick.ui.screen.onboarding.onboardingGraph
 import com.aayar94.aquatick.ui.screen.settings.settingsGraph
-import com.aayar94.aquatick.ui.screen.splash.splashGraph
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -57,7 +57,7 @@ fun AppNavigation() {
             startDestination = startDestinationRoute,
             modifier = Modifier.padding(paddingValues)
         ) {
-            splashGraph(navController)
+            onboardingGraph(navController)
             homeGraph(navController)
             drinkGraph(navController)
             settingsGraph(navController)

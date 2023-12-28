@@ -36,12 +36,12 @@ class DataStoreRepository @Inject constructor(@ApplicationContext private val co
     }
 
     val onboardingFinishedState: Flow<Boolean> = dataStore.data.map { preference ->
-        val finishedOnceState = preference[PreferenceKeys.onboardingPassedOnce] ?: false
+        val finishedOnceState = preference[PreferenceKeys.onboardingPassedOnce] ?: true
         try {
             finishedOnceState
         } catch (ex: IllegalArgumentException) {
             Log.e("OnboardingFinishedStateError", "Cant return flow")
-            false
+            true
         }
     }
 

@@ -1,4 +1,4 @@
-package com.aayar94.aquatick.ui.screen
+package com.aayar94.aquatick.ui.screen.onboarding
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavController
