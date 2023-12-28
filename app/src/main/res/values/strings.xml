@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Aquatick</string>
     <string name="work_in_progress_in_this_screen_screen">Work In Progress in this screen : %1$s Screen</string>
+    <string name="stay_hydrated">Stay hydrated and track your daily water intake</string>
 </resources>
