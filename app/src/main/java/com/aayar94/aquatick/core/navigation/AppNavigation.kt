@@ -14,6 +14,7 @@ import com.aayar94.aquatick.ui.screen.drink.drinkGraph
 import com.aayar94.aquatick.ui.screen.home.homeGraph
 import com.aayar94.aquatick.ui.screen.onboarding.onboardingGraph
 import com.aayar94.aquatick.ui.screen.settings.settingsGraph
+import com.aayar94.aquatick.ui.screen.setup.setupGraph
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -61,6 +62,7 @@ fun AppNavigation() {
             homeGraph(navController)
             drinkGraph(navController)
             settingsGraph(navController)
+            setupGraph(navController)
         }
     }
 }

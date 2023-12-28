@@ -1,9 +1,14 @@
 package com.aayar94.aquatick.ui.screen.settings
 
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
@@ -28,7 +33,11 @@ data object Settings : IBottomBarItem{
 
 @Composable
 fun SettingsScreen(navController: NavController){
-
+    Box(modifier = Modifier.fillMaxSize()){
+        Button(onClick = { navController.navigate("route_setup")}) {
+            Text(text = "Setup")
+        }
+    }
 }
 
 @DevicesPreview
