@@ -79,6 +79,8 @@ dependencies {
 
     implementation (libs.androidx.datastore.preferences)
 
+    implementation( libs.androidx.core.splashscreen)
+
 
     // Network
     implementation(libs.retrofit)
