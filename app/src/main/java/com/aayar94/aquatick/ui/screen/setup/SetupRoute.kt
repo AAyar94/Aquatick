@@ -20,7 +20,11 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.drawWithCache
+import androidx.compose.ui.graphics.BlendMode
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
@@ -58,7 +62,7 @@ data object Setup : INavigationItem {
 fun SetupScreen(navController: NavController, viewModel: SetupViewModel) {
     val uiState by viewModel.uiState.collectAsState()
     val scrollState = rememberScrollState()
-
+    viewModel.getUserData()
     val rainbowColors = listOf(
         Color.Red,
         Orange,
@@ -155,6 +159,15 @@ fun SetupScreen(navController: NavController, viewModel: SetupViewModel) {
                     textColor = MaterialTheme.colorScheme.onBackground
                 )
                 RadioButtonComponent(
+                    modifier = Modifier
+                        .graphicsLayer(alpha = 0.99f)
+                        .drawWithCache {
+                            val brush = Brush.horizontalGradient(rainbowColors)
+                            onDrawWithContent {
+                                drawContent()
+                                drawRect(brush, blendMode = BlendMode.SrcAtop)
+                            }
+                        },
                     selected = uiState.gender == stringResource(id = R.string.lgbtq),
                     onClick = { viewModel.updateGender("LGBTQ") },
                     text = stringResource(id = R.string.lgbtq),
