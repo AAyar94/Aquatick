@@ -29,7 +29,8 @@ fun TextFieldComponent(
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .wrapContentHeight().padding(8.dp)
+            .wrapContentHeight()
+            .padding(8.dp)
             .background(MaterialTheme.colorScheme.background)
     ) {
         Text(

@@ -47,4 +47,13 @@
     <string name="lbs">lbs</string>
     <string name="ml">ml</string>
     <string name="oz">oz</string>
+    <string name="login_with_email">Login with Email</string>
+    <string name="email">Email</string>
+    <string name="your_email_address_com">your email address@   .com</string>
+    <string name="password">Password</string>
+    <string name="enter_your_password">Enter your Password</string>
+    <string name="let_s_login">Let\'s login</string>
+    <string name="login_with_google">Login with Google</string>
+    <string name="you_don_t_have_an_account">You don\'t have an account</string>
+    <string name="sign_up">Sign up</string>
 </resources>
