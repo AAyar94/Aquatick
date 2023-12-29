@@ -43,4 +43,8 @@
     <string name="grand_notification_permission">Grand Notification Permission</string>
     <string name="enter_your_name">Enter your name</string>
     <string name="add_a_goal">Add a goal</string>
+    <string name="kg">Kg</string>
+    <string name="lbs">lbs</string>
+    <string name="ml">ml</string>
+    <string name="oz">oz</string>
 </resources>
