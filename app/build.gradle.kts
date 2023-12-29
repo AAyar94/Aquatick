@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlinAndroid)
     kotlin("kapt")
     id("com.google.dagger.hilt.android")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -71,6 +72,9 @@ dependencies {
     // Dependency Injection
     implementation(libs.androidx.hilt.navigation.compose)
     implementation(libs.hilt.android)
+
+
+    implementation(libs.firebase.auth)
     kapt(libs.hilt.android.compiler)
 
     implementation(libs.androidx.material.icons.extended)
