@@ -41,4 +41,5 @@
     <string name="activity_level_average">Average</string>
     <string name="activity_level_active">Active</string>
     <string name="grand_notification_permission">Grand Notification Permission</string>
+    <string name="enter_your_name">Enter your name</string>
 </resources>
