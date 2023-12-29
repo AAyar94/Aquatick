@@ -1,5 +1,11 @@
 package com.aayar94.aquatick.ui.screen.onboarding
 
+import android.Manifest
+import android.content.pm.PackageManager
+import android.os.Build
+import android.widget.Toast
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.spring
@@ -30,10 +36,12 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.core.content.ContextCompat
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
@@ -145,6 +153,35 @@ fun Indicator(isSelected: Boolean) {
 
 @Composable
 fun OnBoardingItem(item: OnboardingDataModel) {
+    val context = LocalContext.current
+    val permissionLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.RequestPermission()
+    ) { isGranted: Boolean ->
+        if (isGranted) {
+            Toast.makeText(context, "Notification permission granted", Toast.LENGTH_LONG).show()
+        } else {
+            Toast.makeText(context, "Notification permission declined", Toast.LENGTH_LONG).show()
+        }
+    }
+
+    fun askNotificationPermission() {
+        // This is only necessary for API level >= 33 (TIRAMISU)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(
+                    context,
+                    Manifest.permission.POST_NOTIFICATIONS
+                ) ==
+                PackageManager.PERMISSION_GRANTED
+            ) {
+//                Log.e(TAG, "PERMISSION_GRANTED")
+                // FCM SDK (and your app) can post notifications.
+            } else {
+//                Log.e(TAG, "NO_PERMISSION")
+                // Directly ask for the permission
+                permissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+            }
+        }
+    }
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
@@ -168,7 +205,9 @@ fun OnBoardingItem(item: OnboardingDataModel) {
         )
         if (item.isLastPage) {
             OutlinedButton(
-                onClick = { /*TODO*/ },
+                onClick = {
+                    askNotificationPermission()
+                },
                 modifier = Modifier
                     .fillMaxWidth(0.75f)
                     .wrapContentHeight()
@@ -179,7 +218,9 @@ fun OnBoardingItem(item: OnboardingDataModel) {
             }
         }
     }
+
 }
+
 
 @DevicesPreview
 @Composable
