@@ -1,6 +1,7 @@
 package com.aayar94.aquatick.ui.screen.settings
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -10,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowForwardIos
 import androidx.compose.material.icons.filled.NotificationsActive
 import androidx.compose.material.icons.filled.NotificationsOff
 import androidx.compose.material.icons.filled.Settings
@@ -34,6 +36,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.aayar94.aquatick.R
 import com.aayar94.aquatick.core.navigation.IBottomBarItem
+import com.aayar94.aquatick.ui.screen.setup.Setup
 import com.aayar94.aquatick.util.DevicesPreview
 import com.example.compose.AquatickTheme
 
@@ -93,7 +96,9 @@ fun SettingsScreen(navController: NavController, viewModel: SettingsViewModel) {
                 )
                 Switch(
                     checked = uiState.value.isNotificationEnabled,
-                    onCheckedChange = {},
+                    onCheckedChange = {
+                        viewModel.updateNotificationStatus(it)
+                    },
                     thumbContent = {
                         if (uiState.value.isNotificationEnabled) {
                             Icon(
@@ -154,6 +159,22 @@ fun SettingsScreen(navController: NavController, viewModel: SettingsViewModel) {
                         color = MaterialTheme.colorScheme.primary
                     )
                 }
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .wrapContentHeight()
+                    .padding(horizontal = 12.dp)
+                    .clickable { navController.navigate(Setup.route) },
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Text(text = "Setup Again", color = MaterialTheme.colorScheme.onBackground)
+                Icon(
+                    imageVector = Icons.Default.ArrowForwardIos,
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.onBackground
+                )
             }
         }
     }
