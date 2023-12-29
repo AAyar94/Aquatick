@@ -41,6 +41,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.core.app.ActivityCompat
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
@@ -49,6 +52,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.aayar94.aquatick.R
 import com.aayar94.aquatick.core.navigation.INavigationItem
+import com.aayar94.aquatick.util.Constant.CHANNEL_ID
 import com.aayar94.aquatick.util.DevicesPreview
 import com.example.compose.AquatickTheme
 import kotlinx.coroutines.launch
@@ -159,10 +163,39 @@ fun OnBoardingItem(item: OnboardingDataModel) {
     ) { isGranted: Boolean ->
         if (isGranted) {
             Toast.makeText(context, "Notification permission granted", Toast.LENGTH_LONG).show()
+            val builder = NotificationCompat.Builder(context, CHANNEL_ID)
+                .setSmallIcon(R.drawable.drink_icon)
+                .setContentTitle("Aquatick")
+                .setContentText("Nice we got notification permission")
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+
+            with(NotificationManagerCompat.from(context)) {
+                if (ActivityCompat.checkSelfPermission(
+                        context,
+                        Manifest.permission.POST_NOTIFICATIONS
+                    ) != PackageManager.PERMISSION_GRANTED
+                ) {
+                    // TODO: Consider calling
+                    // ActivityCompat#requestPermissions
+                    // here to request the missing permissions, and then overriding
+                    // public fun onRequestPermissionsResult(requestCode: Int, permissions: Array,
+                    //                                        grantResults: IntArray)
+                    // to handle the case where the user grants the permission. See the documentation
+                    // for ActivityCompat#requestPermissions for more details.
+
+                    // notificationId is a unique int for each notification that you must define.
+                    val NOTIFICATION_ID = 94
+                    notify(NOTIFICATION_ID, builder.build())
+                    return@with
+                }
+
+            }
         } else {
-            Toast.makeText(context, "Notification permission declined", Toast.LENGTH_LONG).show()
+            Toast.makeText(context, "Notification permission declined", Toast.LENGTH_LONG)
+                .show()
         }
     }
+
 
     fun askNotificationPermission() {
         // This is only necessary for API level >= 33 (TIRAMISU)
@@ -182,6 +215,7 @@ fun OnBoardingItem(item: OnboardingDataModel) {
             }
         }
     }
+
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
@@ -218,9 +252,7 @@ fun OnBoardingItem(item: OnboardingDataModel) {
             }
         }
     }
-
 }
-
 
 @DevicesPreview
 @Composable
