@@ -12,10 +12,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.layout.wrapContentWidth
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -44,15 +45,15 @@ fun DailyIntakeStatusCard(
             containerColor = MaterialTheme.colorScheme.background.copy(
                 alpha = 0.85f
             )
-        ), border = BorderStroke(width = 1.dp,MaterialTheme.colorScheme.primary)
+        ), border = BorderStroke(width = 1.dp, MaterialTheme.colorScheme.primary)
     ) {
         Box(modifier = Modifier.wrapContentSize()) {
             Column(
                 modifier = Modifier
                     .wrapContentWidth()
                     .wrapContentHeight()
-                    .padding(12.dp),
-                verticalArrangement = Arrangement.SpaceAround,
+                    .padding(18.dp),
+                verticalArrangement = Arrangement.spacedBy(4.dp),
                 horizontalAlignment = Alignment.Start
             ) {
                 Text(
@@ -66,17 +67,23 @@ fun DailyIntakeStatusCard(
                     style = MaterialTheme.typography.bodyMedium
                 )
             }
-            OutlinedButton(
+            FilledTonalButton(
                 onClick = { buttonOnclick() },
                 modifier = Modifier
                     .align(Alignment.BottomStart)
-                    .padding(start = 8.dp, bottom = 8.dp)
+                    .padding(start = 12.dp, bottom = 12.dp),
+                colors = ButtonDefaults.filledTonalButtonColors(containerColor = MaterialTheme.colorScheme.inversePrimary)
             ) {
-                Text(text = stringResource(R.string.add_a_goal))
+                Text(
+                    text = stringResource(R.string.add_a_goal),
+                    color = MaterialTheme.colorScheme.onPrimaryContainer,
+                    style = MaterialTheme.typography.bodySmall
+                )
             }
             Image(
                 modifier = Modifier
-                    .align(Alignment.CenterEnd).zIndex(1f),
+                    .align(Alignment.CenterEnd)
+                    .zIndex(1f),
                 painter = painterResource(id = R.drawable.water_drop_blue),
                 contentDescription = null, contentScale = ContentScale.Fit
             )
@@ -84,7 +91,8 @@ fun DailyIntakeStatusCard(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(48.dp)
-                    .align(Alignment.BottomCenter).zIndex(1f),
+                    .align(Alignment.BottomCenter)
+                    .zIndex(1f),
                 painter = painterResource(id = R.drawable.onboaring_shape1),
                 contentDescription = null,
                 alignment = Alignment.BottomCenter,
