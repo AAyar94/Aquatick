@@ -35,6 +35,7 @@ import com.aayar94.aquatick.R
 import com.aayar94.aquatick.core.navigation.INavigationItem
 import com.aayar94.aquatick.core.theme.component.RadioButtonComponent
 import com.aayar94.aquatick.core.theme.component.TextFieldComponent
+import com.aayar94.aquatick.ui.screen.home.Home
 import com.aayar94.aquatick.util.DevicesPreview
 import com.example.compose.Indigo
 import com.example.compose.Orange
@@ -222,7 +223,10 @@ fun SetupScreen(navController: NavController, viewModel: SetupViewModel) {
                 )
             }
             FilledTonalButton(
-                onClick = { viewModel.saveUserData() },
+                onClick = {
+                    viewModel.saveUserData()
+                    navController.navigate(Home.route)
+                },
                 shape = MaterialTheme.shapes.large,
                 modifier = Modifier
                     .fillMaxWidth(0.85f)

@@ -1,14 +1,20 @@
 package com.aayar94.aquatick.ui.screen.setup
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.aayar94.aquatick.domain.model.SetupScreenModel
+import com.aayar94.aquatick.domain.usecase.UpdateUserDataUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class SetupViewModel @Inject constructor() : ViewModel() {
+class SetupViewModel @Inject constructor(
+    private val updateUserDataUseCase: UpdateUserDataUseCase
+) : ViewModel() {
 
     private var _uiState = MutableStateFlow(SetupUIState())
     val uiState = _uiState.asStateFlow()
@@ -44,8 +50,17 @@ class SetupViewModel @Inject constructor() : ViewModel() {
         }
     }
 
-    fun saveUserData(){
-
+    fun saveUserData() {
+        viewModelScope.launch {
+            updateUserDataUseCase.invoke(
+                SetupScreenModel(
+                    name = uiState.value.name,
+                    age = uiState.value.age,
+                    weight = uiState.value.weight,
+                    gender = uiState.value.gender,
+                    activityLevel = uiState.value.activityLevel
+                )
+            )
+        }
     }
-
 }
