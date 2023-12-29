@@ -13,6 +13,7 @@ class UpdateUserDataUseCase @Inject constructor(
     suspend operator fun invoke(data: SetupScreenModel) {
         return userDataRepository.updateUserData(
             UserDataModel(
+                name = data.name!!,
                 age = data.age!!,
                 weight = data.weight!!,
                 gender = data.gender!!,

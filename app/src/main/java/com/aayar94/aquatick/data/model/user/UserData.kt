@@ -7,6 +7,7 @@ import androidx.room.PrimaryKey
 data class UserDataModel(
     @PrimaryKey(autoGenerate = false)
     val dbId: Int = 0,
+    val name:String,
     val age: Int = 0,
     val weight: Int = 0,
     val gender: String = "",
