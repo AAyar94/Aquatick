@@ -6,4 +6,6 @@ object Constant {
     const val ONBOARDING_FINISHED_ONCE = "onboardingFinishedOnce"
     const val SETUP_FINISHED_ONCE = "setupFinishedOnce"
 
+    const val USER_DATABASE_NAME = "user_database"
+
 }
