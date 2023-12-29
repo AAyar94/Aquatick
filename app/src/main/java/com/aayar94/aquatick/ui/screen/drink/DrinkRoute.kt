@@ -9,6 +9,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.aayar94.aquatick.core.navigation.IBottomBarItem
+import com.aayar94.aquatick.ui.component.WorkInProgress
 import com.aayar94.aquatick.util.DevicesPreview
 
 fun NavGraphBuilder.drinkGraph(navController: NavController) {
@@ -29,6 +30,7 @@ data object Drink : IBottomBarItem {
 
 @Composable
 fun DrinkScreen(navController: NavController) {
+    WorkInProgress(where = "Drink")
 }
 
 
