@@ -33,6 +33,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
@@ -45,7 +46,8 @@ import com.example.compose.AquatickTheme
 
 fun NavGraphBuilder.loginGraph(navController: NavController) {
     composable(Login.route) {
-        LoginScreen(navController)
+        val viewModel: LoginViewModel = hiltViewModel()
+        LoginScreen(navController, viewModel)
     }
 }
 
@@ -55,7 +57,7 @@ data object Login : INavigationItem {
 }
 
 @Composable
-fun LoginScreen(navController: NavController) {
+fun LoginScreen(navController: NavController, viewModel: LoginViewModel) {
     val loginClickState by remember {
         mutableStateOf(false)
     }
@@ -107,10 +109,10 @@ fun LoginScreen(navController: NavController) {
                     onTextChange = {}
                 )
                 FilledTonalButton(
-                    onClick = { /*TODO viewmodel login */ },
+                    onClick = { viewModel.logInWithEmail(emailadreess.value, password.value) },
                     shape = MaterialTheme.shapes.extraLarge
                 ) {
-                    Text(text = "Log in")
+                    Text(text = stringResource(R.string.log_in))
                 }
             } else {
                 Text(
@@ -178,6 +180,6 @@ fun LoginScreen(navController: NavController) {
 @Composable
 fun PreviewLoginScreen() {
     AquatickTheme {
-        LoginScreen(navController = rememberNavController())
+        LoginScreen(navController = rememberNavController(), viewModel = hiltViewModel())
     }
 }
