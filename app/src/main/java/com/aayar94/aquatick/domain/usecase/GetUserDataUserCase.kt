@@ -26,7 +26,7 @@ fun activityLevelDecoder(value: Int): String {
         5 -> "Very active"
         4 -> "Active"
         3 -> "Average"
-        4 -> "Less than average"
+        2 -> "Less than average"
         else -> "Not active"
     }
 }
