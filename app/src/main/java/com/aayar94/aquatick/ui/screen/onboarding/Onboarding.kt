@@ -52,6 +52,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.aayar94.aquatick.R
 import com.aayar94.aquatick.core.navigation.INavigationItem
+import com.aayar94.aquatick.ui.screen.setup.Setup
 import com.aayar94.aquatick.util.Constant.CHANNEL_ID
 import com.aayar94.aquatick.util.DevicesPreview
 import com.example.compose.AquatickTheme
@@ -92,7 +93,7 @@ fun OnboardingScreen(navController: NavController, viewModel: OnboardingViewMode
                     state.scrollToPage(page = state.currentPage + 1)
                 }
             } else {
-                navController.navigate("route_setup")
+                navController.navigate(Setup.route)
                 viewModel.onBoardingFinished()
             }
         }
@@ -227,13 +228,13 @@ fun OnBoardingItem(item: OnboardingDataModel) {
         Image(painter = painterResource(id = item.image), contentDescription = null)
         Text(
             text = stringResource(id = item.title),
-            color = item.textColor,
+            color = MaterialTheme.colorScheme.onBackground,
             style = MaterialTheme.typography.titleLarge,
             textAlign = TextAlign.Center
         )
         Text(
             text = stringResource(id = item.text),
-            color = item.textColor.copy(alpha = 0.8f),
+            color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.90f),
             textAlign = TextAlign.Center,
             style = MaterialTheme.typography.bodyLarge
         )
