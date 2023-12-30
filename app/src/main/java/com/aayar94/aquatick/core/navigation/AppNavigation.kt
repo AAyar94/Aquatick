@@ -10,8 +10,10 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.aayar94.aquatick.ui.screen.callculate.calculateGraph
 import com.aayar94.aquatick.ui.screen.drink.drinkGraph
 import com.aayar94.aquatick.ui.screen.home.homeGraph
+import com.aayar94.aquatick.ui.screen.login.loginGraph
 import com.aayar94.aquatick.ui.screen.onboarding.onboardingGraph
 import com.aayar94.aquatick.ui.screen.settings.settingsGraph
 import com.aayar94.aquatick.ui.screen.setup.setupGraph
@@ -63,6 +65,9 @@ fun AppNavigation() {
             drinkGraph(navController)
             settingsGraph(navController)
             setupGraph(navController)
+            loginGraph(navController)
+            calculateGraph(navController)
+            calculateGraph(navController)
         }
     }
 }
