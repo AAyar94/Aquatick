@@ -9,7 +9,7 @@ data class UserDataModel(
     val dbId: Int = 0,
     val name:String,
     val age: Int = 0,
-    val weight: Int = 0,
+    val weight: Double = 0.0,
     val gender: String = "",
     val activityLevel: Int = 0
 )
