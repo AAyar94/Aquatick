@@ -54,7 +54,7 @@ class SetupViewModel @Inject constructor(
 
     fun updateWeight(weight: String) {
         _uiState.update {
-            it.copy(weight = weight.toInt())
+            it.copy(weight = weight.toDouble())
         }
     }
 

@@ -39,7 +39,7 @@ import com.aayar94.aquatick.R
 import com.aayar94.aquatick.core.navigation.INavigationItem
 import com.aayar94.aquatick.core.theme.component.RadioButtonComponent
 import com.aayar94.aquatick.core.theme.component.TextFieldComponent
-import com.aayar94.aquatick.ui.screen.home.Home
+import com.aayar94.aquatick.ui.screen.callculate.Calculate
 import com.aayar94.aquatick.util.DevicesPreview
 import com.example.compose.Indigo
 import com.example.compose.Orange
@@ -62,7 +62,7 @@ data object Setup : INavigationItem {
 fun SetupScreen(navController: NavController, viewModel: SetupViewModel) {
     val uiState by viewModel.uiState.collectAsState()
     val scrollState = rememberScrollState()
-    viewModel.getUserData()
+    //viewModel.getUserData()
     val rainbowColors = listOf(
         Color.Red,
         Orange,
@@ -238,7 +238,7 @@ fun SetupScreen(navController: NavController, viewModel: SetupViewModel) {
             FilledTonalButton(
                 onClick = {
                     viewModel.saveUserData()
-                    navController.navigate(Home.route)
+                    navController.navigate(Calculate.route)
                 },
                 shape = MaterialTheme.shapes.large,
                 modifier = Modifier

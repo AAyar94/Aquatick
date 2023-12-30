@@ -7,7 +7,7 @@ data class SetupUIState(
     override val error: String? = null,
     var name: String? = null,
     var age: Int? = 0,
-    var weight: Int? = 0,
+    var weight: Double? = 0.0,
     var gender: String? = null,
     var activityLevel: String? = null
 ) : BaseUiState(isLoading, error)
