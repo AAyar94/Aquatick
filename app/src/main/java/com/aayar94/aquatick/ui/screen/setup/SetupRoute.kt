@@ -39,7 +39,7 @@ import com.aayar94.aquatick.R
 import com.aayar94.aquatick.core.navigation.INavigationItem
 import com.aayar94.aquatick.core.theme.component.RadioButtonComponent
 import com.aayar94.aquatick.core.theme.component.TextFieldComponent
-import com.aayar94.aquatick.ui.screen.callculate.Calculate
+import com.aayar94.aquatick.ui.screen.calculate.Calculate
 import com.aayar94.aquatick.util.DevicesPreview
 import com.example.compose.Indigo
 import com.example.compose.Orange

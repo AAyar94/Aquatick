@@ -1,4 +1,4 @@
-package com.aayar94.aquatick.ui.screen.callculate
+package com.aayar94.aquatick.ui.screen.calculate
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
