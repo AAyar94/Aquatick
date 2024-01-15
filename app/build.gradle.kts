@@ -1,22 +1,21 @@
 @Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
-    alias(libs.plugins.androidApplication)
-    alias(libs.plugins.kotlinAndroid)
-    kotlin("kapt")
-    id("com.google.dagger.hilt.android")
-    id("com.google.gms.google-services")
+    id("com.android.application")
+    id("org.jetbrains.kotlin.android")
+    id("dagger.hilt.android.plugin")
+    id("kotlin-kapt")
 }
 
 android {
     namespace = "com.aayar94.aquatick"
-    compileSdk = 34
+    compileSdk = ProjectConfig.compileSdk
 
     defaultConfig {
-        applicationId = "com.aayar94.aquatick"
-        minSdk = 26
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        applicationId = ProjectConfig.appId
+        minSdk = ProjectConfig.minSdk
+        targetSdk = ProjectConfig.targetSdk
+        versionCode = ProjectConfig.versionCode
+        versionName = ProjectConfig.versionName
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -44,7 +43,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
+        kotlinCompilerExtensionVersion = Compose.composeCompilerVersion
     }
     packaging {
         resources {
@@ -52,61 +51,66 @@ android {
         }
     }
 }
-
+kapt {
+    correctErrorTypes = true
+}
 dependencies {
-    // Core
-    implementation(libs.core.ktx)
-    implementation(libs.lifecycle.runtime.ktx)
-    implementation(libs.activity.compose)
+    implementation(Compose.compiler)
+    implementation(Compose.ui)
+    implementation(Compose.uiToolingPreview)
+    implementation(Compose.hiltNavigationCompose)
+    implementation(Compose.material)
+    implementation(Compose.runtime)
+    implementation(Compose.navigation)
+    implementation(Compose.viewModelCompose)
+    implementation(Compose.activityCompose)
 
-    // Compose
-    implementation(platform("androidx.compose:compose-bom:2023.03.00"))
-    implementation("androidx.compose.ui:ui")
-    implementation("androidx.compose.ui:ui-graphics")
-    implementation("androidx.compose.ui:ui-tooling-preview")
-    implementation("androidx.compose.material3:material3")
+    implementation(DaggerHilt.hiltAndroid)
+    kapt(DaggerHilt.hiltCompiler)
 
-    // Navigation
-    implementation(libs.androidx.navigation.compose)
+    implementation(project(Modules.core))
+    implementation(project(Modules.coreui))
+    implementation(project(Modules.onboardingPresentation))
+    implementation(project(Modules.onboardingDomain))
+    implementation(project(Modules.aquaTrackerData))
+    implementation(project(Modules.aquaTrackerDomain))
+    implementation(project(Modules.aquaTrackerPresentation))
 
-    // Dependency Injection
-    implementation(libs.androidx.hilt.navigation.compose)
-    implementation(libs.hilt.android)
+    implementation(AndroidX.coreKtx)
+    implementation(AndroidX.appCompat)
 
+    implementation(Coil.coilCompose)
 
-    implementation(libs.firebase.auth)
-    kapt(libs.hilt.android.compiler)
+    implementation(Google.material)
 
-    implementation(libs.androidx.material.icons.extended)
+    implementation(Retrofit.okHttp)
+    implementation(Retrofit.retrofit)
+    implementation(Retrofit.okHttpLoggingInterceptor)
+    implementation(Retrofit.moshiConverter)
 
-    implementation(libs.lottie.compose)
+    kapt(Room.roomCompiler)
+    implementation(Room.roomKtx)
+    implementation(Room.roomRuntime)
 
-    implementation(libs.androidx.datastore.preferences)
+    testImplementation(Testing.junit4)
+    testImplementation(Testing.junitAndroidExt)
+    testImplementation(Testing.truth)
+    testImplementation(Testing.coroutines)
+    testImplementation(Testing.turbine)
+    testImplementation(Testing.composeUiTest)
+    testImplementation(Testing.mockk)
+    testImplementation(Testing.mockWebServer)
 
-    implementation(libs.androidx.core.splashscreen)
-
-    implementation(libs.androidx.room.runtime)
-    annotationProcessor(libs.androidx.room.compiler)
-    implementation(libs.androidx.room.ktx)
-    kapt("androidx.room:room-compiler:2.6.1")
-
-
-    // Network
-    implementation(libs.retrofit)
-    implementation(libs.converter.gson)
-    implementation(libs.logging.interceptor)
-
-    // Testing
-    testImplementation(libs.junit)
-    testImplementation(libs.truth)
-    testImplementation(libs.mockk)
-    testImplementation(libs.kotlinx.coroutines.test)
-    androidTestImplementation(libs.androidx.test.ext.junit)
-    androidTestImplementation(libs.espresso.core)
-    androidTestImplementation(platform("androidx.compose:compose-bom:2023.03.00"))
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4")
-
-    // Debugging
-    debugImplementation("androidx.compose.ui:ui-tooling")
-    debugImplementation("androidx.compose.ui:ui-test-manifest")
+    androidTestImplementation(Testing.junit4)
+    androidTestImplementation(Testing.junitAndroidExt)
+    androidTestImplementation(Testing.truth)
+    androidTestImplementation(Testing.coroutines)
+    androidTestImplementation(Testing.turbine)
+    androidTestImplementation(Testing.composeUiTest)
+    androidTestImplementation(Testing.mockkAndroid)
+    androidTestImplementation(Testing.mockWebServer)
+    androidTestImplementation(Testing.hiltTesting)
+    kaptAndroidTest(DaggerHilt.hiltCompiler)
+    androidTestImplementation(Testing.testRunner)
+    androidTestImplementation(Testing.dexMaker)
 }

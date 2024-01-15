@@ -21,3 +21,15 @@ dependencyResolutionManagement {
 
 rootProject.name = "Aquatick"
 include(":app")
+include(":settings")
+include(":settings:settings_domain")
+include(":settings:settings_presentation")
+include(":onboarding")
+include(":onboarding:onboarding_domain")
+include(":onboarding:onboarding_presentation")
+include(":core")
+include(":core-ui")
+include(":aquatracker")
+include(":aquatracker:aquatracker_data")
+include(":aquatracker:aquatracker_domain")
+include(":aquatracker:aquatracker_presentation")
