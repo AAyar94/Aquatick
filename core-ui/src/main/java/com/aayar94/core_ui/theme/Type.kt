@@ -1,4 +1,4 @@
-package com.aayar94.aquatick.core.theme
+package com.aayar94.core_ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

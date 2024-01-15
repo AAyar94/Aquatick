@@ -1,4 +1,4 @@
-package com.aayar94.aquatick.core.theme.component
+package com.aayar94.core_ui.theme.component
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column

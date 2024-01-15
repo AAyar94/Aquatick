@@ -5,8 +5,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.runtime.Composable
-import com.aayar94.aquatick.core.theme.Shapes
-import com.aayar94.aquatick.core.theme.Typography
+import com.aayar94.core_ui.theme.Shapes
+import com.aayar94.core_ui.theme.Typography
 
 
 private val LightColors = lightColorScheme(
