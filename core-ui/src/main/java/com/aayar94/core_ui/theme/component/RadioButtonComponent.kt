@@ -1,4 +1,4 @@
-package com.aayar94.aquatick.core.theme.component
+package com.aayar94.core_ui.theme.component
 
 import android.content.res.Configuration
 import androidx.compose.foundation.Image
