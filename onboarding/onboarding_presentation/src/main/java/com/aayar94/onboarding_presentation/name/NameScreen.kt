@@ -15,14 +15,17 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.ScaffoldState
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.aayar94.core.util.UiEvent
 import com.aayar94.core_ui.theme.LocalSpacing
 import com.aayar94.onboarding_presentation.component.AppTextField
 import com.aayar94.onboarding_presentation.component.BasicAppTextField
@@ -36,6 +39,18 @@ fun NameScreen(
 ) {
     val spacing = LocalSpacing.current
     val keyboardController = LocalSoftwareKeyboardController.current
+    val context = LocalContext.current
+    LaunchedEffect(key1 = true) {
+        viewModel.uiEvent.collect { event ->
+            when (event) {
+                is UiEvent.Success -> onNextClick()
+                is UiEvent.ShowSnackbar -> {
+                    scaffoldState.snackbarHostState.showSnackbar(event.message.asString(context))
+                }
+                else -> Unit
+            }
+        }
+    }
     Box(
         modifier = Modifier
             .fillMaxSize()

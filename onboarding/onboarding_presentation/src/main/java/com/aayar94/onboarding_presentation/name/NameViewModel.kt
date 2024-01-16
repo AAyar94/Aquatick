@@ -42,9 +42,18 @@ class NameViewModel @Inject constructor(
                     )
                     return@run
                 }
-                preferences.saveName(nameState)
-                _uiEvent.send(UiEvent.Success)
+            } else if (nameState.length < 3) {
+                kotlin.run {
+                    _uiEvent.send(
+                        UiEvent.ShowSnackbar(
+                            UiText.StringResource(com.aayar94.core.R.string.the_name_cannot_be_shorter_than_3_characters)
+                        )
+                    )
+                    return@run
+                }
             }
+            preferences.saveName(nameState)
+            _uiEvent.send(UiEvent.Success)
         }
     }
 }
