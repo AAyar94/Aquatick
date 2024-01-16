@@ -51,6 +51,8 @@ dependencies {
     implementation Compose.viewModelCompose
     implementation Compose.activityCompose
 
+    implementation Lottie.lottie
+
     implementation AccCompanist.accCompanist
 
 
