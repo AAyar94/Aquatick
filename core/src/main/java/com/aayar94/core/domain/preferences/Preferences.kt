@@ -13,6 +13,7 @@ interface Preferences {
     fun saveDailyIntakeAmount(amount: Int)
 
     fun saveOnboardingFinishedState(state: Boolean)
+    fun loadOnboardingState(): Boolean
 
     fun getUserInfo(): UserInfo
 

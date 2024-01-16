@@ -7,9 +7,9 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.preferencesDataStore
-import com.aayar94.aquatick.util.Constant.ONBOARDING_FINISHED_ONCE
-import com.aayar94.aquatick.util.Constant.PREFERENCES_NAME
-import com.aayar94.aquatick.util.Constant.SETUP_FINISHED_ONCE
+import com.aayar94.core.util.Constant.ONBOARDING_FINISHED_ONCE
+import com.aayar94.core.util.Constant.PREFERENCES_NAME
+import com.aayar94.core.util.Constant.SETUP_FINISHED_ONCE
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map

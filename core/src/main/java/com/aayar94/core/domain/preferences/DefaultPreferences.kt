@@ -50,6 +50,11 @@ class DefaultPreferences(
             .apply()
     }
 
+    override fun loadOnboardingState(): Boolean {
+        val state = sharedPreferences.getBoolean(Preferences.KEY_ONBOARDING_FINISHED_STATE, true)
+        return state
+    }
+
     override fun getUserInfo(): UserInfo {
         val name = sharedPreferences.getString(Preferences.KEY_NAME, "")
         val age = sharedPreferences.getInt(Preferences.KEY_AGE, -1)

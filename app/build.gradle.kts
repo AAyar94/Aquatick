@@ -64,6 +64,7 @@ dependencies {
     implementation(Compose.navigation)
     implementation(Compose.viewModelCompose)
     implementation(Compose.activityCompose)
+    implementation(AndroidX.splashScreen)
 
     implementation(DaggerHilt.hiltAndroid)
     kapt(DaggerHilt.hiltCompiler)
@@ -81,7 +82,7 @@ dependencies {
 
     implementation(Coil.coilCompose)
 
-    implementation(Google.material)
+    implementation(GoogleMaterial.material)
 
     implementation(Retrofit.okHttp)
     implementation(Retrofit.retrofit)
