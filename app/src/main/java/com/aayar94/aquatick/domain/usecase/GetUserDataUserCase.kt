@@ -1,7 +1,6 @@
 package com.aayar94.aquatick.domain.usecase
 
 import com.aayar94.aquatick.data.repository.UserDataRepository
-import com.aayar94.aquatick.domain.model.SetupScreenModel
 import javax.inject.Inject
 
 class GetUserDataUserCase @Inject constructor(

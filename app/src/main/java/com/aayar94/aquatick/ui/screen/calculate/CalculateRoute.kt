@@ -38,7 +38,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.aayar94.aquatick.R
 import com.aayar94.aquatick.core.navigation.INavigationItem
-import com.aayar94.aquatick.ui.component.StepItem
+import com.aayar94.onboarding_presentation.component.StepItem
 import com.aayar94.aquatick.ui.screen.home.Home
 import com.aayar94.aquatick.util.DevicesPreview
 import com.example.compose.AquatickTheme
