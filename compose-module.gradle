@@ -50,7 +50,7 @@ dependencies {
     implementation Compose.navigation
     implementation Compose.viewModelCompose
     implementation Compose.activityCompose
-
+    implementation Material3.material3
     implementation Lottie.lottie
 
     implementation AccCompanist.accCompanist

@@ -6,7 +6,7 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
-import com.aayar94.aquatick.R
+import com.aayar94.core_ui.R
 
 val Poppins = FontFamily(
     Font(R.font.poppins_regular),
