@@ -1,15 +1,11 @@
-package com.aayar94.aquatick.ui.screen
+package com.aayar94.aquatick
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.viewModels
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import androidx.hilt.navigation.compose.hiltViewModel
-import com.aayar94.aquatick.core.navigation.AppNavigation
-import com.aayar94.aquatick.core.navigation.NavigationManager
-import com.aayar94.aquatick.core.navigation.Route
-import com.aayar94.aquatick.ui.screen.onboarding.Onboarding
+import com.aayar94.aquatick.navigation.AppNavigation
+import com.aayar94.aquatick.navigation.Route
 import com.aayar94.core.domain.preferences.Preferences
 import com.example.compose.AquatickTheme
 import dagger.hilt.android.AndroidEntryPoint

@@ -1,4 +1,4 @@
-package com.aayar94.aquatick.core.navigation
+package com.aayar94.aquatick.navigation
 
 object Route {
     const val WELCOME = "welcome"
@@ -9,4 +9,6 @@ object Route {
     const val ACTIVITY_LEVEL = "activity_level"
     const val DAILY_INTAKE_CALCULATION = "daily_intake_calculation"
     const val HOME="home"
+    const val DRINK="drink"
+    const val SETTINGS="settings"
 }
