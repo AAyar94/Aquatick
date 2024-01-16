@@ -71,4 +71,5 @@
     <string name="name_cannot_be_empty">Name cannot be empty></string>
     <string name="age_cannot_be_empty">Age cannot be empty</string>
     <string name="the_name_cannot_be_shorter_than_3_characters">The name cannot be shorter than 3 characters</string>
+    <string name="select_your_gender">Select your gender</string>
 </resources>
