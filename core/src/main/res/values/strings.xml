@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Aquatick</string>
+    <string name="hello_welcome">Hello, Welcome to Aquatick, It\'s helps to your for track your daily water intake</string>
+    <string name="lets_continue">Let\'s continue with some information about you</string>
     <string name="work_in_progress_in_this_screen_screen">Work In Progress in this screen : %1$s Screen</string>
     <string name="stay_hydrated">Stay hydrated and track your daily water intake</string>
     <string name="track_your_daily_water_intake_with_us">Track Your daily water intake with US</string>
@@ -65,4 +67,6 @@
     <string name="our_special_formula">Our special formula</string>
     <string name="finisg_setup">Finish setup</string>
     <string name="some_math">Some math</string>
+    <string name="next">Next</string>
+    <string name="name_cannot_be_empty">Name cannot be empty></string>
 </resources>
