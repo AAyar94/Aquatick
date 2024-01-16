@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import com.aayar94.aquatick.data.local.user.UserDao
 import com.aayar94.aquatick.data.local.user.UserDataDatabase
-import com.aayar94.aquatick.util.Constant.USER_DATABASE_NAME
+import com.aayar94.core.util.Constant.USER_DATABASE_NAME
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
