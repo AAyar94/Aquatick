@@ -11,8 +11,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.aayar94.onboarding_presentation.age.AgeScreen
 import com.aayar94.onboarding_presentation.gender.GenderScreen
 import com.aayar94.onboarding_presentation.name.NameScreen
+import com.aayar94.onboarding_presentation.weight.WeightScreen
 import com.aayar94.onboarding_presentation.welcome.WelcomeScreen
 
 @Composable
@@ -39,8 +41,16 @@ fun AppNavigation(
                     scaffoldState = scaffoldState,
                     onNextClick = { navController.navigate(Route.AGE) })
             }
+            composable(Route.AGE) {
+                AgeScreen(
+                    scaffoldState = scaffoldState,
+                    onNextClick = { navController.navigate(Route.GENDER) })
+            }
             composable(Route.GENDER) {
-                GenderScreen(onNextClick = { navController.navigate(Route.HOME) })
+                GenderScreen(onNextClick = { navController.navigate(Route.WEIGHT) })
+            }
+            composable(Route.WEIGHT) {
+                WeightScreen(onNextClick = { navController.navigate(Route.WELCOME) })
             }
             composable(Route.DRINK) {
 

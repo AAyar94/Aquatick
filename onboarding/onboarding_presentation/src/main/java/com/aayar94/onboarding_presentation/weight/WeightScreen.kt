@@ -1,7 +1,6 @@
-package com.aayar94.onboarding_presentation.age
+package com.aayar94.onboarding_presentation.weight
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -9,50 +8,37 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Button
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material.ScaffoldState
-import androidx.compose.material.Text
 import androidx.compose.material3.FilledTonalButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.aayar94.core.util.UiEvent
+import com.aayar94.core.util.UiText
 import com.aayar94.core_ui.theme.LocalShape
 import com.aayar94.core_ui.theme.LocalSpacing
 import com.aayar94.onboarding_presentation.component.BasicAppTextField
-import com.aayar94.core.R.string as AppText
 
 @Composable
-fun AgeScreen(
-    scaffoldState: ScaffoldState,
+fun WeightScreen(
     onNextClick: () -> Unit,
-    viewModel: AgeViewModel = hiltViewModel()
+    viewModel: WeightViewModel = hiltViewModel()
 ) {
-    val spacing = LocalSpacing.current
-    val context = LocalContext.current
-    val shapes = LocalShape.current
     LaunchedEffect(key1 = true) {
         viewModel.uiEvent.collect { event ->
             when (event) {
                 is UiEvent.Success -> onNextClick()
-                is UiEvent.ShowSnackbar -> {
-                    scaffoldState.snackbarHostState.showSnackbar(
-                        message = event.message.asString(
-                            context = context
-                        )
-                    )
-                }
                 else -> Unit
             }
         }
     }
-
+    val spacing = LocalSpacing.current
+    val shapes = LocalShape.current
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -62,26 +48,23 @@ fun AgeScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(spacing.spaceMedium),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = stringResource(id = AppText.enter_your_age),
-                style = MaterialTheme.typography.titleMedium,
-                color = MaterialTheme.colorScheme.onBackground
+                text = stringResource(id = com.aayar94.core.R.string.enter_your_weight),
+                style = MaterialTheme.typography.titleMedium
             )
             Spacer(modifier = Modifier.height(spacing.spaceMedium))
-            BasicAppTextField(
-                value = viewModel.ageState,
-                onValueChange = { viewModel.ageChange(it) },
-                keyboardType = KeyboardType.Number
-            )
+            BasicAppTextField(value = viewModel.weightState.toString(), onValueChange = {
+                viewModel.weightChange(
+                    it.toFloat()
+                )
+            }, keyboardType = KeyboardType.Number)
             Spacer(modifier = Modifier.height(spacing.spaceMedium))
-            FilledTonalButton(onClick = viewModel::onNextClick, shape = shapes.mediumCornerRadius) {
+            FilledTonalButton(onClick = viewModel::onNextClick) {
                 Text(
-                    text = stringResource(id = AppText.next),
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSecondaryContainer
+                    text = stringResource(id = com.aayar94.core.R.string.next),
+                    style = MaterialTheme.typography.bodyMedium
                 )
             }
         }

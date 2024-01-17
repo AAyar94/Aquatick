@@ -21,7 +21,7 @@ class NameViewModel @Inject constructor(
     private val preferences: Preferences
 ) : ViewModel() {
 
-    var nameState by mutableStateOf("")
+    var nameState by mutableStateOf("Your Name")
         private set
 
     private val _uiEvent = Channel<UiEvent>()
