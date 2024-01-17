@@ -65,7 +65,7 @@
     <string name="your_gender">Your gender</string>
     <string name="your_daily_activity_level">Your daily activity level</string>
     <string name="our_special_formula">Our special formula</string>
-    <string name="finisg_setup">Finish setup</string>
+    <string name="finish_setup">Finish setup</string>
     <string name="some_math">Some math</string>
     <string name="next">Next</string>
     <string name="name_cannot_be_empty">Name cannot be empty</string>

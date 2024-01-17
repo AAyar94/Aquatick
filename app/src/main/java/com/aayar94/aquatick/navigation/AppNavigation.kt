@@ -13,6 +13,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.aayar94.onboarding_presentation.activity_level.ActivityLevelScreen
 import com.aayar94.onboarding_presentation.age.AgeScreen
+import com.aayar94.onboarding_presentation.daily_intake_calculation.DailyIntakeCalculation
 import com.aayar94.onboarding_presentation.gender.GenderScreen
 import com.aayar94.onboarding_presentation.name.NameScreen
 import com.aayar94.onboarding_presentation.weight.WeightScreen
@@ -54,7 +55,10 @@ fun AppNavigation(
                 WeightScreen(onNextClick = { navController.navigate(Route.ACTIVITY_LEVEL) })
             }
             composable(Route.ACTIVITY_LEVEL) {
-                ActivityLevelScreen(onNextClick = { navController.navigate(Route.WELCOME) })
+                ActivityLevelScreen(onNextClick = { navController.navigate(Route.DAILY_INTAKE_CALCULATION) })
+            }
+            composable(Route.DAILY_INTAKE_CALCULATION) {
+                DailyIntakeCalculation(finishOnboardingClicked = { navController.navigate(Route.HOME) })
             }
             composable(Route.DRINK) {
 
