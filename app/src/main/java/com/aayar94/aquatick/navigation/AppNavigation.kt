@@ -11,6 +11,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.aayar94.aquatracker_presentation.home.HomeScreen
+import com.aayar94.aquatracker_presentation.drink.DrinkScreen
 import com.aayar94.onboarding_presentation.activity_level.ActivityLevelScreen
 import com.aayar94.onboarding_presentation.age.AgeScreen
 import com.aayar94.onboarding_presentation.daily_intake_calculation.DailyIntakeCalculation
@@ -18,6 +20,7 @@ import com.aayar94.onboarding_presentation.gender.GenderScreen
 import com.aayar94.onboarding_presentation.name.NameScreen
 import com.aayar94.onboarding_presentation.weight.WeightScreen
 import com.aayar94.onboarding_presentation.welcome.WelcomeScreen
+import com.aayar94.settings_presentation.SettingsScreen
 
 @Composable
 fun AppNavigation(
@@ -60,14 +63,16 @@ fun AppNavigation(
             composable(Route.DAILY_INTAKE_CALCULATION) {
                 DailyIntakeCalculation(finishOnboardingClicked = { navController.navigate(Route.HOME) })
             }
+            composable(Route.HOME) {
+                HomeScreen(onDrinkNavigateClick = { navController.navigate(Route.DRINK) })
+            }
             composable(Route.DRINK) {
-
+                DrinkScreen()
             }
             composable(Route.SETTINGS) {
+                SettingsScreen()
+            }
 
-            }
-            composable(Route.HOME) {
-            }
         }
     }
 }
