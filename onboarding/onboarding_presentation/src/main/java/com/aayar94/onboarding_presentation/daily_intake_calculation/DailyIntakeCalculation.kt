@@ -5,8 +5,10 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.ZeroCornerSize
 import androidx.compose.material3.FilledTonalButton
@@ -69,8 +71,18 @@ fun DailyIntakeCalculation(
                 CalculationAnimationItem(string = stringResource(id = AppText.activity_level))
             }
             AnimatedVisibility(visible = viewModel.itemVisibilityState.fifthItemVisibility == true) {
+                viewModel.itemVisibilityState.dailyIntakeAmount?.let {
+                    Text(
+                        text = stringResource(id = AppText.Your_daily_intake_amount_is, it),
+                        color = MaterialTheme.colorScheme.onBackground,
+                        style = MaterialTheme.typography.bodyLarge
+                    )
+                }
+            }
+            AnimatedVisibility(visible = viewModel.itemVisibilityState.fifthItemVisibility == true) {
                 FilledTonalButton(
-                    onClick = viewModel::onFinishedClick, shape = shapes.mediumCornerRadius
+                    onClick = viewModel::onFinishedClick,
+                    shape = shapes.mediumCornerRadius
                 ) {
                     Text(text = stringResource(id = AppText.finish_setup))
                 }
