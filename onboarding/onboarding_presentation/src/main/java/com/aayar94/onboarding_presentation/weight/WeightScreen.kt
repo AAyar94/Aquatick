@@ -55,11 +55,15 @@ fun WeightScreen(
                 style = MaterialTheme.typography.titleMedium
             )
             Spacer(modifier = Modifier.height(spacing.spaceMedium))
-            BasicAppTextField(value = viewModel.weightState.toString(), onValueChange = {
-                viewModel.weightChange(
-                    it.toFloat()
-                )
-            }, keyboardType = KeyboardType.Number)
+            BasicAppTextField(
+                value = viewModel.weightState.toString(),
+                onValueChange = {
+                    viewModel.weightChange(
+                        it.toFloat()
+                    )
+                },
+                keyboardType = KeyboardType.Number
+            )
             Spacer(modifier = Modifier.height(spacing.spaceMedium))
             FilledTonalButton(onClick = viewModel::onNextClick) {
                 Text(

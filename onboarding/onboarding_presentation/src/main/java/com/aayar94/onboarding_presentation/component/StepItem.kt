@@ -16,9 +16,15 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun StepItem(text: String, tint: Color) {
+fun StepItem(
+    text: String,
+    tint: Color
+) {
     Row {
-        Icon(imageVector = Icons.Default.CheckCircle, contentDescription = null, tint = tint)
+        Icon(
+            imageVector = Icons.Default.CheckCircle,
+            contentDescription = null, tint = tint
+        )
         Spacer(modifier = Modifier.width(8.dp))
         Text(text = text, color = tint, fontSize = 16.sp)
     }

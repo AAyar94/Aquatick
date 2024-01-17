@@ -88,10 +88,14 @@ fun NameScreen(
                 keyboardType = KeyboardType.Text
             )
             Spacer(modifier = Modifier.height(spacing.spaceLarge))
-            FilledTonalButton(onClick = viewModel::onNextClick, shape = shapes.mediumCornerRadius) {
+            FilledTonalButton(
+                onClick = viewModel::onNextClick,
+                shape = shapes.mediumCornerRadius
+            ) {
                 Text(
                     text = stringResource(id = AppText.next),
-                    style = androidx.compose.material3.MaterialTheme.typography.bodySmall,color=androidx.compose.material3.MaterialTheme.colorScheme.onSecondaryContainer
+                    style = androidx.compose.material3.MaterialTheme.typography.bodySmall,
+                    color = androidx.compose.material3.MaterialTheme.colorScheme.onSecondaryContainer
                 )
             }
         }

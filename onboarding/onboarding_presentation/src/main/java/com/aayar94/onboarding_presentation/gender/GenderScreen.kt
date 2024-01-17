@@ -51,7 +51,8 @@ fun GenderScreen(
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(MaterialTheme.colors.background), contentAlignment = Alignment.Center
+            .background(MaterialTheme.colors.background),
+        contentAlignment = Alignment.Center
     ) {
         Column(
             modifier = Modifier
@@ -62,7 +63,7 @@ fun GenderScreen(
         ) {
             Text(
                 text = stringResource(id = com.aayar94.core.R.string.select_your_gender),
-                style = androidx.compose.material3.MaterialTheme.typography.titleMedium
+                style = androidx.compose.material3.MaterialTheme.typography.titleMedium,
             )
             Spacer(modifier = Modifier.height(spacing.spaceMedium))
             Row(
@@ -76,27 +77,43 @@ fun GenderScreen(
                     genderIcon = AppDrawable.gender_male,
                     genderDescription = "Gender Male",
                     isSelected = viewModel.genderState is Gender.Male,
-                    modifier = Modifier.width(64.dp).wrapContentHeight(),
+                    modifier = Modifier
+                        .width(64.dp)
+                        .wrapContentHeight(),
                     selectionChange = { viewModel.genderChange(Gender.Male) }
                 )
                 GenderButton(
                     genderIcon = AppDrawable.gender_female,
                     genderDescription = "Gender Female",
                     isSelected = viewModel.genderState is Gender.Female,
-                    modifier = Modifier.width(64.dp).wrapContentHeight(),
+                    modifier = Modifier
+                        .width(64.dp)
+                        .wrapContentHeight(),
                     selectionChange = { viewModel.genderChange(Gender.Female) }
                 )
                 GenderButton(
                     genderIcon = AppDrawable.gender_lgbtq,
                     genderDescription = "Gender LGBTQ",
                     isSelected = viewModel.genderState is Gender.LGBTQ,
-                    modifier = Modifier.width(64.dp).wrapContentHeight(),
+                    modifier = Modifier
+                        .width(64.dp)
+                        .wrapContentHeight(),
                     selectionChange = { viewModel.genderChange(Gender.LGBTQ) }
                 )
             }
-            Spacer(modifier = Modifier.height(spacing.spaceLarge))
-            FilledTonalButton(onClick = viewModel::onNextClick, shape = shapes.mediumCornerRadius) {
-                Text(text = stringResource(id = AppText.next), style = MaterialTheme.typography.h6)
+            Spacer(
+                modifier = Modifier.height(
+                    spacing.spaceMedium
+                )
+            )
+            FilledTonalButton(
+                onClick = viewModel::onNextClick,
+                shape = shapes.mediumCornerRadius
+            ) {
+                Text(
+                    text = stringResource(id = AppText.next),
+                    style = androidx.compose.material3.MaterialTheme.typography.bodyMedium
+                )
             }
         }
     }
