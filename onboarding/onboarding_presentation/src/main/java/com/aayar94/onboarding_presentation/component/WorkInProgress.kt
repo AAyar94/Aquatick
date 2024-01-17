@@ -36,7 +36,7 @@ fun WorkInProgress(where: String) {
                 .padding(horizontal = 12.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(com.aayar94.core.R.raw.wip))
+            val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(com.aayar94.core_ui.R.raw.wip))
             LottieAnimation(
                 composition = composition,
                 modifier = Modifier.defaultMinSize(64.dp, 64.dp),
