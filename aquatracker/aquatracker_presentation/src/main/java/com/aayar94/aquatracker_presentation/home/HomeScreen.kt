@@ -28,6 +28,7 @@ import com.aayar94.core.util.UiEvent
 import com.aayar94.core_ui.theme.LocalShape
 import com.aayar94.core_ui.theme.LocalSpacing
 import com.aayar94.core_ui.util.WorkInProgress
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 @Composable
 fun HomeScreen(
@@ -36,6 +37,8 @@ fun HomeScreen(
 ) {
     val spacing = LocalSpacing.current
     val shapes = LocalShape.current
+    val systemUIController = rememberSystemUiController()
+    systemUIController.setStatusBarColor(MaterialTheme.colorScheme.background)
     LaunchedEffect(true) {
         viewModel.uiEvent.collect { event ->
             when (event) {
@@ -61,7 +64,7 @@ fun HomeScreen(
                     greetings = viewModel.homeState.greetings!!,
                     name = viewModel.homeState.name!!,
                     isNewNotification = false,
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth().padding(horizontal = spacing.spaceMedium)
                 )
             }
             DailyGoalCard(
@@ -69,7 +72,8 @@ fun HomeScreen(
                 dailyIntakeAmount = viewModel.homeState.dailyIntakeAmount!!,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .wrapContentHeight().padding(spacing.spaceMedium),
+                    .wrapContentHeight()
+                    .padding(spacing.spaceMedium),
                 onDrinkClick = viewModel::onEnterDrinkClick
             )
         }
