@@ -50,7 +50,9 @@ fun HomeScreen(
             .background(MaterialTheme.colorScheme.background)
     ) {
         Column(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(spacing.spaceMedium),
             verticalArrangement = Arrangement.spacedBy(spacing.spaceMedium),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
@@ -67,7 +69,7 @@ fun HomeScreen(
                 dailyIntakeAmount = viewModel.homeState.dailyIntakeAmount!!,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .wrapContentHeight(),
+                    .wrapContentHeight().padding(spacing.spaceMedium),
                 onDrinkClick = viewModel::onEnterDrinkClick
             )
         }

@@ -20,7 +20,10 @@ import com.aayar94.core_ui.theme.LocalSpacing
 
 @Composable
 fun HomeHeader(
-    greetings: String, name: String, isNewNotification: Boolean, modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    greetings: String,
+    name: String,
+    isNewNotification: Boolean
 ) {
     val spacing = LocalSpacing.current
     Row(
@@ -31,18 +34,18 @@ fun HomeHeader(
         Column {
             Text(
                 text = greetings,
-                style = MaterialTheme.typography.bodySmall,
+                style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onBackground,
                 fontStyle = FontStyle.Italic
             )
-            Spacer(modifier = Modifier.height(spacing.spaceMedium))
+            Spacer(modifier = Modifier.height(spacing.spaceSmall))
             Text(
                 text = name,
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onBackground
             )
         }
-        IconButton(onClick = { /*TODO*/ }) {
+        IconButton(onClick = { /*TODO Route Notification*/ }) {
             Icon(
                 imageVector = if (isNewNotification) Icons.Default.Notifications else Icons.Default.Notifications,
                 contentDescription = "Notification_Bell"

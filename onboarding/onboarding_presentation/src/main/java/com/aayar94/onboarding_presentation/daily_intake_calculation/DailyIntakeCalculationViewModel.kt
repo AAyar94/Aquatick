@@ -5,6 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.aayar94.core.domain.preferences.Preferences
 import com.aayar94.core.util.UiEvent
 import com.aayar94.onboarding_domain.usecase.CalculateDailyIntakeAmountUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -16,7 +17,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DailyIntakeCalculationViewModel @Inject constructor(
-    private val calculateDailyIntakeAmountUseCase: CalculateDailyIntakeAmountUseCase
+    private val calculateDailyIntakeAmountUseCase: CalculateDailyIntakeAmountUseCase,
+    val preferences: Preferences
 ) : ViewModel() {
 
     var itemVisibilityState by mutableStateOf(DailyIntakeCalculationUIState())
@@ -25,9 +27,10 @@ class DailyIntakeCalculationViewModel @Inject constructor(
     private val _uiEvent = Channel<UiEvent>()
     val uiEvent = _uiEvent.receiveAsFlow()
 
+    private val amount = calculateDailyIntakeAmountUseCase.invoke()
+
     fun startAnim() {
         viewModelScope.launch {
-            val amount = calculateDailyIntakeAmountUseCase.invoke()
             itemVisibilityState = itemVisibilityState.copy(firstItemVisibility = true)
             delay(1000)
             itemVisibilityState = itemVisibilityState.copy(secondItemVisibility = true)
@@ -44,6 +47,8 @@ class DailyIntakeCalculationViewModel @Inject constructor(
 
     fun onFinishedClick() {
         viewModelScope.launch {
+            preferences.saveDailyIntakeAmount(amount = amount)
+            preferences.saveOnboardingFinishedState(false)
             _uiEvent.send(UiEvent.Success)
         }
     }
