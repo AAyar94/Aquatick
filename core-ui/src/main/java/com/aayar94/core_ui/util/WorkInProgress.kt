@@ -18,17 +18,27 @@ import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.rememberLottieComposition
 
 @Composable
-fun WorkInProgress(whatIsThisRoute: String, modifier: Modifier = Modifier) {
+fun WorkInProgress(
+    whatIsThisRoute: String,
+    modifier: Modifier = Modifier
+) {
     Box(
         modifier = modifier.background(MaterialTheme.colorScheme.background),
         contentAlignment = Alignment.Center
     ) {
         Column(
             modifier = Modifier.fillMaxWidth(),
-            verticalArrangement = Arrangement.spacedBy(24.dp)
+            verticalArrangement = Arrangement.spacedBy(24.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
             val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(com.aayar94.core_ui.R.raw.wip))
-            LottieAnimation(composition = composition, modifier = Modifier.size(100.dp))
+            LottieAnimation(
+                composition = composition,
+                modifier = Modifier.size(250.dp),
+                restartOnPlay = true,
+                reverseOnRepeat = true,
+                iterations = 10
+            )
             Text(
                 text = whatIsThisRoute,
                 style = MaterialTheme.typography.bodyLarge,
