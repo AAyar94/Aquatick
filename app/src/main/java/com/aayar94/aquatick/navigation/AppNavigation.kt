@@ -11,6 +11,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.aayar94.onboarding_presentation.activity_level.ActivityLevelScreen
 import com.aayar94.onboarding_presentation.age.AgeScreen
 import com.aayar94.onboarding_presentation.gender.GenderScreen
 import com.aayar94.onboarding_presentation.name.NameScreen
@@ -50,7 +51,10 @@ fun AppNavigation(
                 GenderScreen(onNextClick = { navController.navigate(Route.WEIGHT) })
             }
             composable(Route.WEIGHT) {
-                WeightScreen(onNextClick = { navController.navigate(Route.WELCOME) })
+                WeightScreen(onNextClick = { navController.navigate(Route.ACTIVITY_LEVEL) })
+            }
+            composable(Route.ACTIVITY_LEVEL) {
+                ActivityLevelScreen(onNextClick = { navController.navigate(Route.WELCOME) })
             }
             composable(Route.DRINK) {
 

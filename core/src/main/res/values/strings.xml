@@ -68,9 +68,10 @@
     <string name="finisg_setup">Finish setup</string>
     <string name="some_math">Some math</string>
     <string name="next">Next</string>
-    <string name="name_cannot_be_empty">Name cannot be empty></string>
+    <string name="name_cannot_be_empty">Name cannot be empty</string>
     <string name="age_cannot_be_empty">Age cannot be empty</string>
     <string name="weight_cannot_be_empty">Weight cannot be empty</string>
     <string name="the_name_cannot_be_shorter_than_3_characters">The name cannot be shorter than 3 characters</string>
     <string name="select_your_gender">Select your gender</string>
+    <string name="select_your_activity_level">Select your activity level</string>
 </resources>
