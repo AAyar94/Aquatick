@@ -17,27 +17,32 @@ val Poppins = FontFamily(
 val Typography = Typography(
     titleLarge = TextStyle(
         fontFamily = Poppins,
-        fontWeight = FontWeight.Bold,
-        fontSize = 36.sp
+        fontWeight = FontWeight.SemiBold,
+        fontSize = 22.sp
     ),
     titleMedium = TextStyle(
         fontFamily = Poppins,
-        fontWeight = FontWeight.Bold,
-        fontSize = 25.sp
+        fontWeight = FontWeight.SemiBold,
+        fontSize = 16.sp
     ),
     titleSmall = TextStyle(
         fontFamily = Poppins,
-        fontWeight = FontWeight.Bold,
-        fontSize = 20.sp
+        fontWeight = FontWeight.SemiBold,
+        fontSize = 14.sp
     ),
-    bodyMedium = TextStyle(
+    bodyLarge = TextStyle(
         fontFamily = Poppins,
         fontWeight = FontWeight.Normal,
         fontSize = 16.sp
     ),
-    bodySmall = TextStyle(
+    bodyMedium = TextStyle(
         fontFamily = Poppins,
         fontWeight = FontWeight.Normal,
         fontSize = 14.sp
     ),
+    bodySmall = TextStyle(
+        fontFamily = Poppins,
+        fontWeight = FontWeight.Normal,
+        fontSize = 12.sp
+    )
 )
