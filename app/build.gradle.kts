@@ -78,6 +78,8 @@ dependencies {
     implementation(project(Modules.aquaTrackerData))
     implementation(project(Modules.aquaTrackerDomain))
     implementation(project(Modules.aquaTrackerPresentation))
+    implementation(project(Modules.settingsDomain))
+    implementation(project(Modules.settingsPresentation))
 
     implementation(AndroidX.coreKtx)
     implementation(AndroidX.appCompat)

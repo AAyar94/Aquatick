@@ -10,4 +10,7 @@ object Modules {
     const val aquaTrackerData = ":aquatracker:aquatracker_data"
     const val aquaTrackerDomain = ":aquatracker:aquatracker_domain"
     const val aquaTrackerPresentation = ":aquatracker:aquatracker_presentation"
+
+    const val settingsDomain = ":settings:settings_domain"
+    const val settingsPresentation = ":settings:settings_presentation"
 }
