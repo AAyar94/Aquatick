@@ -65,7 +65,6 @@ val md_theme_dark_scrim = Color(0xFF000000)
 
 
 val seed = Color(0xFF5DCCFC)
-
 val Orange =Color(0xFFFFA500)
 val Indigo =Color(0xFF4B0082)
 val Violet =Color(0xFF7F00FF)
