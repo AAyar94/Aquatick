@@ -30,7 +30,8 @@ class HomeViewModel @Inject constructor(
                 greetings = getGreeting(),
                 name = userInfo.name,
                 currentIntake = 250.toString(),
-                dailyIntakeAmount = userInfo.dailyIntakeAmount.toString()
+                lastIntakeTime = null,
+                lastIntakeType = null
             )
         }
     }

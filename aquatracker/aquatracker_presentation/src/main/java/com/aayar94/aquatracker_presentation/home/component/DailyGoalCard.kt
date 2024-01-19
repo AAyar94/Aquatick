@@ -36,9 +36,11 @@ import com.aayar94.core.R.drawable as AppDrawable
 
 @Composable
 fun DailyGoalCard(
-    modifier: Modifier = Modifier, currentIntake: String,
-    //TODO Daily Intake amount must change to last intake time
-    dailyIntakeAmount: String, onDrinkClick: () -> Unit
+    modifier: Modifier = Modifier,
+    currentIntake: String,
+    lastIntakeTime: String?,
+    lastIntakeType: String?,
+    onDrinkClick: () -> Unit
 ) {
     val spacing = LocalSpacing.current
     val shapes = LocalShape.current
@@ -66,9 +68,14 @@ fun DailyGoalCard(
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onBackground
                 )
+
                 Text(
                     modifier = Modifier.zIndex(3f),
-                    text = "Your daily goal is: $dailyIntakeAmount",
+                    text = if (lastIntakeTime == null || lastIntakeType == null) {
+                        "You didn't drink yet "
+                    } else {
+                        "$lastIntakeTime ($lastIntakeType)"
+                    },
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onBackground
                 )
@@ -118,7 +125,8 @@ fun DailyGoalCard(
                     .align(
                         Alignment.BottomStart
                     )
-                    .zIndex(3f), colors = ButtonDefaults.filledTonalButtonColors(containerColor = MaterialTheme.colorScheme.primaryContainer)
+                    .zIndex(3f),
+                colors = ButtonDefaults.filledTonalButtonColors(containerColor = MaterialTheme.colorScheme.primaryContainer)
             ) {
                 Text(
                     text = stringResource(id = com.aayar94.core.R.string.add_a_goal),
