@@ -17,7 +17,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DailyIntakeCalculationViewModel @Inject constructor(
-    private val calculateDailyIntakeAmountUseCase: CalculateDailyIntakeAmountUseCase,
+    calculateDailyIntakeAmountUseCase: CalculateDailyIntakeAmountUseCase,
     val preferences: Preferences
 ) : ViewModel() {
 

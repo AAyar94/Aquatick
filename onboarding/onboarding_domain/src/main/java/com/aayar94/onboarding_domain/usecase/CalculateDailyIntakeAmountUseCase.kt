@@ -16,35 +16,82 @@ class CalculateDailyIntakeAmountUseCase(
     private val activityLevel = getUserActivityLevelUseCase.invoke()
 
     operator fun invoke(): Int {
-        val preFactor = when (gender) {
-            // (30 mL/kg x 60 kg) + (0.0333 mL/kg x 60 kg/yıl x 30 yaş)
-            is Gender.Male -> (35 * weight) + (33.3 * age * weight)
-            is Gender.Female -> (30 * weight) + (0.0333 * age * weight)
-            else -> (33 * weight) + (0.0333 * age * weight)
+
+        val baseFactor = when (gender) {
+            is Gender.Male -> (35 * weight)
+            is Gender.Female -> (30 * weight)
+            is Gender.LGBTQ -> (33 * weight)
         }
 
-        val intakeFactor = when (activityLevel) {
+        val ageFactor = when {
+            age < 18 -> 1.1
+            age > 50 -> 0.9
+            else -> 1.0
+        }
+
+        val genderFactor = when (gender) {
+            is Gender.Male -> 1.1
+            is Gender.Female -> 1.0
+            is Gender.LGBTQ -> 1.05
+        }
+
+        val activityFactor = when (activityLevel) {
             is ActivityLevel.NotActive -> {
-                0.1
+                0.75
             }
 
             is ActivityLevel.LessThanAverage -> {
-                0.2
+                0.8
             }
 
             is ActivityLevel.Average -> {
-                0.3
+                0.85
             }
 
             is ActivityLevel.Active -> {
-                0.4
+                0.9
             }
 
             is ActivityLevel.VeryActive -> {
-                0.5
+                0.95
             }
         }
 
-        return preFactor.roundToInt()+(preFactor * intakeFactor).roundToInt()
+        /**     OLD Formula
+        /*val preFactor = when (gender) {
+        // (30 mL/kg x 60 kg) + (0.0333 mL/kg x 60 kg/yıl x 30 yaş)
+        is Gender.Male -> ((35 / 1000) * weight) + ((0.0333) * age * weight)
+        is Gender.Female -> ((30/ 1000) * weight) + ((0.0333) * age * weight)
+        else -> ((33/1000) * weight) + ((0.0333) * age * weight)
+        }
+
+        val intakeFactor = when (activityLevel) {
+        is ActivityLevel.NotActive -> {
+        0.1
+        }
+
+        is ActivityLevel.LessThanAverage -> {
+        0.2
+        }
+
+        is ActivityLevel.Average -> {
+        0.3
+        }
+
+        is ActivityLevel.Active -> {
+        0.4
+        }
+
+        is ActivityLevel.VeryActive -> {
+        0.5
+        }*/
+        }*/
+        val formattedValue =
+            (baseFactor * ageFactor * genderFactor * activityFactor).roundToInt()
+        return when {
+            formattedValue < 2700 -> 2700
+            formattedValue > 3700 -> 3700
+            else -> formattedValue
+        }
     }
 }
