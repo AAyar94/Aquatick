@@ -68,6 +68,7 @@ dependencies {
     implementation(AndroidX.splashScreen)
     implementation(Compose.navigation)
 
+
     implementation(JetpackGlance.jetpackGlance)
     implementation(JetpackGlance.jetpackGlanceM3)
 
@@ -83,7 +84,7 @@ dependencies {
     implementation(project(Modules.aquaTrackerPresentation))
     implementation(project(Modules.settingsDomain))
     implementation(project(Modules.settingsPresentation))
-    
+
     implementation(AndroidX.coreKtx)
     implementation(AndroidX.appCompat)
 
