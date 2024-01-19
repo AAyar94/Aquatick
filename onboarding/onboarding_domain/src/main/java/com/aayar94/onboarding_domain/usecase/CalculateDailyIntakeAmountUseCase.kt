@@ -89,8 +89,8 @@ class CalculateDailyIntakeAmountUseCase(
         val formattedValue =
             (baseFactor * ageFactor * genderFactor * activityFactor).roundToInt()
         return when {
-            formattedValue < 2700 -> 2700
-            formattedValue > 3700 -> 3700
+            formattedValue < 2500 -> 2500
+            formattedValue > 3500 -> 3500
             else -> formattedValue
         }
     }

@@ -1,7 +1,9 @@
 package com.aayar94.aquatick.widget
 
 import android.content.Context
+import android.content.SharedPreferences
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.glance.GlanceId
@@ -9,6 +11,7 @@ import androidx.glance.GlanceModifier
 import androidx.glance.GlanceTheme
 import androidx.glance.ImageProvider
 import androidx.glance.appwidget.GlanceAppWidget
+import androidx.glance.appwidget.GlanceAppWidgetManager
 import androidx.glance.appwidget.SizeMode
 import androidx.glance.appwidget.cornerRadius
 import androidx.glance.appwidget.provideContent
@@ -23,17 +26,29 @@ import androidx.glance.layout.height
 import androidx.glance.layout.padding
 import androidx.glance.state.GlanceStateDefinition
 import androidx.glance.state.PreferencesGlanceStateDefinition
+import com.aayar94.core.domain.preferences.DefaultPreferences
+import com.aayar94.core.domain.preferences.Preferences
 
-class AquatrackWidget : GlanceAppWidget() {
+class AquatrackWidget() : GlanceAppWidget() {
 
     override val sizeMode: SizeMode = SizeMode.Exact
     override val stateDefinition: GlanceStateDefinition<*> = PreferencesGlanceStateDefinition
 
+
+
     override suspend fun provideGlance(context: Context, id: GlanceId) {
         provideContent {
-            DailyIntakeStatus("250", "2250")
+            val dailyIntakeAmount = remember { getMyPreferenceValue(context) }
+            DailyIntakeStatus("250", dailyIntakeAmount = dailyIntakeAmount)
         }
     }
+
+    private fun getMyPreferenceValue(context: Context): String {
+        val sharedPreferences = context.getSharedPreferences("shared_pref", Context.MODE_PRIVATE)
+        val prefs = DefaultPreferences(sharedPreferences)
+        return prefs.getUserInfo().dailyIntakeAmount.toString()
+    }
+
 
     @Composable
     fun DailyIntakeStatus(
