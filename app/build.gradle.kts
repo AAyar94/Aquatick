@@ -4,6 +4,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("dagger.hilt.android.plugin")
     id("kotlin-kapt")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -67,6 +68,8 @@ dependencies {
     implementation(AndroidX.splashScreen)
     implementation(Compose.navigation)
 
+    implementation(JetpackGlance.jetpackGlance)
+    implementation(JetpackGlance.jetpackGlanceM3)
 
     implementation(DaggerHilt.hiltAndroid)
     kapt(DaggerHilt.hiltCompiler)
@@ -80,7 +83,7 @@ dependencies {
     implementation(project(Modules.aquaTrackerPresentation))
     implementation(project(Modules.settingsDomain))
     implementation(project(Modules.settingsPresentation))
-
+    
     implementation(AndroidX.coreKtx)
     implementation(AndroidX.appCompat)
 

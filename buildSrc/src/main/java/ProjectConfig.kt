@@ -1,5 +1,5 @@
 object ProjectConfig {
-    const val appId = "com.aayar94.calorytracker"
+    const val appId = "com.aayar94.aquatick"
     const val compileSdk = 34
     const val minSdk = 24
     const val targetSdk = 34

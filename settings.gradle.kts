@@ -36,3 +36,4 @@ include(":aquatracker:aquatracker_presentation")
 include(":settings")
 include(":settings:settings_presentation")
 include("settings:settings_domain")
+

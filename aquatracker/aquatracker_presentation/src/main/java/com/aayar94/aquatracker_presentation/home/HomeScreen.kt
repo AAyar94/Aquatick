@@ -74,6 +74,7 @@ fun HomeScreen(
                 onDrinkClick = viewModel::onEnterDrinkClick
             )
             Spacer(modifier = Modifier.height(spacing.spaceMedium))
+            //Todo Firebase Makaleler Table
             //DailyReadCard(imageUrl = , text = , onClick = { /*TODO*/ }, shape = )
         }
     }
