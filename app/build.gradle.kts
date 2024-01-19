@@ -70,6 +70,7 @@ dependencies {
 
 
     implementation(JetpackGlance.jetpackGlance)
+    implementation(JetpackGlance.jetpackGlanceAppWidget)
     implementation(JetpackGlance.jetpackGlanceM3)
 
     implementation(DaggerHilt.hiltAndroid)
