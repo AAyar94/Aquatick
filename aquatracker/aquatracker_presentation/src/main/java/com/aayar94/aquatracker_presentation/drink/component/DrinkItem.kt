@@ -18,6 +18,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
@@ -44,7 +45,17 @@ fun DrinkItem(modifier: Modifier = Modifier, item: ScreenDrinkItem, shape: Round
                 painter = painterResource(id = item.drinkIcon),
                 contentDescription = null,
                 modifier = Modifier.size(64.dp),
-                alignment = Alignment.Center
+                alignment = Alignment.Center,
+                contentScale = ContentScale.Crop
+            )
+            Spacer(modifier = Modifier.height(spacing.spaceMedium))
+            Text(
+                modifier = Modifier.fillMaxWidth(),
+                textAlign = TextAlign.Center,
+                text = item.defaultAmount.toString() + " ml",
+                maxLines = 2,
+                overflow = TextOverflow.Ellipsis,
+                color = MaterialTheme.colorScheme.onBackground
             )
             Spacer(modifier = Modifier.height(spacing.spaceMedium))
             Text(
