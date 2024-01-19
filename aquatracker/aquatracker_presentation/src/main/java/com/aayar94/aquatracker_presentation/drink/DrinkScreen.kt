@@ -35,7 +35,11 @@ fun DrinkScreen(
         columns = GridCells.Fixed(3)
     ) {
         items(viewModel.drinkUIState.list) { item ->
-            DrinkItem(item = item, shape = shape.mediumCornerRadius)
+            DrinkItem(
+                modifier = Modifier.padding(spacing.spaceSmall),
+                item = item,
+                shape = shape.mediumCornerRadius
+            )
         }
     }
 }

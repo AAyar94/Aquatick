@@ -1,30 +1,30 @@
 package com.aayar94.aquatracker_domain.model
 
 sealed class DrinkType(val name: String) {
-    object GlassOfWater : DrinkType("glass_of_water")
-    object BottleOfWater : DrinkType("bottle_of_water")
-    object ACupOfCoffee : DrinkType("a_cup_of_coffee")
-    object Tea : DrinkType("tea")
-    object HerbalTea : DrinkType("herbal_tea")
-    object CarbonatedDrinks : DrinkType("carbonated_drink")
-    object Milk : DrinkType("milk")
+    object Glass_Of_Water : DrinkType("Glass_of_water")
+    object Bottle_Of_Water : DrinkType("Bottle_of_water")
+    object A_Cup_Of_Coffee : DrinkType("A_cup_of_coffee")
+    object Tea : DrinkType("Tea")
+    object Herbal_Tea : DrinkType("Herbal_tea")
+    object Carbonated_Drinks : DrinkType("Carbonated_drink")
+    object Milk : DrinkType("Milk")
     object Smoothie : DrinkType("smoothie")
-    object FruitJuice : DrinkType("fruit_juice")
+    object Fruit_Juice : DrinkType("Fruit_juice")
 
 
     companion object {
         fun fromString(name: String): DrinkType {
             return when (name.lowercase()) {
-                "glass_of_water" -> GlassOfWater
-                "bottle_of_water" -> BottleOfWater
-                "a_cup_of_water" -> ACupOfCoffee
+                "glass_of_water" -> Glass_Of_Water
+                "bottle_of_water" -> Bottle_Of_Water
+                "a_cup_of_water" -> A_Cup_Of_Coffee
                 "tea" -> Tea
-                "herbal_tea" -> HerbalTea
-                "carbonated_drink" -> CarbonatedDrinks
+                "herbal_tea" -> Herbal_Tea
+                "carbonated_drink" -> Carbonated_Drinks
                 "milk" -> Milk
                 "smoothie" -> Smoothie
-                "fruit_juice" -> FruitJuice
-                else -> GlassOfWater
+                "fruit_juice" -> Fruit_Juice
+                else -> Glass_Of_Water
             }
         }
     }

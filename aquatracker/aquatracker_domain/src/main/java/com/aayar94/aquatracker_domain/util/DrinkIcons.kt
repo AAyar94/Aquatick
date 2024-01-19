@@ -5,14 +5,15 @@ import com.aayar94.core.R.drawable as AppDrawable
 
 fun DrinkType.getIcon(drinkType: DrinkType): Int {
     return when (drinkType) {
-        is DrinkType.GlassOfWater -> AppDrawable.glass_of_water
-        is DrinkType.BottleOfWater -> AppDrawable.ic_drink_bottle_water
-        is DrinkType.ACupOfCoffee -> AppDrawable.drink_icon
+        is DrinkType.Glass_Of_Water -> AppDrawable.glass_of_water
+        is DrinkType.Bottle_Of_Water -> AppDrawable.ic_drink_bottle_water
+        is DrinkType.A_Cup_Of_Coffee -> AppDrawable.drink_icon
         is DrinkType.Tea -> AppDrawable.ic_drink_tea
-        is DrinkType.CarbonatedDrinks -> AppDrawable.ic_drink_carbonated_drinks
+        is DrinkType.Herbal_Tea->AppDrawable.ic_drink_herbal_tea
+        is DrinkType.Carbonated_Drinks -> AppDrawable.ic_drink_carbonated_drinks
         is DrinkType.Milk -> AppDrawable.ic_drink_milk
         is DrinkType.Smoothie -> AppDrawable.ic_drink_milkshake
-        is DrinkType.FruitJuice -> AppDrawable.ic_drink_fruit_juice
+        is DrinkType.Fruit_Juice -> AppDrawable.ic_drink_fruit_juice
         else -> AppDrawable.glass_of_water
     }
 }

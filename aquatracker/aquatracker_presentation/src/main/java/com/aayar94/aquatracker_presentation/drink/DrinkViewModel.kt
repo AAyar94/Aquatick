@@ -13,7 +13,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DrinkViewModel @Inject constructor(
-    drinkTypesWithIconUseCase: DrinkTypesWithIconUseCase
+     drinkTypesWithIconUseCase: DrinkTypesWithIconUseCase
 ) : ViewModel() {
 
     var drinkUIState by mutableStateOf(DrinkUIState())
