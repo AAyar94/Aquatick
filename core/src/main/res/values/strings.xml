@@ -75,4 +75,9 @@
     <string name="select_your_gender">Select your gender</string>
     <string name="select_your_activity_level">Select your activity level</string>
     <string name="Your_daily_intake_amount_is">Your daily intake amount is %s ml</string>
+    <string name="enter_your_get_up_time">Enter your get up time</string>
+    <string name="enter_your_going_bed_time">Enter your going bed time</string>
+    <string name="this_clock_will_used_for">This time values will use for reminding notifications</string>
+    <string name="get_up_time">Get Up Time</string>
+    <string name="going_bed_time">Going Bed Time</string>
 </resources>

@@ -6,6 +6,8 @@ data class DailyIntakeCalculationUIState(
     val thirdItemVisibility: Boolean? = false,
     val fourthItemVisibility: Boolean? = false,
     val fifthItemVisibility: Boolean? = false,
+    val sixthItemVisibility: Boolean = false,
+    val seventhItemVisibility: Boolean = false,
     val dailyIntakeAmount: String? = null
 
 )

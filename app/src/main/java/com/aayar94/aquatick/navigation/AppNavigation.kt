@@ -16,8 +16,10 @@ import com.aayar94.aquatracker_presentation.drink.DrinkScreen
 import com.aayar94.onboarding_presentation.activity_level.ActivityLevelScreen
 import com.aayar94.onboarding_presentation.age.AgeScreen
 import com.aayar94.onboarding_presentation.daily_intake_calculation.DailyIntakeCalculation
+import com.aayar94.onboarding_presentation.morning_time_picker.MorningTimePicker
 import com.aayar94.onboarding_presentation.gender.GenderScreen
 import com.aayar94.onboarding_presentation.name.NameScreen
+import com.aayar94.onboarding_presentation.night_time_picker.NightTimePicker
 import com.aayar94.onboarding_presentation.weight.WeightScreen
 import com.aayar94.onboarding_presentation.welcome.WelcomeScreen
 import com.aayar94.settings_presentation.SettingsScreen
@@ -58,7 +60,13 @@ fun AppNavigation(
                 WeightScreen(onNextClick = { navController.navigate(Route.ACTIVITY_LEVEL) })
             }
             composable(Route.ACTIVITY_LEVEL) {
-                ActivityLevelScreen(onNextClick = { navController.navigate(Route.DAILY_INTAKE_CALCULATION) })
+                ActivityLevelScreen(onNextClick = { navController.navigate(Route.MORNING_TIME_PICKER) })
+            }
+            composable(Route.MORNING_TIME_PICKER) {
+                MorningTimePicker(onNextClick = { navController.navigate(Route.NIGHT_TIME_PICKER) })
+            }
+            composable(Route.NIGHT_TIME_PICKER) {
+                NightTimePicker(onNextClick = { navController.navigate(Route.DAILY_INTAKE_CALCULATION) })
             }
             composable(Route.DAILY_INTAKE_CALCULATION) {
                 DailyIntakeCalculation(finishOnboardingClicked = { navController.navigate(Route.HOME) })

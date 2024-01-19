@@ -70,6 +70,12 @@ fun DailyIntakeCalculation(
             AnimatedVisibility(visible = viewModel.itemVisibilityState.fifthItemVisibility == true) {
                 CalculationAnimationItem(string = stringResource(id = AppText.activity_level))
             }
+            AnimatedVisibility(visible = viewModel.itemVisibilityState.sixthItemVisibility) {
+                CalculationAnimationItem(string = stringResource(id = AppText.get_up_time))
+            }
+            AnimatedVisibility(visible = viewModel.itemVisibilityState.seventhItemVisibility) {
+                CalculationAnimationItem(string = stringResource(id = AppText.going_bed_time))
+            }
             AnimatedVisibility(visible = viewModel.itemVisibilityState.fifthItemVisibility == true) {
                 viewModel.itemVisibilityState.dailyIntakeAmount?.let {
                     Text(

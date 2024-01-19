@@ -11,4 +11,6 @@ object Route {
     const val HOME="home"
     const val DRINK="drink"
     const val SETTINGS="settings"
+    const val MORNING_TIME_PICKER="morning_time_picker"
+    const val NIGHT_TIME_PICKER="night_time_picker"
 }

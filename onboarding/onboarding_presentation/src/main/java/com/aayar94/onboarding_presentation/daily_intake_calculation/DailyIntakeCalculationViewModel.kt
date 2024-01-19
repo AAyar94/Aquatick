@@ -40,6 +40,10 @@ class DailyIntakeCalculationViewModel @Inject constructor(
             itemVisibilityState = itemVisibilityState.copy(fourthItemVisibility = true)
             delay(1000)
             itemVisibilityState = itemVisibilityState.copy(fifthItemVisibility = true)
+            delay(1000)
+            itemVisibilityState = itemVisibilityState.copy(sixthItemVisibility = true)
+            delay(1000)
+            itemVisibilityState = itemVisibilityState.copy(seventhItemVisibility = true)
             delay(2000)
             itemVisibilityState = itemVisibilityState.copy(dailyIntakeAmount = amount.toString())
         }

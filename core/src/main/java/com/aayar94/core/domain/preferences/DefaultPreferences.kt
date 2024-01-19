@@ -55,6 +55,18 @@ class DefaultPreferences(
         return state
     }
 
+    override fun saveGetUpTime(getUpTime: String) {
+        sharedPreferences.edit()
+            .putString(Preferences.KEY_GET_UP_TIME, getUpTime)
+            .apply()
+    }
+
+    override fun saveBedTime(bedTime: String) {
+        sharedPreferences.edit()
+            .putString(Preferences.KEY_GOING_BED_TIME, bedTime)
+            .apply()
+    }
+
     override fun getUserInfo(): UserInfo {
         val name = sharedPreferences.getString(Preferences.KEY_NAME, "")
         val age = sharedPreferences.getInt(Preferences.KEY_AGE, -1)

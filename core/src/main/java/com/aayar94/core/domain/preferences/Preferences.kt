@@ -15,6 +15,10 @@ interface Preferences {
     fun saveOnboardingFinishedState(state: Boolean)
     fun loadOnboardingState(): Boolean
 
+    fun saveGetUpTime(getUpTime:String)
+
+    fun saveBedTime(bedTime:String)
+
     fun getUserInfo(): UserInfo
 
     companion object {
@@ -25,5 +29,7 @@ interface Preferences {
         const val KEY_ACTIVITY_LEVEL = "key_activity_level"
         const val KEY_DAILY_INTAKE_AMOUNT = "key_daily_intake_amount"
         const val KEY_ONBOARDING_FINISHED_STATE = "key_onboarding_finished_state"
+        const val KEY_GET_UP_TIME="key_get_up_time"
+        const val KEY_GOING_BED_TIME="key_going_bed_time"
     }
 }
