@@ -80,4 +80,5 @@
     <string name="this_clock_will_used_for">This time values will use for reminding notifications</string>
     <string name="get_up_time">Get Up Time</string>
     <string name="going_bed_time">Going Bed Time</string>
+    <string name="your_last_drinks">Your Last Drinks</string>
 </resources>
