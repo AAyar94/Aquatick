@@ -11,13 +11,13 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.aayar94.aquatracker_presentation.home.HomeScreen
 import com.aayar94.aquatracker_presentation.drink.DrinkScreen
+import com.aayar94.aquatracker_presentation.home.HomeScreen
 import com.aayar94.onboarding_presentation.activity_level.ActivityLevelScreen
 import com.aayar94.onboarding_presentation.age.AgeScreen
 import com.aayar94.onboarding_presentation.daily_intake_calculation.DailyIntakeCalculation
-import com.aayar94.onboarding_presentation.morning_time_picker.MorningTimePicker
 import com.aayar94.onboarding_presentation.gender.GenderScreen
+import com.aayar94.onboarding_presentation.morning_time_picker.MorningTimePicker
 import com.aayar94.onboarding_presentation.name.NameScreen
 import com.aayar94.onboarding_presentation.night_time_picker.NightTimePicker
 import com.aayar94.onboarding_presentation.weight.WeightScreen
@@ -75,7 +75,7 @@ fun AppNavigation(
                 HomeScreen(onDrinkNavigateClick = { navController.navigate(Route.DRINK) })
             }
             composable(Route.DRINK) {
-                DrinkScreen()
+                DrinkScreen(onNavigate = {})
             }
             composable(Route.SETTINGS) {
                 SettingsScreen()
