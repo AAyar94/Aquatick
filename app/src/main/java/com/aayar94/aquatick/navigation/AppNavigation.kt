@@ -40,7 +40,9 @@ fun AppNavigation(
         modifier = Modifier.fillMaxSize(),
         snackbarHost = { SnackbarHost(hostState = snackBarHostState) },
         bottomBar = {
-
+            BottomNavigationBar(navController = navController, onItemClick = { route ->
+                navController.navigate(route)
+            })
         }
     ) { paddingValues ->
         NavHost(
