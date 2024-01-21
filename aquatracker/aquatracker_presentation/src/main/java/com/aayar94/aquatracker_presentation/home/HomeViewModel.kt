@@ -5,6 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.aayar94.aquatracker_domain.usecase.GetArticlesUseCase
 import com.aayar94.core.util.UiEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
@@ -15,9 +16,13 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    preferences: com.aayar94.core.domain.preferences.Preferences
+    preferences: com.aayar94.core.domain.preferences.Preferences,
+    val getArticlesUseCase: GetArticlesUseCase
 ) : ViewModel() {
     var homeState by mutableStateOf(HomeUIState())
+        private set
+
+    var articleState by mutableStateOf(ArticleUIState())
         private set
 
     private val _uiEvent = Channel<UiEvent>()
@@ -34,6 +39,7 @@ class HomeViewModel @Inject constructor(
                 lastIntakeType = null
             )
         }
+        getArticles()
     }
 
     private fun getGreeting(): String {
@@ -45,6 +51,14 @@ class HomeViewModel @Inject constructor(
             in 17..20 -> "Good evening"
             else -> "Good night"
         }
+    }
+
+    private fun getArticles() {
+        viewModelScope.launch {
+            val response = getArticlesUseCase.invoke()
+            articleState.list = response
+        }
+
     }
 
     fun onEnterDrinkClick() {
