@@ -1,5 +1,6 @@
 package com.aayar94.aquatracker_presentation.home.component
 
+import android.view.RoundedCorner
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -12,6 +13,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedCard
@@ -37,6 +39,7 @@ import com.aayar94.core.R.drawable as AppDrawable
 @Composable
 fun DailyGoalCard(
     modifier: Modifier = Modifier,
+    shape: RoundedCornerShape,
     currentIntake: String,
     lastIntakeTime: String?,
     lastIntakeType: String?,
@@ -45,7 +48,7 @@ fun DailyGoalCard(
     val spacing = LocalSpacing.current
     val shapes = LocalShape.current
     OutlinedCard(
-        modifier = modifier, shape = shapes.largeCornerRadius, colors = CardDefaults.cardColors(
+        modifier = modifier, shape = shape, colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.background
         ), elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
     ) {

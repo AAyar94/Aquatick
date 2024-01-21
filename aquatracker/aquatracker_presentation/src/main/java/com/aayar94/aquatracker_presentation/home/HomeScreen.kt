@@ -71,6 +71,7 @@ fun HomeScreen(
                     .fillMaxWidth()
                     .wrapContentHeight()
                     .padding(spacing.spaceMedium),
+                shape = shapes.largeCornerRadius,
                 onDrinkClick = viewModel::onEnterDrinkClick
             )
             Spacer(modifier = Modifier.height(spacing.spaceMedium))
