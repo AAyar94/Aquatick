@@ -26,6 +26,6 @@ interface DrinkDao {
     )
     fun getDrinksForDate(day: Int, month: Int, year: Int): Flow<List<DrinkEntity>>
 
-    @Query("SELECT * FROM drinks_table LIMIT 3")
+    @Query("SELECT * FROM drinks_table ORDER BY ID DESC LIMIT 3")
     fun getLast3Object() : Flow<List<DrinkEntity>>
 }
