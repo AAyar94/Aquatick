@@ -8,7 +8,10 @@ import androidx.lifecycle.viewModelScope
 import com.aayar94.core.util.UiEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -16,8 +19,8 @@ import javax.inject.Inject
 class SettingsViewModel @Inject constructor(
 ) : ViewModel() {
 
-    var uiState by mutableStateOf(SettingsUIState())
-        private set
+    private var _uiState = MutableStateFlow(SettingsUIState())
+    val uiState = _uiState.asStateFlow()
 
     private val _uiEvent = Channel<UiEvent>()
     val uiEvent = _uiEvent.receiveAsFlow()
@@ -25,8 +28,17 @@ class SettingsViewModel @Inject constructor(
 
     fun onNotificationSwitch(boolean: Boolean) {
         viewModelScope.launch {
-            uiState = uiState.copy(isNotificationEnabled = boolean)
+            _uiState.update {
+                it.copy(isNotificationEnabled = boolean)
+            }
         }
     }
 
+    fun onDarkSwitch(boolean: Boolean) {
+        viewModelScope.launch {
+            _uiState.update {
+                it.copy(isDarkThemeEnabled = boolean)
+            }
+        }
+    }
 }

@@ -10,15 +10,18 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.NightsStay
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.NotificationsActive
 import androidx.compose.material.icons.filled.NotificationsOff
+import androidx.compose.material.icons.filled.WbSunny
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -27,6 +30,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.aayar94.core_ui.theme.LocalSpacing
 import com.aayar94.core_ui.util.DevicesPreview
 import com.aayar94.core_ui.util.WorkInProgress
+import com.example.compose.AquatickTheme
 import com.aayar94.core.R.string as AppText
 
 @Composable
@@ -34,6 +38,7 @@ fun SettingsScreen(
     viewModel: SettingsViewModel = hiltViewModel()
 ) {
     val spacing = LocalSpacing.current
+    val uiState = viewModel.uiState.collectAsState()
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -61,10 +66,13 @@ fun SettingsScreen(
                 modifier = Modifier.fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Text(text = stringResource(id = AppText.notification))
+                Text(
+                    text = stringResource(id = AppText.notification),
+                    color = MaterialTheme.colorScheme.onBackground
+                )
                 Spacer(modifier = Modifier.weight(1f))
                 Switch(
-                    checked = viewModel.uiState.isNotificationEnabled,
+                    checked = uiState.value.isNotificationEnabled,
                     onCheckedChange = viewModel::onNotificationSwitch,
                     thumbContent = {
                         if (true) Icon(
@@ -81,6 +89,33 @@ fun SettingsScreen(
 
                 )
             }
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = stringResource(id = AppText.dark_theme),
+                    color = MaterialTheme.colorScheme.onBackground
+                )
+                Spacer(modifier = Modifier.weight(1f))
+                Switch(
+                    checked = uiState.value.isDarkThemeEnabled,
+                    onCheckedChange = viewModel::onDarkSwitch,
+                    thumbContent = {
+                        if (true) Icon(
+                            imageVector = Icons.Default.NightsStay,
+                            contentDescription = null,
+                            tint = MaterialTheme.colorScheme.primary
+                        )
+                        else Icon(
+                            imageVector = Icons.Default.WbSunny,
+                            contentDescription = null,
+                            tint = MaterialTheme.colorScheme.primary
+                        )
+                    }
+
+                )
+            }
         }
     }
 }
@@ -89,5 +124,7 @@ fun SettingsScreen(
 @DevicesPreview
 @Composable
 fun PreviewSettingsScreen() {
-    SettingsScreen()
+    AquatickTheme {
+        SettingsScreen()
+    }
 }
