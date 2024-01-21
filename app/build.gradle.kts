@@ -74,6 +74,7 @@ dependencies {
     implementation(JetpackGlance.jetpackGlanceM3)
 
     implementation(DaggerHilt.hiltAndroid)
+    implementation("androidx.compose.material3:material3:1.1.2")
     kapt(DaggerHilt.hiltCompiler)
 
     implementation(project(Modules.core))

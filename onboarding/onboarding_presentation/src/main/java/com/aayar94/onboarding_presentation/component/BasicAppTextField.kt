@@ -7,8 +7,8 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.LastBaseline
@@ -24,7 +24,7 @@ fun BasicAppTextField(
     onValueChange: (String) -> Unit,
     unit: String? = null,
     textStyle: TextStyle = TextStyle(
-        color = MaterialTheme.colors.primaryVariant, fontSize = 70.sp
+        color = MaterialTheme.colorScheme.primaryContainer, fontSize = 70.sp
     ),
     keyboardType: KeyboardType
 ) {

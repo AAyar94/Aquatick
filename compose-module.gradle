@@ -51,6 +51,7 @@ dependencies {
     implementation Compose.viewModelCompose
     implementation Compose.activityCompose
     implementation Material3.material3
+    implementation Material3.materialIconsExtended
     implementation Lottie.lottie
 
 

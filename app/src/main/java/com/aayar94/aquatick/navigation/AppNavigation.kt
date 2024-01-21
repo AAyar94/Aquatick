@@ -1,11 +1,14 @@
 package com.aayar94.aquatick.navigation
 
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Scaffold
-import androidx.compose.material.rememberScaffoldState
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -30,10 +33,15 @@ fun AppNavigation(
 ) {
     val navController = rememberNavController()
     val currentBackStackEntry by navController.currentBackStackEntryAsState()
-    val scaffoldState = rememberScaffoldState()
+    val snackBarHostState = remember {
+        SnackbarHostState()
+    }
     Scaffold(
         modifier = Modifier.fillMaxSize(),
-        scaffoldState = scaffoldState
+        snackbarHost = { SnackbarHost(hostState = snackBarHostState) },
+        bottomBar = {
+
+        }
     ) { paddingValues ->
         NavHost(
             navController = navController,
@@ -45,12 +53,12 @@ fun AppNavigation(
             }
             composable(Route.NAME) {
                 NameScreen(
-                    scaffoldState = scaffoldState,
+                    snackBarHostState = snackBarHostState,
                     onNextClick = { navController.navigate(Route.AGE) })
             }
             composable(Route.AGE) {
                 AgeScreen(
-                    scaffoldState = scaffoldState,
+                    snackBarHostState = snackBarHostState,
                     onNextClick = { navController.navigate(Route.GENDER) })
             }
             composable(Route.GENDER) {
