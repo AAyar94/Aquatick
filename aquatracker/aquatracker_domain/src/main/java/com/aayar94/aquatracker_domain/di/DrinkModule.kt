@@ -1,6 +1,7 @@
 package com.aayar94.aquatracker_domain.di
 
 import com.aayar94.aquatracker_domain.repository.AquaTrackerRepository
+import com.aayar94.aquatracker_domain.usecase.CalculateTodaysIntakeUseCase
 import com.aayar94.aquatracker_domain.usecase.DrinkTypesWithIconUseCase
 import com.aayar94.aquatracker_domain.usecase.GetLastDrinksUseCase
 import dagger.Module
@@ -25,5 +26,13 @@ object DrinkModule {
         repository: AquaTrackerRepository
     ): GetLastDrinksUseCase {
         return GetLastDrinksUseCase(repository)
+    }
+
+    @Provides
+    @Singleton
+    fun providesCalculateTodaysIntake(
+        repository: AquaTrackerRepository
+    ): CalculateTodaysIntakeUseCase {
+        return CalculateTodaysIntakeUseCase(repository)
     }
 }
