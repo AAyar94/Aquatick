@@ -1,10 +1,8 @@
 package com.aayar94.onboarding_presentation.name
 
-import androidx.compose.material.ScaffoldState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.aayar94.core.domain.preferences.Preferences
