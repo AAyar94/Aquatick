@@ -20,23 +20,24 @@ import coil.compose.AsyncImage
 @Composable
 fun DailyReadCard(
     modifier: Modifier = Modifier,
-    imageUrl: String,
+    imageUrl: String?,
     text: String,
     onClick: () -> Unit,
     shape: RoundedCornerShape
 ) {
     Card(onClick = onClick, modifier = modifier, shape = shape) {
         Box(modifier = Modifier, contentAlignment = Alignment.Center) {
-            AsyncImage(
-                model = imageUrl,
-                contentDescription = null,
-                alignment = Alignment.Center,
-                contentScale = ContentScale.FillBounds, colorFilter = ColorFilter.tint(
-                    Color.Black,
-                    BlendMode.Darken
+            if (imageUrl != null) {
+                AsyncImage(
+                    model = imageUrl,
+                    contentDescription = null,
+                    alignment = Alignment.Center,
+                    contentScale = ContentScale.FillBounds, colorFilter = ColorFilter.tint(
+                        Color.Black,
+                        BlendMode.Darken
+                    )
                 )
-            )
-
+            }
             Text(
                 text = text,
                 modifier = Modifier.align(Alignment.BottomCenter),

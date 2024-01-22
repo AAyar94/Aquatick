@@ -10,9 +10,11 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -39,7 +41,11 @@ fun HomeScreen(
                 else -> Unit
             }
         }
+        viewModel.getTodaysIntake()
     }
+
+    val uiState = viewModel.homeState.collectAsState()
+    val articleState = viewModel.articleState.collectAsState()
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -52,10 +58,10 @@ fun HomeScreen(
             verticalArrangement = Arrangement.spacedBy(spacing.spaceMedium),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            if (viewModel.homeState.greetings!!.isNotBlank() && viewModel.homeState.name!!.isNotBlank()) {
+            if (uiState.value.greetings!!.isNotBlank() && uiState.value.name!!.isNotBlank()) {
                 HomeHeader(
-                    greetings = viewModel.homeState.greetings!!,
-                    name = viewModel.homeState.name!!,
+                    greetings = uiState.value.greetings!!,
+                    name = uiState.value.name!!,
                     isNewNotification = false,
                     modifier = Modifier
                         .fillMaxWidth()
@@ -63,19 +69,28 @@ fun HomeScreen(
                 )
             }
             Spacer(modifier = Modifier.height(spacing.spaceMedium))
-            DailyGoalCard(
-                currentIntake = viewModel.homeState.currentIntake!!,
-                lastIntakeType = null,
-                lastIntakeTime = null,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .wrapContentHeight()
-                    .padding(spacing.spaceMedium),
-                shape = shapes.largeCornerRadius,
-                onDrinkClick = viewModel::onEnterDrinkClick
-            )
+            if (uiState.value.currentIntake.isNullOrBlank()) {
+                CircularProgressIndicator()
+            } else {
+                DailyGoalCard(
+                    currentIntake = uiState.value.currentIntake!!,
+                    lastIntakeType = null,
+                    lastIntakeTime = null,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .wrapContentHeight()
+                        .padding(spacing.spaceMedium),
+                    shape = shapes.largeCornerRadius,
+                    onDrinkClick = viewModel::onEnterDrinkClick
+                )
+            }
             Spacer(modifier = Modifier.height(spacing.spaceMedium))
-            /*DailyReadCard(imageUrl = , text = , onClick = { /*TODO*/ }, shape = )*/
+            DailyReadCard(
+                imageUrl = null,
+                text = articleState.value.articlesItem?.Title ?: "",
+                onClick = { /*TODO*/ },
+                shape = shapes.mediumCornerRadius
+            )
         }
     }
 }

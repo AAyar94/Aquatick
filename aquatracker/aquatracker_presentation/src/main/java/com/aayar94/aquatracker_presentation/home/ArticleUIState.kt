@@ -1,7 +1,7 @@
 package com.aayar94.aquatracker_presentation.home
 
-import com.aayar94.aquatracker_domain.model.Articles
+import com.aayar94.aquatracker_domain.model.Article
 
 data class ArticleUIState(
-    var list: Articles? = null
+    val articlesItem: Article? = null
 )

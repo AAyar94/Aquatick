@@ -1,29 +1,32 @@
 package com.aayar94.aquatracker_presentation.home
 
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.aayar94.aquatracker_domain.usecase.CalculateTodaysIntakeUseCase
 import com.aayar94.aquatracker_domain.usecase.GetArticlesUseCase
 import com.aayar94.core.util.UiEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import java.util.prefs.Preferences
+import java.time.LocalDate
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     preferences: com.aayar94.core.domain.preferences.Preferences,
-    val getArticlesUseCase: GetArticlesUseCase
+    private val getArticlesUseCase: GetArticlesUseCase,
+    private val getTodaysIntake: CalculateTodaysIntakeUseCase
 ) : ViewModel() {
-    var homeState by mutableStateOf(HomeUIState())
-        private set
+    private var _homeState = MutableStateFlow(HomeUIState())
+    val homeState = _homeState.asStateFlow()
 
-    var articleState by mutableStateOf(ArticleUIState())
-        private set
+    private var _articleState = MutableStateFlow(ArticleUIState())
+    val articleState = _articleState.asStateFlow()
 
     private val _uiEvent = Channel<UiEvent>()
     val uiEvent = _uiEvent.receiveAsFlow()
@@ -31,15 +34,18 @@ class HomeViewModel @Inject constructor(
     init {
         val userInfo = preferences.getUserInfo()
         viewModelScope.launch {
-            homeState = homeState.copy(
-                greetings = getGreeting(),
-                name = userInfo.name,
-                currentIntake = 250.toString(),
-                lastIntakeTime = null,
-                lastIntakeType = null
-            )
+            _homeState.update {
+                it.copy(
+                    greetings = getGreeting(),
+                    name = userInfo.name,
+                    currentIntake = null,
+                    lastIntakeTime = null,
+                    lastIntakeType = null
+                )
+            }
         }
         getArticles()
+        getTodaysIntake()
     }
 
     private fun getGreeting(): String {
@@ -53,10 +59,25 @@ class HomeViewModel @Inject constructor(
         }
     }
 
+    fun getTodaysIntake() {
+        viewModelScope.launch(Dispatchers.IO) {
+            val response = getTodaysIntake.invoke(LocalDate.now())
+            _homeState.update {
+                it.copy(
+                    currentIntake = response.toString()
+                )
+            }
+        }
+    }
+
     private fun getArticles() {
         viewModelScope.launch {
             val response = getArticlesUseCase.invoke()
-            articleState.list = response
+            _articleState.update {
+                it.copy(
+                    articlesItem = response.articles.random()
+                )
+            }
         }
 
     }
