@@ -37,3 +37,7 @@ include(":settings")
 include(":settings:settings_presentation")
 include("settings:settings_domain")
 
+include(":notification")
+include(":notification:notification_data")
+include(":notification:notification_domain")
+include(":notification:notification_presentetion")
