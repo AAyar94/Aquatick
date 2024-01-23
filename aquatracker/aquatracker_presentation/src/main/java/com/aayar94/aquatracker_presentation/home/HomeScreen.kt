@@ -92,7 +92,7 @@ fun HomeScreen(
                     .fillMaxWidth()
                     .defaultMinSize(200.dp, 200.dp)
                     .wrapContentHeight(),
-                imageUrl = null,
+                imageUrl = articleState.value.articlesItem?.image,
                 title = articleState.value.articlesItem?.Title ?: "",
                 text = articleState.value.articlesItem?.Conclusion ?: "",
                 onClick = { /*TODO*/ },

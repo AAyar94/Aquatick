@@ -15,4 +15,5 @@ dependencies {
     implementation(project(Modules.aquaTrackerDomain))
 
     implementation(Coil.coilCompose)
+    implementation(Coil.coilComposeSvg)
 }

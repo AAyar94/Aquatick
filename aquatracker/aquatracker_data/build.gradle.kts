@@ -1,12 +1,25 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+
 plugins {
     `android-library`
     `kotlin-android`
 }
 
+val firebaseToken: String = gradleLocalProperties(rootDir).getProperty("FirebaseToken")
+
+
 apply(from = "$rootDir/base-module.gradle")
 
 android {
     namespace = "com.aayar94.aquatracker_data"
+
+    buildFeatures {
+        buildConfig = true
+    }
+
+    buildTypes.forEach {
+        it.buildConfigField("String", "FirebaseToken", firebaseToken)
+    }
 }
 
 dependencies {

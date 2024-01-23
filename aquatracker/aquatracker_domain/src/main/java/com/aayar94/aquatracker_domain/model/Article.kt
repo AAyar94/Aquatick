@@ -4,5 +4,6 @@ data class Article(
     val Conclusion: String,
     val Introduction: String,
     val Points: List<Point>,
-    val Title: String
+    val Title: String,
+    val image: String
 )
