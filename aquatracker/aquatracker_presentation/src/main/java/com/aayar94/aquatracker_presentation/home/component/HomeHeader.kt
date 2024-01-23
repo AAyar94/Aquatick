@@ -20,7 +20,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.unit.dp
 import com.aayar94.core_ui.theme.LocalShape
@@ -31,7 +30,8 @@ fun HomeHeader(
     modifier: Modifier = Modifier,
     greetings: String,
     name: String,
-    isNewNotification: Boolean
+    isNewNotification: Boolean,
+    onNotificationButtonClick: () -> Unit
 ) {
     val spacing = LocalSpacing.current
     val shape = LocalShape.current
@@ -60,11 +60,11 @@ fun HomeHeader(
                 .clip(shape.extraLargeCornerRadius)
                 .background(MaterialTheme.colorScheme.primaryContainer)
                 .clickable {
-                    //TODO Route Notification
+                    onNotificationButtonClick()
                 }
         ) {
             IconButton(
-                onClick = { /*TODO Route Notification*/ },
+                onClick = onNotificationButtonClick,
                 modifier = Modifier.padding(spacing.spaceSmall)
             ) {
                 Icon(

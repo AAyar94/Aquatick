@@ -1,4 +1,4 @@
-package com.exe.notification_presentetion
+package com.aayar94.notification_presentetion
 
 import org.junit.Test
 

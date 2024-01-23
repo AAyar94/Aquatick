@@ -1,9 +1,15 @@
 plugins {
-    id("java-library")
-    id("org.jetbrains.kotlin.jvm")
+    `android-library`
+    `kotlin-android`
 }
 
-java {
-    sourceCompatibility = JavaVersion.VERSION_18
-    targetCompatibility = JavaVersion.VERSION_18
+apply(from = "$rootDir/base-module.gradle")
+
+android {
+    namespace = "com.aayar94.notification_data"
+}
+
+dependencies {
+    implementation(project(Modules.core))
+    implementation(project(Modules.notificationDomain))
 }

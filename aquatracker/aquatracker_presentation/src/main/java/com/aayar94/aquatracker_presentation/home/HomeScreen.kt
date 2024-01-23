@@ -33,7 +33,8 @@ import com.google.accompanist.systemuicontroller.rememberSystemUiController
 fun HomeScreen(
     viewModel: HomeViewModel = hiltViewModel(),
     onDrinkNavigateClick: () -> Unit,
-    onArticleClick:(article:Article)->Unit
+    onArticleClick: (article: Article) -> Unit,
+    onNotificationIconClick: () -> Unit
 ) {
     val spacing = LocalSpacing.current
     val shapes = LocalShape.current
@@ -70,7 +71,8 @@ fun HomeScreen(
                     isNewNotification = false,
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(horizontal = spacing.spaceMedium)
+                        .padding(horizontal = spacing.spaceMedium),
+                    onNotificationButtonClick = onNotificationIconClick
                 )
             }
             Spacer(modifier = Modifier.height(spacing.spaceMedium))

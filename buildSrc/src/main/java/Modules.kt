@@ -13,4 +13,8 @@ object Modules {
 
     const val settingsDomain = ":settings:settings_domain"
     const val settingsPresentation = ":settings:settings_presentation"
+
+    const val notificationData = ":notification:notification_data"
+    const val notificationDomain =":notification:notification_domain"
+    const val notificationPresentation =":notification:notification_presentation"
 }

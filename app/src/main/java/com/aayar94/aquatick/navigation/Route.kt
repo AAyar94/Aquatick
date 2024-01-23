@@ -13,4 +13,7 @@ object Route {
     const val SETTINGS="settings"
     const val MORNING_TIME_PICKER="morning_time_picker"
     const val NIGHT_TIME_PICKER="night_time_picker"
+    const val ARTICLE="article"
+    const val ANALYSIS="analysis"
+    const val NOTIFICATION="notification"
 }

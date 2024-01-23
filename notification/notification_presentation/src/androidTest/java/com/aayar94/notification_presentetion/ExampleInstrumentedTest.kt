@@ -1,4 +1,4 @@
-package com.exe.notification_presentetion
+package com.aayar94.notification_presentetion
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.exe.notification_presentetion.test", appContext.packageName)
+        assertEquals("com.exe.notification_presentation.test", appContext.packageName)
     }
 }
