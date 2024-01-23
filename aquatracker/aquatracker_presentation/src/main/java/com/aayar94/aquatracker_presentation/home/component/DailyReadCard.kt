@@ -1,7 +1,7 @@
 package com.aayar94.aquatracker_presentation.home.component
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -11,25 +11,20 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.BlendMode
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import coil.ComponentRegistry
-import coil.ImageLoader
 import coil.compose.AsyncImage
 import coil.decode.SvgDecoder
 import coil.request.ImageRequest
@@ -37,18 +32,23 @@ import com.aayar94.core_ui.theme.LocalSpacing
 import com.aayar94.core_ui.util.DevicesPreview
 import com.example.compose.AquatickTheme
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DailyReadCard(
     modifier: Modifier = Modifier,
     imageUrl: String?,
     title: String,
     text: String,
-    onClick: () -> Unit,
-    shape: RoundedCornerShape
+    shape: RoundedCornerShape,
+    onClick: () -> Unit
 ) {
     val spacing = LocalSpacing.current
-    Card(onClick = onClick, modifier = modifier, shape = shape) {
+    OutlinedCard(
+        modifier = modifier.clickable { onClick() },
+        shape = shape,
+        colors = CardDefaults.outlinedCardColors(
+            containerColor = MaterialTheme.colorScheme.background
+        ), elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+    ) {
         Column(
             modifier = Modifier.padding(spacing.spaceMedium),
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -61,7 +61,9 @@ fun DailyReadCard(
             ) {
                 Text(
                     text = title,
-                    modifier = Modifier.wrapContentHeight().weight(0.7f),
+                    modifier = Modifier
+                        .wrapContentHeight()
+                        .weight(0.7f),
                     textAlign = TextAlign.Start,
                     color = MaterialTheme.colorScheme.onPrimaryContainer,
                     style = MaterialTheme.typography.bodyLarge,
@@ -73,7 +75,8 @@ fun DailyReadCard(
                 if (imageUrl != null) {
                     AsyncImage(
                         modifier = Modifier
-                            .size(64.dp).weight(0.3f),
+                            .size(64.dp)
+                            .weight(0.3f),
                         model = ImageRequest.Builder(LocalContext.current)
                             .data(imageUrl)
                             .decoderFactory(SvgDecoder.Factory())
@@ -107,8 +110,8 @@ fun PreviewDailyIntakeCard() {
             imageUrl = null,
             title = "selam",
             text = "lorem ipsum",
-            onClick = { /*TODO*/ },
-            shape = RoundedCornerShape(20.dp)
+            shape = RoundedCornerShape(20.dp),
+            onClick = {}
         )
     }
 }

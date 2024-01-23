@@ -20,6 +20,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.aayar94.aquatracker_domain.model.Article
 import com.aayar94.aquatracker_presentation.home.component.DailyGoalCard
 import com.aayar94.aquatracker_presentation.home.component.DailyReadCard
 import com.aayar94.aquatracker_presentation.home.component.HomeHeader
@@ -30,7 +31,9 @@ import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 @Composable
 fun HomeScreen(
-    viewModel: HomeViewModel = hiltViewModel(), onDrinkNavigateClick: () -> Unit
+    viewModel: HomeViewModel = hiltViewModel(),
+    onDrinkNavigateClick: () -> Unit,
+    onArticleClick:(article:Article)->Unit
 ) {
     val spacing = LocalSpacing.current
     val shapes = LocalShape.current
@@ -80,8 +83,7 @@ fun HomeScreen(
                     lastIntakeTime = null,
                     modifier = Modifier
                         .fillMaxWidth()
-                        .wrapContentHeight()
-                        .padding(spacing.spaceMedium),
+                        .wrapContentHeight(),
                     shape = shapes.largeCornerRadius,
                     onDrinkClick = viewModel::onEnterDrinkClick
                 )
@@ -95,9 +97,12 @@ fun HomeScreen(
                 imageUrl = articleState.value.articlesItem?.image,
                 title = articleState.value.articlesItem?.Title ?: "",
                 text = articleState.value.articlesItem?.Conclusion ?: "",
-                onClick = { /*TODO*/ },
-                shape = shapes.mediumCornerRadius
+                shape = shapes.mediumCornerRadius,
+                onClick = {
+                    articleState.value.articlesItem?.let { onArticleClick(it) }
+                }
             )
         }
     }
 }
+

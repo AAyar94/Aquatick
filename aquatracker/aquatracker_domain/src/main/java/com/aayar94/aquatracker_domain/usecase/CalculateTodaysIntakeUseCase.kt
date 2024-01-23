@@ -1,6 +1,7 @@
 package com.aayar94.aquatracker_domain.usecase
 
 import com.aayar94.aquatracker_domain.repository.AquaTrackerRepository
+import kotlinx.coroutines.flow.first
 import java.time.LocalDate
 
 class CalculateTodaysIntakeUseCase(
@@ -8,13 +9,9 @@ class CalculateTodaysIntakeUseCase(
 ) {
 
     suspend operator fun invoke(localDate: LocalDate): Int {
-        val response = aquaTrackerRepository.getDrinksForDate(localDate)
-        var dailyAmount = 0
-        response.collect { list ->
-            list.forEach {
-                dailyAmount += it.defaultAmount
-            }
+        val response = aquaTrackerRepository.getDrinksForDate(localDate).first()
+        return response.sumOf {
+            it.defaultAmount
         }
-        return dailyAmount
     }
 }

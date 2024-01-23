@@ -22,10 +22,11 @@ class HomeViewModel @Inject constructor(
     private val getArticlesUseCase: GetArticlesUseCase,
     private val getTodaysIntake: CalculateTodaysIntakeUseCase
 ) : ViewModel() {
-    private var _homeState = MutableStateFlow(HomeUIState())
+
+    private val _homeState = MutableStateFlow(HomeUIState())
     val homeState = _homeState.asStateFlow()
 
-    private var _articleState = MutableStateFlow(ArticleUIState())
+    private val _articleState = MutableStateFlow(ArticleUIState())
     val articleState = _articleState.asStateFlow()
 
     private val _uiEvent = Channel<UiEvent>()
@@ -60,7 +61,7 @@ class HomeViewModel @Inject constructor(
     }
 
     fun getTodaysIntake() {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             val response = getTodaysIntake.invoke(LocalDate.now())
             _homeState.update {
                 it.copy(
