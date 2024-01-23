@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -17,6 +18,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.aayar94.aquatracker_presentation.home.component.DailyGoalCard
 import com.aayar94.aquatracker_presentation.home.component.DailyReadCard
@@ -86,8 +88,13 @@ fun HomeScreen(
             }
             Spacer(modifier = Modifier.height(spacing.spaceMedium))
             DailyReadCard(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .defaultMinSize(200.dp, 200.dp)
+                    .wrapContentHeight(),
                 imageUrl = null,
-                text = articleState.value.articlesItem?.Title ?: "",
+                title = articleState.value.articlesItem?.Title ?: "",
+                text = articleState.value.articlesItem?.Conclusion ?: "",
                 onClick = { /*TODO*/ },
                 shape = shapes.mediumCornerRadius
             )
