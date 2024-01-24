@@ -1,21 +1,25 @@
 package com.aayar94.aquatick.navigation
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
+import com.aayar94.aquatracker_domain.model.Article
+import com.aayar94.aquatracker_presentation.article.ArticleScreen
 import com.aayar94.aquatracker_presentation.drink.DrinkScreen
 import com.aayar94.aquatracker_presentation.home.HomeScreen
+import com.aayar94.notification_presentetion.NotificationScreen
 import com.aayar94.onboarding_presentation.activity_level.ActivityLevelScreen
 import com.aayar94.onboarding_presentation.age.AgeScreen
 import com.aayar94.onboarding_presentation.daily_intake_calculation.DailyIntakeCalculation
@@ -27,12 +31,12 @@ import com.aayar94.onboarding_presentation.weight.WeightScreen
 import com.aayar94.onboarding_presentation.welcome.WelcomeScreen
 import com.aayar94.settings_presentation.SettingsScreen
 
+@RequiresApi(Build.VERSION_CODES.TIRAMISU)
 @Composable
 fun AppNavigation(
     startDestinationRoute: String
 ) {
     val navController = rememberNavController()
-    val currentBackStackEntry by navController.currentBackStackEntryAsState()
     val snackBarHostState = remember {
         SnackbarHostState()
     }
@@ -82,7 +86,30 @@ fun AppNavigation(
                 DailyIntakeCalculation(finishOnboardingClicked = { navController.navigate(Route.HOME) })
             }
             composable(Route.HOME) {
-                HomeScreen(onDrinkNavigateClick = { navController.navigate(Route.DRINK) })
+                HomeScreen(
+                    onDrinkNavigateClick = { navController.navigate(Route.DRINK) },
+                    onArticleClick = { article ->
+                        navController.navigate(Route.ARTICLE + article)
+                    },
+                    onNotificationIconClick = { navController.navigate(Route.NOTIFICATION) }
+                )
+            }
+            composable(
+                Route.ARTICLE + {"article"},
+                arguments = listOf(
+                    navArgument("article") {
+                        type = NavType.ParcelableType(Article::class.java)
+                    }
+                )
+            ) { backStackEntry ->
+                val article =
+                    backStackEntry.arguments?.getParcelable("article", Article::class.java)
+                if (article != null) {
+                    ArticleScreen(article = article)
+                }
+            }
+            composable(Route.NOTIFICATION) {
+                NotificationScreen()
             }
             composable(Route.DRINK) {
                 DrinkScreen(onNavigate = {})

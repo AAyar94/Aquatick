@@ -68,6 +68,8 @@ dependencies {
     implementation(AndroidX.splashScreen)
     implementation(Compose.navigation)
 
+    implementation(Coil.coilCompose)
+    implementation(Coil.coilComposeSvg)
 
     implementation(JetpackGlance.jetpackGlance)
     implementation(JetpackGlance.jetpackGlanceAppWidget)
