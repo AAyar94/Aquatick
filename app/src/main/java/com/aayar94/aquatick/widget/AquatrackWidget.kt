@@ -28,7 +28,6 @@ import androidx.glance.layout.padding
 import androidx.glance.state.GlanceStateDefinition
 import androidx.glance.state.PreferencesGlanceStateDefinition
 import com.aayar94.aquatick.MainActivity
-import com.aayar94.aquatracker_domain.usecase.CalculateTodaysIntakeUseCase
 import com.aayar94.core.domain.preferences.DefaultPreferences
 
 class AquatrackWidget : GlanceAppWidget() {
@@ -62,7 +61,7 @@ class AquatrackWidget : GlanceAppWidget() {
                     .fillMaxSize()
                     .padding(16.dp)
                     .cornerRadius(16.dp).clickable {
-                        actionStartActivity<MainActivity>(MainActivity::class.java)
+                        actionStartActivity(MainActivity::class.java)
                     },
                 contentAlignment = Alignment.Center
             ) {

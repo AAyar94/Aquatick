@@ -1,4 +1,4 @@
-package com.example.compose
+package com.aayar94.compose
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme

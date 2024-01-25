@@ -14,6 +14,5 @@ fun DrinkType.getIcon(drinkType: DrinkType): Int {
         is DrinkType.Milk -> AppDrawable.ic_drink_milk
         is DrinkType.Smoothie -> AppDrawable.ic_drink_smoothie
         is DrinkType.Fruit_Juice -> AppDrawable.ic_drink_fruit_juice
-        else -> AppDrawable.ic_drink_glass_of_water
     }
 }
