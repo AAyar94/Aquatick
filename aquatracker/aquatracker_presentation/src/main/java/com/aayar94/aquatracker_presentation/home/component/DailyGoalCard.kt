@@ -68,7 +68,7 @@ fun DailyGoalCard(
                     text = if (lastIntakeTime == null || lastIntakeType == null) {
                         "You didn't drink yet "
                     } else {
-                        "$lastIntakeTime ($lastIntakeType)"
+                        "Your Last Intake is $lastIntakeType at $lastIntakeTime"
                     },
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onBackground
@@ -85,7 +85,7 @@ fun DailyGoalCard(
                         Alignment.BottomCenter
                     )
                     .zIndex(1f),
-                contentScale = ContentScale.Inside,
+                contentScale = ContentScale.FillWidth,
                 colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.primary)
             )
             Image(
@@ -99,7 +99,7 @@ fun DailyGoalCard(
                         Alignment.BottomCenter
                     )
                     .zIndex(1f),
-                contentScale = ContentScale.Inside,
+                contentScale = ContentScale.FillWidth,
                 colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onPrimary)
             )
             Image(

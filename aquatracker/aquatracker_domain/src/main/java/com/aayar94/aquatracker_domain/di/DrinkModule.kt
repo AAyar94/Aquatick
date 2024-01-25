@@ -4,6 +4,7 @@ import com.aayar94.aquatracker_domain.repository.AquaTrackerRepository
 import com.aayar94.aquatracker_domain.usecase.CalculateTodaysIntakeUseCase
 import com.aayar94.aquatracker_domain.usecase.DrinkTypesWithIconUseCase
 import com.aayar94.aquatracker_domain.usecase.GetLastDrinksUseCase
+import com.aayar94.aquatracker_domain.usecase.GetLastIntakeUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -34,5 +35,13 @@ object DrinkModule {
         repository: AquaTrackerRepository
     ): CalculateTodaysIntakeUseCase {
         return CalculateTodaysIntakeUseCase(repository)
+    }
+
+    @Provides
+    @Singleton
+    fun provideGetLastIntakeUseCase(
+        repository: AquaTrackerRepository
+    ): GetLastIntakeUseCase {
+        return GetLastIntakeUseCase(repository)
     }
 }
