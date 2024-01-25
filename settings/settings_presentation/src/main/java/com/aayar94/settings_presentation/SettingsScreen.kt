@@ -28,7 +28,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.aayar94.core_ui.theme.LocalSpacing
 import com.aayar94.core_ui.util.DevicesPreview
-import com.aayar94.compose.AquatickTheme
+import com.aayar94.core_ui.theme.AquatickTheme
 import com.aayar94.core.R.string as AppText
 
 @Composable

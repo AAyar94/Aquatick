@@ -23,7 +23,7 @@ import com.aayar94.aquatracker_domain.model.DrinkType
 import com.aayar94.aquatracker_domain.usecase.ScreenDrinkItem
 import com.aayar94.core.R
 import com.aayar94.core_ui.util.DevicesPreview
-import com.aayar94.compose.AquatickTheme
+import com.aayar94.core_ui.theme.AquatickTheme
 import java.time.LocalDate
 
 @Composable

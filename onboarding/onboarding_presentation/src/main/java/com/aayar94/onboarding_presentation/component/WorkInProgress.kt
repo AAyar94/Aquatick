@@ -20,7 +20,7 @@ import com.aayar94.core_ui.util.DevicesPreview
 import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.rememberLottieComposition
-import com.aayar94.compose.AquatickTheme
+import com.aayar94.core_ui.theme.AquatickTheme
 
 @Composable
 fun WorkInProgress(where: String) {

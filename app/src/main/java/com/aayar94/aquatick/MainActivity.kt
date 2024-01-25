@@ -10,7 +10,7 @@ import androidx.annotation.RequiresApi
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.aayar94.aquatick.navigation.AppNavigation
 import com.aayar94.aquatick.navigation.Route
-import com.aayar94.compose.AquatickTheme
+import com.aayar94.core_ui.theme.AquatickTheme
 import com.aayar94.core.domain.preferences.Preferences
 import com.aayar94.core.domain.usercase.CalculateReminderTimes
 import com.aayar94.workmanager.IntakeReminderModel

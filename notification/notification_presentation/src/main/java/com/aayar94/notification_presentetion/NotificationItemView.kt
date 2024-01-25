@@ -26,7 +26,7 @@ import coil.compose.AsyncImage
 import com.aayar94.core_ui.theme.LocalShape
 import com.aayar94.core_ui.theme.LocalSpacing
 import com.aayar94.core_ui.util.DevicesPreview
-import com.aayar94.compose.AquatickTheme
+import com.aayar94.core_ui.theme.AquatickTheme
 import java.time.LocalDateTime
 
 @Composable

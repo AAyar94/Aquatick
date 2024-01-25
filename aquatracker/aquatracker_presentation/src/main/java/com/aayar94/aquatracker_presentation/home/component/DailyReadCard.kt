@@ -30,7 +30,7 @@ import coil.decode.SvgDecoder
 import coil.request.ImageRequest
 import com.aayar94.core_ui.theme.LocalSpacing
 import com.aayar94.core_ui.util.DevicesPreview
-import com.aayar94.compose.AquatickTheme
+import com.aayar94.core_ui.theme.AquatickTheme
 
 @Composable
 fun DailyReadCard(
