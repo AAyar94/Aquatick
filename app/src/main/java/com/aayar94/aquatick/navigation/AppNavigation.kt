@@ -1,7 +1,5 @@
 package com.aayar94.aquatick.navigation
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
@@ -15,7 +13,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.aayar94.aquatracker_domain.model.Article
 import com.aayar94.aquatracker_presentation.article.ArticleScreen
 import com.aayar94.aquatracker_presentation.drink.DrinkScreen
 import com.aayar94.aquatracker_presentation.home.HomeScreen
@@ -31,7 +28,6 @@ import com.aayar94.onboarding_presentation.weight.WeightScreen
 import com.aayar94.onboarding_presentation.welcome.WelcomeScreen
 import com.aayar94.settings_presentation.SettingsScreen
 
-@RequiresApi(Build.VERSION_CODES.TIRAMISU)
 @Composable
 fun AppNavigation(
     startDestinationRoute: String
