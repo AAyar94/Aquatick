@@ -85,7 +85,7 @@ fun NightTimePicker(
                 FilledTonalButton(
                     onClick = {
                         viewModel.timeChangedUpdate(timeFormatter(nightTimeSetter))
-                        viewModel.onNextClicked()
+                        viewModel.onNextClicked(nightTimeSetter.hour, nightTimeSetter.minute)
                     },
                     shape = shapes.mediumCornerRadius
                 ) {

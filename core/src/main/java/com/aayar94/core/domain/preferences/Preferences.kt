@@ -15,9 +15,11 @@ interface Preferences {
     fun saveOnboardingFinishedState(state: Boolean)
     fun loadOnboardingState(): Boolean
 
-    fun saveGetUpTime(getUpTime:String)
+    fun saveGetUpTimeHour(getUpTimeHour:Int)
+    fun saveGetUpTimeMinute(getUpTimeMin:Int)
 
-    fun saveBedTime(bedTime:String)
+    fun saveBedTimeHour(bedTimeHour:Int)
+    fun saveBedTimeMin(bedTimeMin:Int)
 
     fun getUserInfo(): UserInfo
 
@@ -29,7 +31,9 @@ interface Preferences {
         const val KEY_ACTIVITY_LEVEL = "key_activity_level"
         const val KEY_DAILY_INTAKE_AMOUNT = "key_daily_intake_amount"
         const val KEY_ONBOARDING_FINISHED_STATE = "key_onboarding_finished_state"
-        const val KEY_GET_UP_TIME="key_get_up_time"
-        const val KEY_GOING_BED_TIME="key_going_bed_time"
+        const val KEY_GET_UP_TIME_HOUR="key_get_up_time_hour"
+        const val KEY_GET_UP_TIME_MIN="key_get_up_time_hour_minute"
+        const val KEY_GOING_BED_TIME_HOUR="key_going_bed_time_hour"
+        const val KEY_GOING_BED_MIN="key_going_bed_time_minute"
     }
 }

@@ -28,9 +28,10 @@ class NightTimeViewModel @Inject constructor(
         goingBedHour = time
     }
 
-    fun onNextClicked() {
+    fun onNextClicked(hour: Int, minute: Int) {
         viewModelScope.launch {
-            preferences.saveBedTime(goingBedHour)
+            preferences.saveBedTimeHour(hour)
+            preferences.saveGetUpTimeMinute(minute)
             _uiEvent.send(UiEvent.Success)
         }
     }

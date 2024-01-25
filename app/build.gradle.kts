@@ -96,6 +96,8 @@ dependencies {
     implementation(project(Modules.notificationData))
     implementation(project(Modules.notificationDomain))
     implementation(project(Modules.notificationPresentation))
+    implementation(project(Modules.workManager))
+
 
     implementation(AndroidX.coreKtx)
     implementation(AndroidX.appCompat)

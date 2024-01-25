@@ -79,7 +79,7 @@ fun MorningTimePicker(
             FilledTonalButton(
                 onClick = {
                     viewModel.timeChangedUpdate(timeFormatter(morningTimeSetter))
-                    viewModel.onNextClicked()
+                    viewModel.onNextClicked(morningTimeSetter.hour, morningTimeSetter.minute)
                 },
                 shape = shapes.mediumCornerRadius
             ) {
@@ -93,8 +93,8 @@ fun MorningTimePicker(
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
-fun timeFormatter(morningTimeSetter:TimePickerState):String{
-    val time: Int = (morningTimeSetter.minute* 60 + morningTimeSetter.hour* 60 * 60) * 1000
+fun timeFormatter(morningTimeSetter: TimePickerState): String {
+    val time: Int = (morningTimeSetter.minute * 60 + morningTimeSetter.hour * 60 * 60) * 1000
     val format = SimpleDateFormat("HH:mm:ss")
-    return  format.format(time)
+    return format.format(time)
 }

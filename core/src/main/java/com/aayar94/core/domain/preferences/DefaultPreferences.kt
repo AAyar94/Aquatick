@@ -4,6 +4,7 @@ import android.content.SharedPreferences
 import com.aayar94.core.domain.model.ActivityLevel
 import com.aayar94.core.domain.model.Gender
 import com.aayar94.core.domain.model.UserInfo
+import java.security.Key
 
 class DefaultPreferences(
     private val sharedPreferences: SharedPreferences
@@ -55,17 +56,30 @@ class DefaultPreferences(
         return state
     }
 
-    override fun saveGetUpTime(getUpTime: String) {
+    override fun saveGetUpTimeHour(getUpTimeHour: Int) {
         sharedPreferences.edit()
-            .putString(Preferences.KEY_GET_UP_TIME, getUpTime)
+            .putInt(Preferences.KEY_GET_UP_TIME_HOUR, getUpTimeHour)
             .apply()
     }
 
-    override fun saveBedTime(bedTime: String) {
+    override fun saveGetUpTimeMinute(getUpTimeMin: Int) {
         sharedPreferences.edit()
-            .putString(Preferences.KEY_GOING_BED_TIME, bedTime)
+            .putInt(Preferences.KEY_GET_UP_TIME_MIN, getUpTimeMin)
             .apply()
     }
+
+    override fun saveBedTimeHour(bedTimeHour: Int) {
+        sharedPreferences.edit()
+            .putInt(Preferences.KEY_GOING_BED_TIME_HOUR, bedTimeHour)
+            .apply()
+    }
+
+    override fun saveBedTimeMin(bedTimeMin: Int) {
+        sharedPreferences.edit()
+            .putInt(Preferences.KEY_GOING_BED_MIN, bedTimeMin)
+            .apply()
+    }
+
 
     override fun getUserInfo(): UserInfo {
         val name = sharedPreferences.getString(Preferences.KEY_NAME, "")
@@ -75,6 +89,10 @@ class DefaultPreferences(
         val activityLevelString = sharedPreferences
             .getString(Preferences.KEY_ACTIVITY_LEVEL, null)
         val dailyIntakeAmount = sharedPreferences.getInt(Preferences.KEY_DAILY_INTAKE_AMOUNT, 0)
+        val getUpHour = sharedPreferences.getInt(Preferences.KEY_GET_UP_TIME_HOUR, 0)
+        val getUpMin = sharedPreferences.getInt(Preferences.KEY_GET_UP_TIME_MIN, 0)
+        val bedTimeHour = sharedPreferences.getInt(Preferences.KEY_GOING_BED_TIME_HOUR, 0)
+        val bedTimeMin = sharedPreferences.getInt(Preferences.KEY_GOING_BED_MIN, 0)
 
         return UserInfo(
             name = name!!,
@@ -82,7 +100,11 @@ class DefaultPreferences(
             age = age,
             weight = weight,
             activityLevel = ActivityLevel.fromString(activityLevelString!!),
-            dailyIntakeAmount = dailyIntakeAmount
+            dailyIntakeAmount = dailyIntakeAmount,
+            getUpTimeHour = getUpHour,
+            getUpTimeMinute = getUpMin,
+            goingBedTimeHour = bedTimeHour,
+            goingBedTimeMinute = bedTimeMin
         )
     }
 }

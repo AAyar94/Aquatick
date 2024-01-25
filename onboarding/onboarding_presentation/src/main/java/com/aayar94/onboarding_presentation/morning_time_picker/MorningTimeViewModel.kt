@@ -28,9 +28,13 @@ class MorningTimeViewModel @Inject constructor(
         getUpHour = time
     }
 
-    fun onNextClicked() {
+    fun onNextClicked(
+        hour: Int,
+        minute: Int
+    ) {
         viewModelScope.launch {
-            preferences.saveGetUpTime(getUpHour)
+            preferences.saveGetUpTimeHour(hour)
+            preferences.saveGetUpTimeMinute(minute)
             _uiEvent.send(UiEvent.Success)
         }
     }
