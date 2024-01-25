@@ -68,6 +68,11 @@ dependencies {
     implementation(AndroidX.splashScreen)
     implementation(Compose.navigation)
 
+    implementation (platform("com.google.firebase:firebase-bom:27.1.0"))
+
+    implementation("com.google.firebase:firebase-analytics")
+    implementation("com.google.firebase:firebase-messaging")
+
     implementation(Coil.coilCompose)
     implementation(Coil.coilComposeSvg)
 
