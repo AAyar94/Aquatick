@@ -27,6 +27,7 @@ import androidx.compose.ui.zIndex
 import com.aayar94.core_ui.theme.LocalShape
 import com.aayar94.core_ui.theme.LocalSpacing
 import com.aayar94.core.R.drawable as AppDrawable
+import com.aayar94.core.R.string as AppText
 
 @Composable
 fun DailyGoalCard(
@@ -57,18 +58,27 @@ fun DailyGoalCard(
                 verticalArrangement = Arrangement.Top,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Text(
-                    modifier = Modifier.zIndex(3f),
-                    text = "Your current intake is: $currentIntake",
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onBackground
-                )
+                if (currentIntake.isNotBlank()) {
+                    Text(
+                        modifier = Modifier.zIndex(3f),
+                        text = stringResource(
+                            id = com.aayar94.core.R.string.your_current_intake_is,
+                            currentIntake
+                        ) + stringResource(id = AppText.ml),
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onBackground
+                    )
+                }
                 Text(
                     modifier = Modifier.zIndex(3f),
                     text = if (lastIntakeTime == null || lastIntakeType == null) {
-                        "You didn't drink yet "
+                        stringResource(id = AppText.you_didnt_drink_yet)
                     } else {
-                        "Your Last Intake is $lastIntakeType at $lastIntakeTime"
+                        stringResource(
+                            id = AppText.your_last_intake_is,
+                            lastIntakeType.replace("_", " "),
+                            lastIntakeTime.toString()
+                        )
                     },
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onBackground
