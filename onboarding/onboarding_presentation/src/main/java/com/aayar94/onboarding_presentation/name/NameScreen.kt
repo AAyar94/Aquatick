@@ -18,6 +18,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontStyle
@@ -39,12 +40,13 @@ fun NameScreen(
 ) {
     val spacing = LocalSpacing.current
     val shapes = LocalShape.current
+    val context = LocalContext.current
     LaunchedEffect(key1 = true) {
         viewModel.uiEvent.collect { event ->
             when (event) {
                 is UiEvent.Success -> onNextClick()
                 is UiEvent.ShowSnackbar -> {
-                    snackBarHostState.showSnackbar(event.message.asString())
+                    snackBarHostState.showSnackbar(event.message.asString(context))
                 }
 
                 else -> Unit
