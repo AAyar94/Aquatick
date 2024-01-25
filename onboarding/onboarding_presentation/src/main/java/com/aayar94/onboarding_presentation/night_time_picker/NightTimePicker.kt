@@ -27,7 +27,6 @@ import com.aayar94.core.R
 import com.aayar94.core.util.UiEvent
 import com.aayar94.core_ui.theme.LocalShape
 import com.aayar94.core_ui.theme.LocalSpacing
-import dagger.hilt.android.lifecycle.HiltViewModel
 import java.text.SimpleDateFormat
 
 @OptIn(ExperimentalMaterial3Api::class)

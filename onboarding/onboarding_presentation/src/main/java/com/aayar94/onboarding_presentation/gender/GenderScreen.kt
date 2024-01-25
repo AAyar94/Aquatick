@@ -59,7 +59,7 @@ fun GenderScreen(
         ) {
             Text(
                 text = stringResource(id = com.aayar94.core.R.string.select_your_gender),
-                style = androidx.compose.material3.MaterialTheme.typography.titleMedium,
+                style = MaterialTheme.typography.titleMedium,
             )
             Spacer(modifier = Modifier.height(spacing.spaceMedium))
             Row(
@@ -108,7 +108,7 @@ fun GenderScreen(
             ) {
                 Text(
                     text = stringResource(id = AppText.next),
-                    style = androidx.compose.material3.MaterialTheme.typography.bodyMedium
+                    style = MaterialTheme.typography.bodyMedium
                 )
             }
         }

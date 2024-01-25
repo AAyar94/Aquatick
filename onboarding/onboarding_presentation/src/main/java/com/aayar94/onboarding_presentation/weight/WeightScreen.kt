@@ -19,7 +19,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.aayar94.core.util.UiEvent
-import com.aayar94.core.util.UiText
 import com.aayar94.core_ui.theme.LocalShape
 import com.aayar94.core_ui.theme.LocalSpacing
 import com.aayar94.onboarding_presentation.component.BasicAppTextField
@@ -65,7 +64,7 @@ fun WeightScreen(
                 keyboardType = KeyboardType.Number
             )
             Spacer(modifier = Modifier.height(spacing.spaceMedium))
-            FilledTonalButton(onClick = viewModel::onNextClick) {
+            FilledTonalButton(onClick = viewModel::onNextClick, shape = shapes.mediumCornerRadius) {
                 Text(
                     text = stringResource(id = com.aayar94.core.R.string.next),
                     style = MaterialTheme.typography.bodyMedium

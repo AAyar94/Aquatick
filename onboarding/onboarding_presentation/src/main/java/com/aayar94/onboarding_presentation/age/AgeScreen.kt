@@ -34,19 +34,18 @@ fun AgeScreen(
     viewModel: AgeViewModel = hiltViewModel()
 ) {
     val spacing = LocalSpacing.current
-    val context = LocalContext.current
     val shapes = LocalShape.current
+    val context = LocalContext.current
     LaunchedEffect(key1 = true) {
         viewModel.uiEvent.collect { event ->
             when (event) {
                 is UiEvent.Success -> onNextClick()
                 is UiEvent.ShowSnackbar -> {
                     snackBarHostState.showSnackbar(
-                        message = event.message.asString(
-                            context = context
-                        )
+                        message = event.message.asString(context = context)
                     )
                 }
+
                 else -> Unit
             }
         }

@@ -1,6 +1,5 @@
 package com.aayar94.onboarding_presentation.gender
 
-import android.view.View
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue

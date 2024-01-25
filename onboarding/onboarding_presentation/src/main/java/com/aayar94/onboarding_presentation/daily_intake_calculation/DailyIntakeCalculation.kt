@@ -5,12 +5,9 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.ZeroCornerSize
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -20,11 +17,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.aayar94.core.domain.preferences.Preferences
 import com.aayar94.core.util.UiEvent
 import com.aayar94.core_ui.theme.LocalShape
 import com.aayar94.core_ui.theme.LocalSpacing
-import kotlinx.coroutines.delay
 import com.aayar94.core.R.string as AppText
 
 @Composable
@@ -76,7 +71,7 @@ fun DailyIntakeCalculation(
             AnimatedVisibility(visible = viewModel.itemVisibilityState.seventhItemVisibility) {
                 CalculationAnimationItem(string = stringResource(id = AppText.going_bed_time))
             }
-            AnimatedVisibility(visible = viewModel.itemVisibilityState.fifthItemVisibility == true) {
+            AnimatedVisibility(visible = viewModel.itemVisibilityState.seventhItemVisibility == true) {
                 viewModel.itemVisibilityState.dailyIntakeAmount?.let {
                     Text(
                         text = stringResource(id = AppText.Your_daily_intake_amount_is, it),
@@ -85,7 +80,7 @@ fun DailyIntakeCalculation(
                     )
                 }
             }
-            AnimatedVisibility(visible = viewModel.itemVisibilityState.fifthItemVisibility == true) {
+            AnimatedVisibility(visible = viewModel.itemVisibilityState.seventhItemVisibility == true) {
                 FilledTonalButton(
                     onClick = viewModel::onFinishedClick,
                     shape = shapes.mediumCornerRadius

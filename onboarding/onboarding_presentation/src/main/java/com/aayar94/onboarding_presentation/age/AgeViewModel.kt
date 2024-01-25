@@ -8,7 +8,6 @@ import androidx.lifecycle.viewModelScope
 import com.aayar94.core.domain.preferences.Preferences
 import com.aayar94.core.util.UiEvent
 import com.aayar94.core.util.UiText
-import com.aayar94.onboarding_presentation.R
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow

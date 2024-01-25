@@ -10,6 +10,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import com.aayar94.core_ui.theme.LocalSpacing
 
@@ -27,7 +28,7 @@ fun CalculationAnimationItem(
         Checkbox(checked = true, onCheckedChange = { }, enabled = true)
         Spacer(modifier = Modifier.width(spacing.spaceMedium))
         Text(
-            text = "Saved $string",
+            text = "${stringResource(id = com.aayar94.core.R.string.saved)} $string",
             style = MaterialTheme.typography.bodyLarge,
             textAlign = TextAlign.Center,
             color = MaterialTheme.colorScheme.onBackground

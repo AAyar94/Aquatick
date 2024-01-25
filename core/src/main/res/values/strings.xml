@@ -81,4 +81,9 @@
     <string name="get_up_time">Get Up Time</string>
     <string name="going_bed_time">Going Bed Time</string>
     <string name="your_last_drinks">Your Last Drinks</string>
+    <string name="good_morning">Good Morning</string>
+    <string name="good_afternoon">Good Afternoon</string>
+    <string name="good_evening">Good Evening</string>
+    <string name="good_night">Good Night</string>
+    <string name="saved">Saved</string>
 </resources>

@@ -11,17 +11,19 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material3.FilledTonalButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.aayar94.core.util.UiEvent
 import com.aayar94.core_ui.theme.LocalShape
@@ -29,7 +31,6 @@ import com.aayar94.core_ui.theme.LocalSpacing
 import com.aayar94.onboarding_presentation.component.BasicAppTextField
 import com.aayar94.core.R.string as AppText
 
-@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun NameScreen(
     snackBarHostState: SnackbarHostState,
@@ -38,14 +39,12 @@ fun NameScreen(
 ) {
     val spacing = LocalSpacing.current
     val shapes = LocalShape.current
-    val keyboardController = LocalSoftwareKeyboardController.current
-    val context = LocalContext.current
     LaunchedEffect(key1 = true) {
         viewModel.uiEvent.collect { event ->
             when (event) {
                 is UiEvent.Success -> onNextClick()
                 is UiEvent.ShowSnackbar -> {
-                    snackBarHostState.showSnackbar(event.message.asString(context))
+                    snackBarHostState.showSnackbar(event.message.asString())
                 }
 
                 else -> Unit
@@ -55,7 +54,7 @@ fun NameScreen(
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(androidx.compose.material3.MaterialTheme.colorScheme.background),
+            .background(MaterialTheme.colorScheme.background),
         contentAlignment = Alignment.Center
     ) {
         Column(
@@ -67,7 +66,7 @@ fun NameScreen(
         ) {
             Text(
                 text = stringResource(id = AppText.enter_your_name),
-                style = androidx.compose.material3.MaterialTheme.typography.titleMedium
+                style = MaterialTheme.typography.titleMedium
             )
             Spacer(modifier = Modifier.height(spacing.spaceMedium))
             BasicAppTextField(
@@ -77,7 +76,12 @@ fun NameScreen(
                 value = viewModel.nameState,
                 onValueChange = viewModel::nameChange,
                 unit = null,
-                textStyle = androidx.compose.material3.MaterialTheme.typography.bodyMedium,
+                textStyle = TextStyle(
+                    color = MaterialTheme.colorScheme.onBackground,
+                    fontSize = 48.sp,
+                    fontWeight = FontWeight.SemiBold,
+                    fontStyle = FontStyle.Italic
+                ),
                 keyboardType = KeyboardType.Text
             )
             Spacer(modifier = Modifier.height(spacing.spaceLarge))
@@ -87,8 +91,8 @@ fun NameScreen(
             ) {
                 Text(
                     text = stringResource(id = AppText.next),
-                    style = androidx.compose.material3.MaterialTheme.typography.bodySmall,
-                    color = androidx.compose.material3.MaterialTheme.colorScheme.onSecondaryContainer
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSecondaryContainer
                 )
             }
         }
