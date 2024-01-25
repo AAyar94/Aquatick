@@ -89,24 +89,21 @@ fun AppNavigation(
                 HomeScreen(
                     onDrinkNavigateClick = { navController.navigate(Route.DRINK) },
                     onArticleClick = { article ->
-                        navController.navigate(Route.ARTICLE + article)
+                        navController.navigate(Route.ARTICLE + "/$article")
                     },
                     onNotificationIconClick = { navController.navigate(Route.NOTIFICATION) }
                 )
             }
             composable(
-                Route.ARTICLE + {"article"},
+                Route.ARTICLE + "/{id}",
                 arguments = listOf(
-                    navArgument("article") {
-                        type = NavType.ParcelableType(Article::class.java)
+                    navArgument("id") {
+                        type = NavType.IntType
                     }
                 )
-            ) { backStackEntry ->
-                val article =
-                    backStackEntry.arguments?.getParcelable("article", Article::class.java)
-                if (article != null) {
-                    ArticleScreen(article = article)
-                }
+            ) {
+                val id = it.arguments?.getInt("id")!!
+                ArticleScreen(articleId = id)
             }
             composable(Route.NOTIFICATION) {
                 NotificationScreen()

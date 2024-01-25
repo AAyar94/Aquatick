@@ -5,6 +5,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Article(
+    val id: Int,
     val Conclusion: String,
     val Introduction: String,
     val Points: List<Point>,

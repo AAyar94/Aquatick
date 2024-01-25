@@ -2,6 +2,7 @@ package com.aayar94.aquatracker_domain.di
 
 import com.aayar94.aquatracker_domain.repository.ArticleRepository
 import com.aayar94.aquatracker_domain.usecase.GetArticlesUseCase
+import com.aayar94.aquatracker_domain.usecase.GetSingleArticleUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -19,5 +20,13 @@ object ArticlesModule {
         repository: ArticleRepository
     ): GetArticlesUseCase {
         return GetArticlesUseCase(repository)
+    }
+
+    @Provides
+    @Singleton
+    fun provideGetSingleArticleUseCase(
+        getArticlesUseCase: GetArticlesUseCase
+    ): GetSingleArticleUseCase {
+        return GetSingleArticleUseCase(getArticlesUseCase)
     }
 }
