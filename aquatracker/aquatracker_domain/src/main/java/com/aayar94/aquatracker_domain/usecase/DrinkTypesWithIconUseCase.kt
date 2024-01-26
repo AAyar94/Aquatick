@@ -3,6 +3,7 @@ package com.aayar94.aquatracker_domain.usecase
 import com.aayar94.aquatracker_domain.model.DrinkType
 import com.aayar94.aquatracker_domain.util.getIcon
 import java.time.LocalDate
+import java.time.LocalDateTime
 
 class DrinkTypesWithIconUseCase {
     operator fun invoke(): List<ScreenDrinkItem> {
@@ -58,5 +59,5 @@ data class ScreenDrinkItem(
     val drinkType: DrinkType,
     val defaultAmount: Int,
     val drinkIcon: Int,
-    val localDate: LocalDate = LocalDate.now()
+    val localDate: LocalDateTime = LocalDateTime.now()
 )

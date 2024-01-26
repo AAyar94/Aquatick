@@ -58,7 +58,7 @@ class HomeViewModel @Inject constructor(
             if (response != null) {
                 _homeState.update {
                     it.copy(
-                        lastIntakeTime = response.localDate.dayOfMonth.toString(),
+                        lastIntakeTime = "${response.localDate.hour} : ${response.localDate.minute}",
                         lastIntakeType = response.drinkType.name + " (${response.defaultAmount} ml)"
                     )
                 }

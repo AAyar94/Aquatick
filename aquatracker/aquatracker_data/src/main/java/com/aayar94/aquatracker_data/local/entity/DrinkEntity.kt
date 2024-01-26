@@ -10,6 +10,9 @@ data class DrinkEntity(
     val id: Int = 0,
     val drinkType: String,
     val drinkAmount: Int,
+    val hour: Int,
+    val minute: Int,
+    val second: Int,
     val dayOfMonth: Int,
     val month: Int,
     val year: Int

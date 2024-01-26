@@ -25,6 +25,7 @@ import com.aayar94.core.R
 import com.aayar94.core_ui.util.DevicesPreview
 import com.aayar94.core_ui.theme.AquatickTheme
 import java.time.LocalDate
+import java.time.LocalDateTime
 
 @Composable
 fun LastDrinksCard(
@@ -50,7 +51,7 @@ fun LastDrinksCard(
                     modifier = Modifier.size(32.dp)
                 )
                 Spacer(modifier = Modifier.width(8.dp))
-                Text(text = item.drinkType.name.replace("_"," "))
+                Text(text = item.drinkType.name.replace("_", " "))
                 Spacer(modifier = Modifier.weight(1f))
                 Text(text = item.defaultAmount.toString() + " ml")
                 Spacer(modifier = Modifier.weight(1f))
@@ -71,7 +72,7 @@ fun PreviewLastDrinksCard() {
 
             ScreenDrinkItem(
                 DrinkType.Tea, 100, R.drawable.ic_drink_tea,
-                LocalDate.now()
+                LocalDateTime.now()
             ),
         )
     }
