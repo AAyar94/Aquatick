@@ -46,7 +46,10 @@ fun SettingsScreen(
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(horizontal = spacing.spaceMedium, vertical = spacing.spaceMedium),
+                .padding(
+                    horizontal = spacing.spaceMedium,
+                    vertical = spacing.spaceMedium
+                ),
             verticalArrangement = Arrangement.spacedBy(spacing.spaceMedium),
             horizontalAlignment = Alignment.Start
         ) {
@@ -73,16 +76,18 @@ fun SettingsScreen(
                     checked = uiState.value.isNotificationEnabled,
                     onCheckedChange = viewModel::onNotificationSwitch,
                     thumbContent = {
-                        if (true) Icon(
+                        if (uiState.value.isNotificationEnabled) Icon(
                             imageVector = Icons.Default.NotificationsActive,
                             contentDescription = null,
                             tint = MaterialTheme.colorScheme.primary
                         )
-                        else Icon(
-                            imageVector = Icons.Default.NotificationsOff,
-                            contentDescription = null,
-                            tint = MaterialTheme.colorScheme.onBackground
-                        )
+                        else {
+                            Icon(
+                                imageVector = Icons.Default.NotificationsOff,
+                                contentDescription = null,
+                                tint = MaterialTheme.colorScheme.onBackground
+                            )
+                        }
                     }
 
                 )
@@ -100,7 +105,7 @@ fun SettingsScreen(
                     checked = uiState.value.isDarkThemeEnabled,
                     onCheckedChange = viewModel::onDarkSwitch,
                     thumbContent = {
-                        if (true) Icon(
+                        if (uiState.value.isDarkThemeEnabled) Icon(
                             imageVector = Icons.Default.NightsStay,
                             contentDescription = null,
                             tint = MaterialTheme.colorScheme.primary
@@ -108,10 +113,9 @@ fun SettingsScreen(
                         else Icon(
                             imageVector = Icons.Default.WbSunny,
                             contentDescription = null,
-                            tint = MaterialTheme.colorScheme.primary
+                            tint = MaterialTheme.colorScheme.onBackground
                         )
                     }
-
                 )
             }
         }

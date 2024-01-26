@@ -4,7 +4,6 @@ import android.content.SharedPreferences
 import com.aayar94.core.domain.model.ActivityLevel
 import com.aayar94.core.domain.model.Gender
 import com.aayar94.core.domain.model.UserInfo
-import java.security.Key
 
 class DefaultPreferences(
     private val sharedPreferences: SharedPreferences
@@ -52,8 +51,7 @@ class DefaultPreferences(
     }
 
     override fun loadOnboardingState(): Boolean {
-        val state = sharedPreferences.getBoolean(Preferences.KEY_ONBOARDING_FINISHED_STATE, true)
-        return state
+        return sharedPreferences.getBoolean(Preferences.KEY_ONBOARDING_FINISHED_STATE, true)
     }
 
     override fun saveGetUpTimeHour(getUpTimeHour: Int) {
@@ -78,6 +76,16 @@ class DefaultPreferences(
         sharedPreferences.edit()
             .putInt(Preferences.KEY_GOING_BED_MIN, bedTimeMin)
             .apply()
+    }
+
+    override fun saveNotificationPermissionStatus(status: Boolean) {
+        sharedPreferences.edit()
+            .putBoolean(Preferences.KEY_NOTIFICATION_PERMISSION, status)
+            .apply()
+    }
+
+    override fun readNotificationPermissionStates(): Boolean {
+        return sharedPreferences.getBoolean(Preferences.KEY_NOTIFICATION_PERMISSION, false)
     }
 
 
