@@ -16,4 +16,5 @@ object Route {
     const val ARTICLE="article"
     const val ANALYSIS="analysis"
     const val NOTIFICATION="notification"
+    const val NOTIFICATION_PERMISSION="notification_permission"
 }
