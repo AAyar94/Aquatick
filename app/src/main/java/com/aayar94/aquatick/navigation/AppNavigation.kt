@@ -14,6 +14,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.aayar94.aquatracker_presentation.analysis.AnalysisScreen
 import com.aayar94.aquatracker_presentation.article.ArticleScreen
 import com.aayar94.aquatracker_presentation.drink.DrinkScreen
 import com.aayar94.aquatracker_presentation.home.HomeScreen
@@ -75,7 +76,7 @@ fun AppNavigation(
             }
             composable(Route.NIGHT_TIME_PICKER) {
                 NightTimePicker(onNextClick = {
-                    if (Build.VERSION.SDK_INT < 33) {
+                    if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.TIRAMISU) {
                         navController.navigate(Route.DAILY_INTAKE_CALCULATION)
                     } else {
                         navController.navigate(Route.NOTIFICATION_PERMISSION)
@@ -83,7 +84,9 @@ fun AppNavigation(
                 })
             }
             composable(Route.NOTIFICATION_PERMISSION) {
-                NotificationPermission(onNextClicked = { navController.navigate(Route.DAILY_INTAKE_CALCULATION) })
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                    NotificationPermission(onNextClicked = { navController.navigate(Route.DAILY_INTAKE_CALCULATION) })
+                }
             }
             composable(Route.DAILY_INTAKE_CALCULATION) {
                 DailyIntakeCalculation(finishOnboardingClicked = { navController.navigate(Route.HOME) })
@@ -109,6 +112,9 @@ fun AppNavigation(
             }
             composable(Route.SETTINGS) {
                 SettingsScreen()
+            }
+            composable(Route.ANALYSIS) {
+                AnalysisScreen()
             }
 
         }

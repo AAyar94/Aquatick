@@ -16,4 +16,8 @@ dependencies {
 
     implementation(Coil.coilCompose)
     implementation(Coil.coilComposeSvg)
+
+    implementation(VicoCharts.vicoCore)
+    implementation(VicoCharts.vicoCompose)
+    implementation(VicoCharts.vicoComposeM3)
 }

@@ -1,6 +1,7 @@
 package com.aayar94.aquatracker_domain.di
 
 import com.aayar94.aquatracker_domain.repository.AquaTrackerRepository
+import com.aayar94.aquatracker_domain.usecase.AnalysisScreenChartCalculate
 import com.aayar94.aquatracker_domain.usecase.CalculateTodaysIntakeUseCase
 import com.aayar94.aquatracker_domain.usecase.DrinkTypesWithIconUseCase
 import com.aayar94.aquatracker_domain.usecase.GetLastDrinksUseCase
@@ -9,6 +10,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import javax.annotation.Signed
 import javax.inject.Singleton
 
 @Module
@@ -43,5 +45,11 @@ object DrinkModule {
         repository: AquaTrackerRepository
     ): GetLastIntakeUseCase {
         return GetLastIntakeUseCase(repository)
+    }
+
+    @Provides
+    @Singleton
+    fun provideAnalysisScreenChartsCalculateUseCase(): AnalysisScreenChartCalculate {
+        return AnalysisScreenChartCalculate()
     }
 }

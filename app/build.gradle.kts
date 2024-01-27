@@ -84,6 +84,9 @@ dependencies {
     implementation("androidx.compose.material3:material3:1.1.2")
     kapt(DaggerHilt.hiltCompiler)
 
+    implementation("androidx.annotation:annotation:1.7.1")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.9.20")
+
     implementation(project(Modules.core))
     implementation(project(Modules.coreui))
     implementation(project(Modules.onboardingPresentation))
