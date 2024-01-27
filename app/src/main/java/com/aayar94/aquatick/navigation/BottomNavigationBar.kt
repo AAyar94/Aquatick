@@ -23,8 +23,6 @@ val bottomBarItems = listOf(
     BottomBarItem(Route.DRINK, com.aayar94.core.R.drawable.drink_icon, "Drink"),
     BottomBarItem(Route.HOME, com.aayar94.core.R.drawable.home_icon, "Home"),
     BottomBarItem(Route.SETTINGS, com.aayar94.core.R.drawable.settings_icon, "Settings"),
-    BottomBarItem(Route.ANALYSIS, com.aayar94.core.R.drawable.analisist_icon, "Analysis")
-
 )
 
 @Composable

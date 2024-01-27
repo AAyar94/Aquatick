@@ -1,13 +1,8 @@
 package com.aayar94.aquatracker_presentation.analysis
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -17,13 +12,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.aayar94.core_ui.theme.AquatickTheme
 import com.aayar94.core_ui.theme.LocalSpacing
 import com.aayar94.core_ui.util.DevicesPreview
-import com.patrykandpatrick.vico.compose.axis.horizontal.rememberBottomAxis
-import com.patrykandpatrick.vico.compose.axis.vertical.rememberStartAxis
-import com.patrykandpatrick.vico.compose.chart.Chart
-import com.patrykandpatrick.vico.compose.chart.column.columnChart
-import com.patrykandpatrick.vico.compose.m3.style.m3ChartStyle
-import com.patrykandpatrick.vico.compose.style.ProvideChartStyle
-import com.patrykandpatrick.vico.core.entry.entryModelOf
+import com.aayar94.core_ui.util.WorkInProgress
 
 @Composable
 fun AnalysisScreen(
@@ -37,28 +26,26 @@ fun AnalysisScreen(
             .background(MaterialTheme.colorScheme.background),
         contentAlignment = Alignment.Center
     ) {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(spacing.spaceMedium),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            val chartModel = entryModelOf(2000f, 3000, 1750f, 1850)
-            ProvideChartStyle(m3ChartStyle()) {
-                Chart(
-                    chart = columnChart(),
-                    model = chartModel,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .fillMaxHeight(0.5f),
-                    startAxis = rememberStartAxis(title = "Daily amount (ml)"),
-                    bottomAxis = rememberBottomAxis(title = "Days")
-                )
-            }
-        }
-
-
+        /*  Column(
+              modifier = Modifier
+                  .fillMaxSize()
+                  .padding(spacing.spaceMedium),
+              verticalArrangement = Arrangement.Center,
+              horizontalAlignment = Alignment.CenterHorizontally
+          ) {
+              val modelProducer: CartesianChartModelProducer
+              ProvideChartStyle(m3ChartStyle()) {
+                  CartesianChartHost(
+                      chart =
+                      rememberCartesianChart(
+                          rememberLineCartesianLayer(),
+                          startAxis = rememberStartAxis(),
+                          bottomAxis = rememberBottomAxis(guideline = null)
+                      ),
+                      modelProducer = modelProducer,
+                      runInitialAnimation = false,
+              }*/
+        WorkInProgress(whatIsThisRoute = "Analysis Screen")
     }
 }
 

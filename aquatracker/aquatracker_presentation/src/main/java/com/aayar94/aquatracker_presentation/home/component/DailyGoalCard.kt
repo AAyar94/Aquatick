@@ -82,6 +82,7 @@ fun DailyGoalCard(
                             lastIntakeTime.toString()
                         )
                     },
+                    maxLines = 3,
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onBackground
                 )
@@ -119,9 +120,11 @@ fun DailyGoalCard(
                     Gender.Male -> {
                         painterResource(id = AppDrawable.man_drinks_water)
                     }
+
                     Gender.Female -> {
                         painterResource(id = AppDrawable.woman_drink_water)
                     }
+
                     else -> painterResource(id = AppDrawable.water_intake_card_image)
                 },
                 contentDescription = "water_drop_icon",

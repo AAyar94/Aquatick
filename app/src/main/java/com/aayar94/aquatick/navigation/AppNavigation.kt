@@ -96,7 +96,8 @@ fun AppNavigation(
                     onArticleClick = { article ->
                         navController.navigate(Route.ARTICLE + "/$article")
                     },
-                    onNotificationIconClick = { navController.navigate(Route.NOTIFICATION) })
+                    onNotificationIconClick = { navController.navigate(Route.NOTIFICATION) },
+                    onAnalysisButtonClick = { navController.navigate(Route.ANALYSIS) })
             }
             composable(Route.ARTICLE + "/{id}", arguments = listOf(navArgument("id") {
                 type = NavType.IntType

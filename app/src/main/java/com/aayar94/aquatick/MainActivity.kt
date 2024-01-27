@@ -77,6 +77,7 @@ class MainActivity : ComponentActivity() {
                 id = 1,
             )
             notificationAlarmScheduler.schedule(reminderItem)
+            notificationAlarmScheduler.onCreatePendingIntent(reminderItem)
         }
 
     }

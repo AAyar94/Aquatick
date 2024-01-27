@@ -14,6 +14,7 @@ class AnalysisScreenChartCalculate {
             ChartModel(LocalDateTime.now().minusDays(4), 1800),
             ChartModel(LocalDateTime.now().minusDays(5), 2100),
         )
+
         return list
     }
 }

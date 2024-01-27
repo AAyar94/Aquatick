@@ -61,6 +61,7 @@
     <string name="your_age">Your age</string>
     <string name="your_weight">Your weight</string>
     <string name="your_gender">Your gender</string>
+    <string name="analysis">Analysis</string>
     <string name="your_daily_activity_level">Your daily activity level</string>
     <string name="our_special_formula">Our special formula</string>
     <string name="finish_setup">Finish setup</string>
@@ -86,5 +87,5 @@
     <string name="saved">Saved</string>
     <string name="your_current_intake_is">Your current intake is: %1$s</string>
     <string name="you_didnt_drink_yet">You didn\'t drink yet!</string>
-    <string name="your_last_intake_is">Your Last intake is: \n %1$s at %2$s</string>
+    <string name="your_last_intake_is">Your Last intake is: \n %1$s \n at %2$s</string>
 </resources>
