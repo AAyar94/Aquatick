@@ -19,7 +19,7 @@ sealed class DrinkType(val name: String) {
             return when (name.lowercase(Locale.ROOT)) {
                 "glass_of_water" -> Glass_Of_Water
                 "bottle_of_water" -> Bottle_Of_Water
-                "a_cup_of_water" -> A_Cup_Of_Coffee
+                "a_cup_of_coffee" -> A_Cup_Of_Coffee
                 "tea" -> Tea
                 "herbal_tea" -> Herbal_Tea
                 "carbonated_drink" -> Carbonated_Drinks
