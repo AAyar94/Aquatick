@@ -23,10 +23,10 @@ class RunnerNotifier(
     }
 
     override fun getNotificationTitle(): String {
-        return "Time to go for a run 🏃‍️"
+        return "‍️Aquatick"
     }
 
     override fun getNotificationMessage(): String {
-        return "You are ready to go for a run?"
+        return "Time for hydrate yourself 💧"
     }
 }
