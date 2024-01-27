@@ -83,7 +83,7 @@ fun ActivityLevelScreen(
                 ActivityLevelRow(
                     activityLevel = ActivityLevel.Average,
                     activityLevelName = stringResource(id = AppText.activity_level_average),
-                    drawableImage = AppDrawable.activity_level_very_active,
+                    drawableImage = AppDrawable.activity_level_average,
                     isSelected = viewModel.activityLevelState == ActivityLevel.Average,
                     onSelect = { viewModel.activityLevelChange(ActivityLevel.Average) }
                 )
@@ -97,7 +97,7 @@ fun ActivityLevelScreen(
                 ActivityLevelRow(
                     activityLevel = ActivityLevel.NotActive,
                     activityLevelName = stringResource(id = AppText.activity_level_not_active),
-                    drawableImage = AppDrawable.activity_level_not_active2,
+                    drawableImage = AppDrawable.activity_level_not_active,
                     isSelected = viewModel.activityLevelState == ActivityLevel.NotActive,
                     onSelect = { viewModel.activityLevelChange(ActivityLevel.NotActive) }
                 )

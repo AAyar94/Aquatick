@@ -7,9 +7,9 @@ fun DrinkType.getIcon(drinkType: DrinkType): Int {
     return when (drinkType) {
         is DrinkType.Glass_Of_Water -> AppDrawable.ic_drink_glass_of_water
         is DrinkType.Bottle_Of_Water -> AppDrawable.ic_drink_bottle_of_water
-        is DrinkType.A_Cup_Of_Coffee -> AppDrawable.ic_drink_a_cup_of_coffe
+        is DrinkType.A_Cup_Of_Coffee -> AppDrawable.ic_drink_a_cup_of_coffee
         is DrinkType.Tea -> AppDrawable.ic_drink_tea
-        is DrinkType.Herbal_Tea -> AppDrawable.ic_drink_herbaltea
+        is DrinkType.Herbal_Tea -> AppDrawable.ic__drink_herbal_tea
         is DrinkType.Carbonated_Drinks -> AppDrawable.ic_drink_carbonated_drink
         is DrinkType.Milk -> AppDrawable.ic_drink_milk
         is DrinkType.Smoothie -> AppDrawable.ic_drink_smoothie
