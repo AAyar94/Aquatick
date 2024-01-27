@@ -86,6 +86,7 @@ fun HomeScreen(
                         .fillMaxWidth()
                         .wrapContentHeight(),
                     shape = shapes.largeCornerRadius,
+                    gender = uiState.value.gender,
                     onDrinkClick = viewModel::onEnterDrinkClick
                 )
             }

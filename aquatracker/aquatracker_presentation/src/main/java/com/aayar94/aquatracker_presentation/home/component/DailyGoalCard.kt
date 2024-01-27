@@ -24,6 +24,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
+import com.aayar94.core.domain.model.Gender
 import com.aayar94.core_ui.theme.LocalShape
 import com.aayar94.core_ui.theme.LocalSpacing
 import com.aayar94.core.R.drawable as AppDrawable
@@ -36,6 +37,7 @@ fun DailyGoalCard(
     currentIntake: String,
     lastIntakeTime: String?,
     lastIntakeType: String?,
+    gender: Gender,
     onDrinkClick: () -> Unit
 ) {
     val spacing = LocalSpacing.current
@@ -113,10 +115,18 @@ fun DailyGoalCard(
                 colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onPrimary)
             )
             Image(
-                painter = painterResource(id = com.aayar94.core.R.drawable.water_drop_blue),
+                painter = when (gender) {
+                    Gender.Male -> {
+                        painterResource(id = AppDrawable.man_drinks_water)
+                    }
+                    Gender.Female -> {
+                        painterResource(id = AppDrawable.woman_drink_water)
+                    }
+                    else -> painterResource(id = AppDrawable.water_intake_card_image)
+                },
                 contentDescription = "water_drop_icon",
                 modifier = Modifier
-                    .size(200.dp)
+                    .size(150.dp)
                     .align(Alignment.CenterEnd)
                     .zIndex(2f),
                 contentScale = ContentScale.Fit

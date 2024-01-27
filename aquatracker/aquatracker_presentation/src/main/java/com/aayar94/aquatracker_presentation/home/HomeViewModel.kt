@@ -41,6 +41,7 @@ class HomeViewModel @Inject constructor(
                 it.copy(
                     greetings = getGreeting(),
                     name = userInfo.name,
+                    gender=userInfo.gender,
                     currentIntake = null,
                     lastIntakeTime = null,
                     lastIntakeType = null
