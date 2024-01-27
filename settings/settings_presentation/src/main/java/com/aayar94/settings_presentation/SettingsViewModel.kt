@@ -1,13 +1,12 @@
 package com.aayar94.settings_presentation
 
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.aayar94.aquatracker_domain.usecase.DropDatabaseUseCase
 import com.aayar94.core.domain.preferences.Preferences
 import com.aayar94.core.util.UiEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -18,7 +17,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SettingsViewModel @Inject constructor(
-    private val preferences: Preferences
+    private val preferences: Preferences,
+    private val dropDatabaseUseCase: DropDatabaseUseCase
 ) : ViewModel() {
 
     private var _uiState = MutableStateFlow(SettingsUIState())
@@ -48,6 +48,14 @@ class SettingsViewModel @Inject constructor(
             _uiState.update {
                 it.copy(isDarkThemeEnabled = boolean)
             }
+        }
+    }
+
+    fun deleteEverythingAndCloseApp() {
+        viewModelScope.launch(Dispatchers.IO) {
+            preferences.deleteSharesPreferences()
+            dropDatabaseUseCase.invoke()
+            _uiEvent.send(UiEvent.Success)
         }
     }
 }

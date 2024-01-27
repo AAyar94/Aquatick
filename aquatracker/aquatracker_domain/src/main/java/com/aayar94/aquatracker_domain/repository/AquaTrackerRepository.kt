@@ -11,4 +11,6 @@ interface AquaTrackerRepository {
     suspend fun getDrinksForDate(localDate: LocalDate): Flow<List<ScreenDrinkItem>>
 
     suspend fun getLast3Object(): Flow<List<ScreenDrinkItem>>
+
+    suspend fun deleteDatabase()
 }

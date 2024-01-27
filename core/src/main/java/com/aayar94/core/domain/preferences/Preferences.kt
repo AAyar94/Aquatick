@@ -27,6 +27,8 @@ interface Preferences {
 
     fun getUserInfo(): UserInfo
 
+    fun deleteSharesPreferences()
+
     companion object {
         const val KEY_NAME = "key_name"
         const val KEY_GENDER = "key_gender"

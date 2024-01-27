@@ -33,7 +33,8 @@ import com.aayar94.settings_presentation.SettingsScreen
 
 @Composable
 fun AppNavigation(
-    startDestinationRoute: String
+    startDestinationRoute: String,
+    onDeleteApp: () -> Unit
 ) {
     val navController = rememberNavController()
     val snackBarHostState = remember {
@@ -112,12 +113,11 @@ fun AppNavigation(
                 DrinkScreen(onNavigate = {})
             }
             composable(Route.SETTINGS) {
-                SettingsScreen()
+                SettingsScreen(onDeleteApp = onDeleteApp)
             }
             composable(Route.ANALYSIS) {
                 AnalysisScreen()
             }
-
         }
     }
 }

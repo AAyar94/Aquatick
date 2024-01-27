@@ -32,4 +32,8 @@ class AquaTrackerRepositoryImpl(
             it.map { it.toScreenDrinkItem() }
         }
     }
+
+    override suspend fun deleteDatabase() {
+        return dao.deleteDatabase()
+    }
 }

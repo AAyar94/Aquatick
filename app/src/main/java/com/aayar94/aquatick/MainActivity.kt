@@ -37,7 +37,9 @@ class MainActivity : ComponentActivity() {
         val shouldShowOnboarding = preferences.loadOnboardingState()
         setContent {
             AquatickTheme {
-                AppNavigation(if (shouldShowOnboarding) Route.WELCOME else Route.HOME)
+                AppNavigation(
+                    startDestinationRoute = if (shouldShowOnboarding) Route.WELCOME else Route.HOME,
+                    onDeleteApp = { finishActivity(500) })
             }
         }
 

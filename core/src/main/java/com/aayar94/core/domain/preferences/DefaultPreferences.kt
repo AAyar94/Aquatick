@@ -115,4 +115,10 @@ class DefaultPreferences(
             goingBedTimeMinute = bedTimeMin
         )
     }
+
+    override fun deleteSharesPreferences() {
+        sharedPreferences.edit()
+            .clear()
+            .apply()
+    }
 }

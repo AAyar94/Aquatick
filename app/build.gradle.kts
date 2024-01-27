@@ -85,7 +85,7 @@ dependencies {
     kapt(DaggerHilt.hiltCompiler)
 
     implementation("androidx.annotation:annotation:1.7.1")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.9.20")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.9.22")
 
     implementation(project(Modules.core))
     implementation(project(Modules.coreui))

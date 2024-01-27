@@ -28,4 +28,7 @@ interface DrinkDao {
 
     @Query("SELECT * FROM drinks_table ORDER BY ID DESC LIMIT 3")
     fun getLast3Object() : Flow<List<DrinkEntity>>
+
+    @Query("DELETE FROM drinks_table")
+    fun deleteDatabase()
 }

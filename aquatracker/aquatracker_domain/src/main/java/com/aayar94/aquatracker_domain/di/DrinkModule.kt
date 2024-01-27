@@ -4,6 +4,7 @@ import com.aayar94.aquatracker_domain.repository.AquaTrackerRepository
 import com.aayar94.aquatracker_domain.usecase.AnalysisScreenChartCalculate
 import com.aayar94.aquatracker_domain.usecase.CalculateTodaysIntakeUseCase
 import com.aayar94.aquatracker_domain.usecase.DrinkTypesWithIconUseCase
+import com.aayar94.aquatracker_domain.usecase.DropDatabaseUseCase
 import com.aayar94.aquatracker_domain.usecase.GetLastDrinksUseCase
 import com.aayar94.aquatracker_domain.usecase.GetLastIntakeUseCase
 import dagger.Module
@@ -50,5 +51,13 @@ object DrinkModule {
     @Singleton
     fun provideAnalysisScreenChartsCalculateUseCase(): AnalysisScreenChartCalculate {
         return AnalysisScreenChartCalculate()
+    }
+
+    @Provides
+    @Singleton
+    fun provideDropDatabaseUseCase(
+        repository: AquaTrackerRepository
+    ): DropDatabaseUseCase {
+        return DropDatabaseUseCase(repository)
     }
 }
