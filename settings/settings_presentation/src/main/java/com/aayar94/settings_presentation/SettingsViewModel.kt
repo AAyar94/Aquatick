@@ -2,9 +2,9 @@ package com.aayar94.settings_presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.aayar94.aquatracker_domain.usecase.DropDatabaseUseCase
 import com.aayar94.core.domain.preferences.Preferences
 import com.aayar94.core.util.UiEvent
+import com.aayar94.settings_domain.use_case.DropDatabaseUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
