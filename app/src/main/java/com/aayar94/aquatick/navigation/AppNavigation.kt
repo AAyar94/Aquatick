@@ -77,7 +77,7 @@ fun AppNavigation(
             }
             composable(Route.NIGHT_TIME_PICKER) {
                 NightTimePicker(onNextClick = {
-                    if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.TIRAMISU) {
+                    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
                         navController.navigate(Route.DAILY_INTAKE_CALCULATION)
                     } else {
                         navController.navigate(Route.NOTIFICATION_PERMISSION)
