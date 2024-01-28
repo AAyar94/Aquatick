@@ -1,4 +1,5 @@
 package com.example.compose
+
 import androidx.compose.ui.graphics.Color
 
 val md_theme_light_primary = Color(0xFF006686)
@@ -65,6 +66,11 @@ val md_theme_dark_scrim = Color(0xFF000000)
 
 
 val seed = Color(0xFF5DCCFC)
-val Orange =Color(0xFFFFA500)
-val Indigo =Color(0xFF4B0082)
-val Violet =Color(0xFF7F00FF)
+val Orange = Color(0xFFFFA500)
+val Indigo = Color(0xFF4B0082)
+val Violet = Color(0xFF7F00FF)
+
+val BlueColorScheme = Color(0xFFB4D2F0)
+val YellowColorScheme = Color(0xFFFAFAB4)
+val GreenColorScheme = Color(0xFFC8E5CE)
+val RedColorScheme = Color(0xFFFFD2C8)

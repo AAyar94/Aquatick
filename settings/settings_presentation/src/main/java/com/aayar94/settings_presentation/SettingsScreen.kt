@@ -40,6 +40,11 @@ import com.aayar94.core.util.UiEvent
 import com.aayar94.core_ui.theme.AquatickTheme
 import com.aayar94.core_ui.theme.LocalSpacing
 import com.aayar94.core_ui.util.DevicesPreview
+import com.aayar94.settings_presentation.component.ColorScheme
+import com.example.compose.BlueColorScheme
+import com.example.compose.GreenColorScheme
+import com.example.compose.RedColorScheme
+import com.example.compose.YellowColorScheme
 import com.aayar94.core.R.string as AppText
 
 @Composable
@@ -177,6 +182,32 @@ fun SettingsScreen(
                 Icon(imageVector = Icons.Default.DeleteForever, contentDescription = null)
                 Text(text = stringResource(id = AppText.delete_all_data))
             }
+        }
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceAround
+        ) {
+            ColorScheme(
+                color = BlueColorScheme,
+                isSelected = uiState.value.colorSchemeModel == BlueColorScheme,
+                onClick = viewModel::onColorSchemeChange
+            )
+            ColorScheme(
+                color = GreenColorScheme,
+                isSelected = uiState.value.colorSchemeModel == GreenColorScheme,
+                onClick = viewModel::onColorSchemeChange
+            )
+            ColorScheme(
+                color = RedColorScheme,
+                isSelected = uiState.value.colorSchemeModel == RedColorScheme,
+                onClick = viewModel::onColorSchemeChange
+            )
+            ColorScheme(
+                color = YellowColorScheme,
+                isSelected = uiState.value.colorSchemeModel == YellowColorScheme,
+                onClick = viewModel::onColorSchemeChange
+            )
         }
     }
 }

@@ -1,5 +1,6 @@
 package com.aayar94.settings_presentation
 
+import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.aayar94.core.domain.preferences.Preferences
@@ -32,6 +33,17 @@ class SettingsViewModel @Inject constructor(
         val state = preferences.readNotificationPermissionStates()
         _uiState.update {
             it.copy(isNotificationEnabled = state)
+        }
+    }
+
+
+    fun onColorSchemeChange(color: Color) {
+        viewModelScope.launch {
+            _uiState.update {
+                it.copy(
+                    colorSchemeModel = color
+                )
+            }
         }
     }
 
