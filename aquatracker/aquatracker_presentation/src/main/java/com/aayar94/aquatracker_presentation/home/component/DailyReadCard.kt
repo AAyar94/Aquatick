@@ -96,7 +96,7 @@ fun DailyReadCard(
                 color = MaterialTheme.colorScheme.onPrimaryContainer,
                 style = MaterialTheme.typography.bodyMedium,
                 overflow = TextOverflow.Ellipsis,
-                maxLines = 5
+                maxLines = 9
             )
         }
     }
