@@ -6,7 +6,7 @@ import android.content.Context
 import androidx.core.app.NotificationCompat
 
 class RunnerNotifier(
-    private val notificationManager: NotificationManager,
+    notificationManager: NotificationManager,
     private val context: Context
 ) : Notifier(notificationManager) {
 
@@ -18,7 +18,7 @@ class RunnerNotifier(
         return NotificationCompat.Builder(context, notificationChannelId)
             .setContentTitle(getNotificationTitle())
             .setContentText(getNotificationMessage())
-            .setSmallIcon(android.R.drawable.btn_star)
+            .setSmallIcon(com.aayar94.core.R.drawable.water_intake_card_image)
             .build()
     }
 
