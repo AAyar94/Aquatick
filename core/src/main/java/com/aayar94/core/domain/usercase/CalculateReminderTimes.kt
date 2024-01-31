@@ -7,12 +7,12 @@ class CalculateReminderTimes {
     operator fun invoke(
         getUpHour: Int,
         getUpMin: Int,
-        BedTimeHour: Int,
+        bedTimeHour: Int,
         bedTimeMin: Int,
         separatorMinute: Long
     ): MutableList<LocalTime> {
         val getUpTime = LocalTime.of(getUpHour, getUpMin)
-        val goingBedTime = LocalTime.of(BedTimeHour, bedTimeMin)
+        val goingBedTime = LocalTime.of(bedTimeHour, bedTimeMin)
         val notificationTime = mutableListOf<LocalTime>()
 
         var currentTime = getUpTime
