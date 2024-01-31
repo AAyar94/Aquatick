@@ -29,6 +29,10 @@ interface Preferences {
 
     fun deleteSharesPreferences()
 
+    fun isNotificationSetBefore(boolean: Boolean)
+
+    fun readIsNotificationsSetBefore():Boolean
+
     companion object {
         const val KEY_NAME = "key_name"
         const val KEY_GENDER = "key_gender"
@@ -42,5 +46,6 @@ interface Preferences {
         const val KEY_GOING_BED_TIME_HOUR = "key_going_bed_time_hour"
         const val KEY_GOING_BED_MIN = "key_going_bed_time_minute"
         const val KEY_NOTIFICATION_PERMISSION = "key_notification_permission"
+        const val KEY_IS_NOTIFICATIONS_SET="key_is_notifications_set"
     }
 }

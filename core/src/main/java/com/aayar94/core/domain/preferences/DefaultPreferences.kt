@@ -121,4 +121,14 @@ class DefaultPreferences(
             .clear()
             .apply()
     }
+
+    override fun isNotificationSetBefore(boolean: Boolean) {
+        sharedPreferences.edit()
+            .putBoolean(Preferences.KEY_IS_NOTIFICATIONS_SET, boolean)
+            .apply()
+    }
+
+    override fun readIsNotificationsSetBefore(): Boolean {
+        return sharedPreferences.getBoolean(Preferences.KEY_IS_NOTIFICATIONS_SET, false)
+    }
 }

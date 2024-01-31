@@ -37,49 +37,47 @@ class MainActivity : ComponentActivity() {
         val shouldShowOnboarding = preferences.loadOnboardingState()
         setContent {
             AquatickTheme {
-                AppNavigation(
-                    startDestinationRoute = if (shouldShowOnboarding) Route.WELCOME else Route.HOME,
+                AppNavigation(startDestinationRoute = if (shouldShowOnboarding) Route.WELCOME else Route.HOME,
                     onDeleteApp = { finishActivity(500) })
             }
         }
 
-        val preferences: SharedPreferences = getSharedPreferences("shared_pref", MODE_PRIVATE)
+        val localPreferences: SharedPreferences = getSharedPreferences("shared_pref", MODE_PRIVATE)
 
-        val morningHour = preferences.getInt(Preferences.KEY_GET_UP_TIME_HOUR, 0)
-        val morningMinute = preferences.getInt(Preferences.KEY_GET_UP_TIME_MIN, 0)
-        val bedTimeHour = preferences.getInt(Preferences.KEY_GOING_BED_TIME_HOUR, 0)
-        val bedTimeMinute = preferences.getInt(Preferences.KEY_GOING_BED_MIN, 0)
+        val morningHour = localPreferences.getInt(Preferences.KEY_GET_UP_TIME_HOUR, 0)
+        val morningMinute = localPreferences.getInt(Preferences.KEY_GET_UP_TIME_MIN, 0)
+        val bedTimeHour = localPreferences.getInt(Preferences.KEY_GOING_BED_TIME_HOUR, 0)
+        val bedTimeMinute = localPreferences.getInt(Preferences.KEY_GOING_BED_MIN, 0)
 
-        Firebase.messaging.subscribeToTopic("aquatick")
-            .addOnCompleteListener { task ->
-                var msg = "Subscribed"
-                if (!task.isSuccessful) {
-                    msg = "Subscribe Failed"
-                }
-
-                Log.d("NotificationSub", msg)
+        Firebase.messaging.subscribeToTopic("aquatick").addOnCompleteListener { task ->
+            var msg = "Subscribed"
+            if (!task.isSuccessful) {
+                msg = "Subscribe Failed"
             }
+            Log.d("NotificationSub", msg)
+        }
 
-        val notificationTimeList =
-            CalculateReminderTimes().invoke(
-                morningHour,
-                morningMinute,
-                bedTimeHour,
-                bedTimeMinute,
-                120
-            )
-
-        var notificationId = 1
-        notificationTimeList.forEach { localTime ->
-            val reminderItem = IntakeReminderModel(
-                time = Calendar.getInstance().apply {
-                    set(Calendar.HOUR_OF_DAY, localTime.hour)
-                    set(Calendar.MINUTE, localTime.minute)
-                }.timeInMillis,
-                id = notificationId,
-            )
-            notificationId += 1
-            notificationAlarmScheduler.schedule(reminderItem)
+        val notificationTimeList = CalculateReminderTimes().invoke(
+            getUpHour = morningHour - 2,
+            getUpMin = morningMinute,
+            bedTimeHour = bedTimeHour + 2,
+            bedTimeMin = bedTimeMinute,
+            120
+        )
+        if (preferences.readIsNotificationsSetBefore()) {
+            var notificationId = 1
+            notificationTimeList.forEach { localTime ->
+                val reminderItem = IntakeReminderModel(
+                    time = Calendar.getInstance().apply {
+                        set(Calendar.HOUR_OF_DAY, localTime.hour)
+                        set(Calendar.MINUTE, localTime.minute)
+                    }.timeInMillis,
+                    id = notificationId,
+                )
+                notificationId += 1
+                notificationAlarmScheduler.schedule(reminderItem)
+                preferences.isNotificationSetBefore(true)
+            }
         }
     }
 }
