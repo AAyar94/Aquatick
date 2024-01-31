@@ -10,9 +10,9 @@ import androidx.annotation.RequiresApi
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.aayar94.aquatick.navigation.AppNavigation
 import com.aayar94.aquatick.navigation.Route
-import com.aayar94.core_ui.theme.AquatickTheme
 import com.aayar94.core.domain.preferences.Preferences
 import com.aayar94.core.domain.usercase.CalculateReminderTimes
+import com.aayar94.core_ui.theme.AquatickTheme
 import com.aayar94.workmanager.IntakeReminderModel
 import com.aayar94.workmanager.NotificationAlarmScheduler
 import com.google.firebase.Firebase
@@ -69,18 +69,17 @@ class MainActivity : ComponentActivity() {
                 120
             )
 
-
+        var notificationId = 1
         notificationTimeList.forEach { localTime ->
             val reminderItem = IntakeReminderModel(
                 time = Calendar.getInstance().apply {
                     set(Calendar.HOUR_OF_DAY, localTime.hour)
                     set(Calendar.MINUTE, localTime.minute)
                 }.timeInMillis,
-                id = 1,
+                id = notificationId,
             )
+            notificationId += 1
             notificationAlarmScheduler.schedule(reminderItem)
-            notificationAlarmScheduler.onCreatePendingIntent(reminderItem)
         }
-
     }
 }
