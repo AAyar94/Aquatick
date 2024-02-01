@@ -28,9 +28,9 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.decode.SvgDecoder
 import coil.request.ImageRequest
+import com.aayar94.core_ui.theme.AquatickTheme
 import com.aayar94.core_ui.theme.LocalSpacing
 import com.aayar94.core_ui.util.DevicesPreview
-import com.aayar94.core_ui.theme.AquatickTheme
 
 @Composable
 fun DailyReadCard(
@@ -96,7 +96,7 @@ fun DailyReadCard(
                 color = MaterialTheme.colorScheme.onPrimaryContainer,
                 style = MaterialTheme.typography.bodyMedium,
                 overflow = TextOverflow.Ellipsis,
-                maxLines = 9
+                maxLines = 6
             )
         }
     }

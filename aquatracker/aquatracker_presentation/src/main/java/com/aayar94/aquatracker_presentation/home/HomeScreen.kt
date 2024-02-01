@@ -100,7 +100,7 @@ fun HomeScreen(
             DailyReadCard(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .defaultMinSize(200.dp, 300.dp),
+                    .defaultMinSize(200.dp, 240.dp),
                 imageUrl = articleState.value.articlesItem?.image,
                 title = articleState.value.articlesItem?.Title ?: "",
                 text = articleState.value.articlesItem?.Conclusion ?: "",
