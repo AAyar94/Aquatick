@@ -58,9 +58,9 @@ class MainActivity : ComponentActivity() {
         }
 
         val notificationTimeList = CalculateReminderTimes().invoke(
-            getUpHour = morningHour - 2,
+            getUpHour = morningHour,
             getUpMin = morningMinute,
-            bedTimeHour = bedTimeHour + 2,
+            bedTimeHour = bedTimeHour,
             bedTimeMin = bedTimeMinute,
             120
         )
