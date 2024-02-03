@@ -4,10 +4,14 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CardDefaults
@@ -22,6 +26,7 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
 import com.aayar94.core.domain.model.Gender
@@ -43,9 +48,12 @@ fun DailyGoalCard(
     val spacing = LocalSpacing.current
     val shapes = LocalShape.current
     OutlinedCard(
-        modifier = modifier, shape = shape, colors = CardDefaults.cardColors(
+        modifier = modifier,
+        shape = shape,
+        colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.background
-        ), elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+        ),
+        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
     ) {
         Box(
             modifier = Modifier
@@ -54,15 +62,18 @@ fun DailyGoalCard(
         ) {
             Column(
                 modifier = Modifier
+                    .fillMaxWidth(0.65f)
                     .wrapContentHeight()
                     .align(Alignment.TopStart)
                     .padding(spacing.spaceMedium),
                 verticalArrangement = Arrangement.Top,
-                horizontalAlignment = Alignment.CenterHorizontally
+                horizontalAlignment = Alignment.Start
             ) {
                 if (currentIntake.isNotBlank()) {
                     Text(
-                        modifier = Modifier.zIndex(3f),
+                        textAlign = TextAlign.Start,
+                        modifier = Modifier
+                            .zIndex(3f),
                         text = stringResource(
                             id = com.aayar94.core.R.string.your_current_intake_is,
                             currentIntake
@@ -72,7 +83,9 @@ fun DailyGoalCard(
                     )
                 }
                 Text(
-                    modifier = Modifier.zIndex(3f),
+                    modifier = Modifier
+                        .zIndex(3f),
+                    textAlign = TextAlign.Start,
                     text = if (lastIntakeTime == null || lastIntakeType == null) {
                         stringResource(id = AppText.you_didnt_drink_yet)
                     } else {
@@ -86,6 +99,21 @@ fun DailyGoalCard(
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onBackground
                 )
+                Spacer(modifier = Modifier.height(spacing.spaceMedium))
+                FilledTonalButton(
+                    onClick = { onDrinkClick() },
+                    shape = shapes.largeCornerRadius,
+                    modifier = Modifier
+                        .padding(spacing.spaceMedium)
+                        .zIndex(3f)
+                        .align(Alignment.Start),
+                    colors = ButtonDefaults.filledTonalButtonColors(containerColor = MaterialTheme.colorScheme.primaryContainer)
+                ) {
+                    Text(
+                        text = stringResource(id = com.aayar94.core.R.string.add_a_goal),
+                        color = MaterialTheme.colorScheme.onPrimaryContainer
+                    )
+                }
             }
             Image(
                 painter = painterResource(id = AppDrawable.onboaring_shape1),
@@ -93,7 +121,7 @@ fun DailyGoalCard(
                 modifier = Modifier
                     .fillMaxWidth()
                     .wrapContentHeight()
-                    .padding(top = spacing.spaceMedium)
+                    .offset(y = 48.dp)
                     .align(
                         Alignment.BottomCenter
                     )
@@ -107,7 +135,7 @@ fun DailyGoalCard(
                 modifier = Modifier
                     .wrapContentHeight()
                     .fillMaxWidth()
-                    .padding(top = spacing.spaceMedium)
+                    .offset(y = 48.dp)
                     .align(
                         Alignment.BottomCenter
                     )
@@ -134,22 +162,6 @@ fun DailyGoalCard(
                     .zIndex(2f),
                 contentScale = ContentScale.Fit
             )
-            FilledTonalButton(
-                onClick = { onDrinkClick() },
-                shape = shapes.largeCornerRadius,
-                modifier = Modifier
-                    .padding(spacing.spaceMedium)
-                    .align(
-                        Alignment.BottomStart
-                    )
-                    .zIndex(3f),
-                colors = ButtonDefaults.filledTonalButtonColors(containerColor = MaterialTheme.colorScheme.primaryContainer)
-            ) {
-                Text(
-                    text = stringResource(id = com.aayar94.core.R.string.add_a_goal),
-                    color = MaterialTheme.colorScheme.onPrimaryContainer
-                )
-            }
         }
     }
 }

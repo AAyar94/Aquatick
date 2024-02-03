@@ -41,7 +41,7 @@ class HomeViewModel @Inject constructor(
                 it.copy(
                     greetings = getGreeting(),
                     name = userInfo.name,
-                    gender=userInfo.gender,
+                    gender = userInfo.gender,
                     currentIntake = null,
                     lastIntakeTime = null,
                     lastIntakeType = null
@@ -57,9 +57,20 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch {
             val response = getLastIntakeUseCase.invoke()
             if (response != null) {
+                val hour = if (response.localDate.hour < 10) {
+                    "0${response.localDate.hour}"
+                } else {
+                    response.localDate.hour.toString()
+                }
+
+                val minute = if (response.localDate.minute < 10) {
+                    "0${response.localDate.minute}"
+                } else {
+                    response.localDate.minute.toString()
+                }
                 _homeState.update {
                     it.copy(
-                        lastIntakeTime = "${response.localDate.hour} : ${response.localDate.minute}",
+                        lastIntakeTime = "$hour : $minute",
                         lastIntakeType = response.drinkType.name + " (${response.defaultAmount} ml)"
                     )
                 }

@@ -91,6 +91,6 @@
     <string name="cancel">Cancel</string>
     <string name="your_current_intake_is">Your current intake is: %1$s</string>
     <string name="you_didnt_drink_yet">You didn\'t drink yet!</string>
-    <string name="your_last_intake_is">Your Last intake is: \n %1$s \n at %2$s</string>
+    <string name="your_last_intake_is">Your Last intake is: %1$s at %2$s</string>
     <string name="delete_all_data">Delete my all personal data and reset application</string>
 </resources>
