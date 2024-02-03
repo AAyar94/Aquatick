@@ -10,6 +10,7 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.LastBaseline
 import androidx.compose.ui.text.TextStyle
@@ -30,7 +31,9 @@ fun BasicAppTextField(
 ) {
     val spacing = LocalSpacing.current
     Row(
-        modifier = modifier, horizontalArrangement = Arrangement.Center
+        modifier = modifier,
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.Center
     ) {
         BasicTextField(
             value = value,

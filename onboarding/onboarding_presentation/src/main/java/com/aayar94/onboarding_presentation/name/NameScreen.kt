@@ -24,6 +24,8 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.text.style.TextGeometricTransform
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.aayar94.core.util.UiEvent
@@ -80,9 +82,10 @@ fun NameScreen(
                 unit = null,
                 textStyle = TextStyle(
                     color = MaterialTheme.colorScheme.onBackground,
-                    fontSize = 48.sp,
-                    fontWeight = FontWeight.SemiBold,
-                    fontStyle = FontStyle.Italic
+                    fontSize = 40.sp,
+                    textDecoration = TextDecoration.None,
+                    fontWeight = FontWeight.Bold,
+                    fontStyle = FontStyle.Italic,
                 ),
                 keyboardType = KeyboardType.Text
             )
