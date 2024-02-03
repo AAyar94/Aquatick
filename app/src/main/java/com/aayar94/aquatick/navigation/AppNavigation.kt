@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.aayar94.aquatracker_presentation.analysis.AnalysisScreen
@@ -43,10 +44,21 @@ fun AppNavigation(
     Scaffold(modifier = Modifier.fillMaxSize(),
         snackbarHost = { SnackbarHost(hostState = snackBarHostState) },
         bottomBar = {
-            BottomNavigationBar(navController = navController, onItemClick = { route ->
-                navController.navigate(route)
-            })
-        }) { paddingValues ->
+            val currentRoute = navController.currentBackStackEntryAsState().value
+            bottomBarItems.forEach { bottomBarItem ->
+                if (currentRoute != null) {
+                    if (currentRoute.destination.route == bottomBarItem.route) {
+                        BottomNavigationBar(
+                            navController = navController,
+                            onItemClick = { route ->
+                                navController.navigate(route)
+                            }
+                        )
+                    }
+                }
+            }
+        }
+    ) { paddingValues ->
         NavHost(
             navController = navController,
             startDestination = startDestinationRoute,
