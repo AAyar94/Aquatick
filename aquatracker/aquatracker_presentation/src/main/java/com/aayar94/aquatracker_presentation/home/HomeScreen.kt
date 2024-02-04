@@ -82,7 +82,9 @@ fun HomeScreen(
             }
             Spacer(modifier = Modifier.height(spacing.spaceMedium))
             if (uiState.value.currentIntake.isNullOrBlank()) {
-                CircularProgressIndicator()
+                CircularProgressIndicator(
+                    progress = 0.89f,
+                )
             } else {
                 DailyGoalCard(
                     currentIntake = uiState.value.currentIntake!!,

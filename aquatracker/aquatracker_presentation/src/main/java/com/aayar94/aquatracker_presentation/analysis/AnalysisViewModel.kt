@@ -6,12 +6,13 @@ import com.aayar94.aquatracker_domain.usecase.AnalysisScreenChartCalculate
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class AnalysisViewModel @Inject constructor(
-    val analysisScreenChartCalculate: AnalysisScreenChartCalculate
+    private val analysisScreenChartCalculate: AnalysisScreenChartCalculate
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(AnalysisUIState())
@@ -28,4 +29,13 @@ class AnalysisViewModel @Inject constructor(
         }
     }
 
+    fun updateTabState(value: Int) {
+        viewModelScope.launch {
+            _uiState.update {
+                it.copy(
+                    selectedTabState = value
+                )
+            }
+        }
+    }
 }
