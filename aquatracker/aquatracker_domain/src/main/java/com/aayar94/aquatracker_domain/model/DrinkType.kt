@@ -10,7 +10,7 @@ sealed class DrinkType(val name: String) {
     object Herbal_Tea : DrinkType("Herbal_tea")
     object Carbonated_Drinks : DrinkType("Carbonated_drink")
     object Milk : DrinkType("Milk")
-    object Smoothie : DrinkType("smoothie")
+    object Smoothie : DrinkType("Smoothie")
     object Fruit_Juice : DrinkType("Fruit_juice")
 
 
