@@ -1,12 +1,10 @@
 package com.aayar94.aquatick
 
 import android.content.SharedPreferences
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.annotation.RequiresApi
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.aayar94.aquatick.navigation.AppNavigation
 import com.aayar94.aquatick.navigation.Route
@@ -29,7 +27,6 @@ class MainActivity : ComponentActivity() {
         NotificationAlarmScheduler(context = applicationContext)
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         installSplashScreen()

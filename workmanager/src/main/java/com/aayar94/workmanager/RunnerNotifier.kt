@@ -4,6 +4,7 @@ import android.app.Notification
 import android.app.NotificationManager
 import android.content.Context
 import androidx.core.app.NotificationCompat
+import com.aayar94.core.util.UiText
 
 class RunnerNotifier(
     notificationManager: NotificationManager,
@@ -11,7 +12,7 @@ class RunnerNotifier(
 ) : Notifier(notificationManager) {
 
     override val notificationChannelId: String = "runner_channel_id"
-    override val notificationChannelName: String = "Running Notification"
+    override val notificationChannelName: String = "Daily Reminder Notification"
     override val notificationId: Int = 200
 
     override fun buildNotification(): Notification {
@@ -23,10 +24,10 @@ class RunnerNotifier(
     }
 
     override fun getNotificationTitle(): String {
-        return "‍️Aquatick"
+        return UiText.StringResource(com.aayar94.core.R.string.app_name).asString(context)
     }
 
     override fun getNotificationMessage(): String {
-        return "Time for hydrate yourself 💧"
+        return UiText.StringResource(com.aayar94.core.R.string.time_to_hydrate_yourself).asString(context)
     }
 }
