@@ -114,7 +114,8 @@ fun HomeScreen(
             Spacer(modifier = Modifier.height(spacing.spaceMedium))
             AnalysisCard(
                 modifier = Modifier.fillMaxWidth(),
-                onClick = onAnalysisButtonClick
+                onClick = onAnalysisButtonClick,
+                contentColor = MaterialTheme.colorScheme.onPrimaryContainer
             )
         }
     }
