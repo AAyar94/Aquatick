@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -16,12 +15,9 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.patrykandpatrick.vico.compose.axis.horizontal.rememberBottomAxis
 import com.patrykandpatrick.vico.compose.axis.vertical.rememberStartAxis
 import com.patrykandpatrick.vico.compose.chart.Chart
-import com.patrykandpatrick.vico.compose.chart.column.columnChart
 import com.patrykandpatrick.vico.compose.chart.line.lineChart
 import com.patrykandpatrick.vico.compose.m3.style.m3ChartStyle
 import com.patrykandpatrick.vico.compose.style.ProvideChartStyle
-import com.patrykandpatrick.vico.core.axis.formatter.AxisValueFormatter
-import com.patrykandpatrick.vico.core.chart.decoration.ThresholdLine
 import com.patrykandpatrick.vico.core.chart.scale.AutoScaleUp
 
 @Composable
@@ -30,9 +26,9 @@ fun DailyScreen(
 ) {
     val uiState = viewModel.uiState.collectAsState()
     viewModel.getLastWeekDailyIntake()
-    val line = uiState.value.defaultDailyIntakeAmount?.let { ThresholdLine(it.toFloat()) }
     Box(
-        modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center
     ) {
         if (uiState.value.list != null) {
             ProvideChartStyle(m3ChartStyle()) {
@@ -42,7 +38,8 @@ fun DailyScreen(
                     modifier = Modifier
                         .fillMaxWidth()
                         .fillMaxHeight(0.5f)
-                        .padding(16.dp),
+                        .padding(16.dp)
+                        .align(Alignment.TopCenter),
                     startAxis = rememberStartAxis(),
                     bottomAxis = rememberBottomAxis(title = "Dates"),
                     isZoomEnabled = false,

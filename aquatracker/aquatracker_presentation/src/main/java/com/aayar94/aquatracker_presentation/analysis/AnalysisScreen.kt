@@ -74,7 +74,7 @@ fun AnalysisScreen(
                 )
             }
         }
-        Spacer(modifier = Modifier.height(spacing.spaceMedium))
+        Spacer(modifier = Modifier.height(spacing.spaceExtraSmall))
         HorizontalPager(
             state = pagerState,
             modifier = Modifier.weight(1f),
