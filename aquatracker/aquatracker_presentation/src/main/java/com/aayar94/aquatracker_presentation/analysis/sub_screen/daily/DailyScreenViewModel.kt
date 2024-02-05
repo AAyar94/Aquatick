@@ -9,6 +9,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import okhttp3.internal.notify
 import java.time.LocalDateTime
 import java.time.OffsetDateTime
 import javax.inject.Inject
@@ -23,21 +24,37 @@ class DailyScreenViewModel @Inject constructor(
 
 
     fun getLastWeekDailyIntake() {
-        val now = LocalDateTime.now()
         viewModelScope.launch {
-            val response = getLastWeekDailyIntake.invoke(
-                now.minusDays(7).toInstant(OffsetDateTime.now().offset).epochSecond.toInt(),
-                now.dayOfMonth,
-                now.monthValue,
-                now.year
-            )
-            val dataPairs = response.map {
-                Pair(it.date.dayOfMonth, it.amount)
-            }
-            _uiState.update {
-                it.copy(
-                    list = entryModelOf(*dataPairs.toTypedArray())
+            val now = LocalDateTime.now()
+            val startDate = if (now.dayOfMonth < 7) {
+                LocalDateTime.of(
+                    now.year,
+                    now.monthValue,
+                    1,
+                    now.hour,
+                    now.minute,
+                    now.second
                 )
+            } else {
+                now.minusDays(7)
+            }
+            viewModelScope.launch {
+                val result = getLastWeekDailyIntake.invoke(
+                    now.year,
+                    now.monthValue,
+                    now.dayOfMonth,
+                    startDate.year,
+                    startDate.monthValue,
+                    startDate.dayOfMonth
+                )
+                val entities = result.map {
+                    Pair(it.dayOfMonth, it.totalAmount)
+                }
+                _uiState.update {
+                    it.copy(
+                        list = entryModelOf(*entities.toTypedArray())
+                    )
+                }
             }
         }
     }

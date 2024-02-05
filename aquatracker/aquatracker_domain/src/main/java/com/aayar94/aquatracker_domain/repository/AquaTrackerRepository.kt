@@ -1,6 +1,7 @@
 package com.aayar94.aquatracker_domain.repository
 
 import com.aayar94.aquatracker_domain.model.ChartModel
+import com.aayar94.aquatracker_domain.model.DayTotalAmount
 import com.aayar94.aquatracker_domain.usecase.ScreenDrinkItem
 import kotlinx.coroutines.flow.Flow
 import java.time.LocalDate
@@ -25,4 +26,6 @@ interface AquaTrackerRepository {
     suspend fun getDrinksForLastFourWeek()
 
     suspend fun getDrinksForLastSixMonths()
+
+    suspend fun getLast7DaysTotalAmount(year: Int, month: Int, startDay: Int, prevYear: Int, prevMonth: Int, prevStartDay: Int): List<DayTotalAmount>
 }

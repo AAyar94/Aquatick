@@ -7,6 +7,7 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.aayar94.aquatracker_data.local.entity.DrinkEntity
 import com.aayar94.aquatracker_domain.model.ChartModel
+import com.aayar94.aquatracker_domain.model.DayTotalAmount
 import kotlinx.coroutines.flow.Flow
 
 
@@ -44,4 +45,6 @@ interface DrinkDao {
         year:Int
     ):List<DrinkEntity>
 
+    @Query("SELECT dayOfMonth, SUM(drinkAmount) as totalAmount FROM drinks_table WHERE (year = :year AND month = :month AND dayOfMonth >= :startDay) OR (year = :prevYear AND month = :prevMonth AND dayOfMonth >= :prevStartDay) GROUP BY dayOfMonth ORDER BY dayOfMonth DESC LIMIT 7")
+    suspend fun getLast7DaysTotalAmount(year: Int, month: Int, startDay: Int, prevYear: Int, prevMonth: Int, prevStartDay: Int): List<DayTotalAmount>
 }

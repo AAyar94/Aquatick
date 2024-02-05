@@ -4,6 +4,7 @@ import com.aayar94.aquatracker_data.local.DrinkDao
 import com.aayar94.aquatracker_data.mapper.toDrinkEntity
 import com.aayar94.aquatracker_data.mapper.toScreenDrinkItem
 import com.aayar94.aquatracker_domain.model.ChartModel
+import com.aayar94.aquatracker_domain.model.DayTotalAmount
 import com.aayar94.aquatracker_domain.repository.AquaTrackerRepository
 import com.aayar94.aquatracker_domain.usecase.ScreenDrinkItem
 import kotlinx.coroutines.flow.Flow
@@ -66,5 +67,23 @@ class AquaTrackerRepositoryImpl(
 
     override suspend fun getDrinksForLastSixMonths() {
         TODO("Not yet implemented")
+    }
+
+    override suspend fun getLast7DaysTotalAmount(
+        year: Int,
+        month: Int,
+        startDay: Int,
+        prevYear: Int,
+        prevMonth: Int,
+        prevStartDay: Int
+    ): List<DayTotalAmount> {
+        return dao.getLast7DaysTotalAmount(
+            year,
+            month,
+            startDay,
+            prevYear,
+            prevMonth,
+            prevStartDay
+        )
     }
 }

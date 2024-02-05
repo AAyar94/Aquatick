@@ -4,5 +4,6 @@ import com.patrykandpatrick.vico.core.entry.ChartEntryModel
 
 data class DailyUIState(
     val isLoading: Boolean = true,
-    val list: ChartEntryModel? = null
+    val list: ChartEntryModel? = null,
+    val defaultDailyIntakeAmount: Int? = null
 )
