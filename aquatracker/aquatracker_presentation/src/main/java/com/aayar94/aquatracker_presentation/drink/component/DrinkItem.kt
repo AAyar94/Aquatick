@@ -43,7 +43,7 @@ fun DrinkItem(
             .clickable { onClick() },
         shape = shape,
         colors = CardDefaults
-            .cardColors(if (isSystemInDarkTheme()) Color.Black else Color.White),
+            .cardColors(MaterialTheme.colorScheme.primaryContainer),
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
         border = BorderStroke(width = 1.dp, MaterialTheme.colorScheme.primary)
     ) {
@@ -66,7 +66,7 @@ fun DrinkItem(
                 text = item.defaultAmount.toString() + " ml",
                 maxLines = 2,
                 overflow = TextOverflow.Ellipsis,
-                color = MaterialTheme.colorScheme.onBackground
+                color = MaterialTheme.colorScheme.onPrimaryContainer
             )
             Spacer(modifier = Modifier.height(spacing.spaceSmall))
             Text(
@@ -75,7 +75,7 @@ fun DrinkItem(
                 text = item.drinkType.name.replace("_", " "),
                 maxLines = 2,
                 overflow = TextOverflow.Ellipsis,
-                color = MaterialTheme.colorScheme.onBackground
+                color = MaterialTheme.colorScheme.onPrimaryContainer
             )
         }
     }
