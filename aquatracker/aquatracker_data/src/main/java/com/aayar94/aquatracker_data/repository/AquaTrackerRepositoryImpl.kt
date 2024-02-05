@@ -3,11 +3,13 @@ package com.aayar94.aquatracker_data.repository
 import com.aayar94.aquatracker_data.local.DrinkDao
 import com.aayar94.aquatracker_data.mapper.toDrinkEntity
 import com.aayar94.aquatracker_data.mapper.toScreenDrinkItem
+import com.aayar94.aquatracker_domain.model.ChartModel
 import com.aayar94.aquatracker_domain.repository.AquaTrackerRepository
 import com.aayar94.aquatracker_domain.usecase.ScreenDrinkItem
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import java.time.LocalDate
+import java.time.LocalDateTime
 
 class AquaTrackerRepositoryImpl(
     private val dao: DrinkDao
@@ -28,12 +30,41 @@ class AquaTrackerRepositoryImpl(
     }
 
     override suspend fun getLast3Object(): Flow<List<ScreenDrinkItem>> {
-        return dao.getLast3Object().map {
-            it.map { it.toScreenDrinkItem() }
+        return dao.getLast3Object().map { drinkEntities ->
+            drinkEntities.map { it.toScreenDrinkItem() }
         }
     }
 
+
     override suspend fun deleteDatabase() {
         return dao.deleteDatabase()
+    }
+
+    override suspend fun getDrinksForLastWeek(
+        startDay: Int, endDay: Int, month: Int, year: Int
+    ): List<ChartModel> {
+        return dao.getDrinksForSevenDays(
+            startDay = startDay, endDay = endDay, month = month, year = year
+        ).map {
+            ChartModel(
+                LocalDateTime.of(
+                    it.year,
+                    it.month,
+                    it.dayOfMonth,
+                    it.hour,
+                    it.minute,
+                    it.second
+                ),
+                it.drinkAmount
+            )
+        }
+    }
+
+    override suspend fun getDrinksForLastFourWeek() {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun getDrinksForLastSixMonths() {
+        TODO("Not yet implemented")
     }
 }

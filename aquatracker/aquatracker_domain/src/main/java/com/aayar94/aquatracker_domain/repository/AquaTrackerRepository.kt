@@ -1,5 +1,6 @@
 package com.aayar94.aquatracker_domain.repository
 
+import com.aayar94.aquatracker_domain.model.ChartModel
 import com.aayar94.aquatracker_domain.usecase.ScreenDrinkItem
 import kotlinx.coroutines.flow.Flow
 import java.time.LocalDate
@@ -13,4 +14,15 @@ interface AquaTrackerRepository {
     suspend fun getLast3Object(): Flow<List<ScreenDrinkItem>>
 
     suspend fun deleteDatabase()
+
+    suspend fun getDrinksForLastWeek(
+        startDay: Int,
+        endDay: Int,
+        month: Int,
+        year: Int
+    ): List<ChartModel>
+
+    suspend fun getDrinksForLastFourWeek()
+
+    suspend fun getDrinksForLastSixMonths()
 }

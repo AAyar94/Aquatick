@@ -6,6 +6,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.aayar94.aquatracker_data.local.entity.DrinkEntity
+import com.aayar94.aquatracker_domain.model.ChartModel
 import kotlinx.coroutines.flow.Flow
 
 
@@ -30,5 +31,17 @@ interface DrinkDao {
     fun getLast3Object() : Flow<List<DrinkEntity>>
 
     @Query("DELETE FROM drinks_table")
-    fun deleteDatabase()
+    suspend fun deleteDatabase()
+
+    @Query("SELECT * FROM drinks_table WHERE year = :year" +
+            " AND month = :month " +
+            "AND dayOfMonth BETWEEN :startDay AND :endDay " +
+            "ORDER BY year DESC, month DESC, dayOfMonth DESC, hour DESC, minute DESC, second DESC")
+    suspend fun getDrinksForSevenDays(
+        startDay:Int,
+        endDay:Int,
+        month:Int,
+        year:Int
+    ):List<DrinkEntity>
+
 }
