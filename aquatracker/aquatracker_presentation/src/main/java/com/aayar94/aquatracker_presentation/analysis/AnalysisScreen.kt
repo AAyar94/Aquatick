@@ -1,6 +1,5 @@
 package com.aayar94.aquatracker_presentation.analysis
 
-import android.annotation.SuppressLint
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -27,7 +26,6 @@ import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.aayar94.core_ui.theme.LocalSpacing
 import kotlinx.coroutines.launch
-import okhttp3.internal.wait
 
 
 @OptIn(ExperimentalFoundationApi::class)

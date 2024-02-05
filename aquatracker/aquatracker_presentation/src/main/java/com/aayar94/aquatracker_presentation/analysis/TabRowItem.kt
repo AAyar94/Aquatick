@@ -6,6 +6,9 @@ import androidx.compose.material.icons.filled.Today
 import androidx.compose.material.icons.filled.ViewWeek
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.vector.ImageVector
+import com.aayar94.aquatracker_presentation.analysis.sub_screen.daily.DailyScreen
+import com.aayar94.aquatracker_presentation.analysis.sub_screen.monthly.MonthlyScreen
+import com.aayar94.aquatracker_presentation.analysis.sub_screen.weekly.WeeklyScreen
 
 enum class TabRowItem(
     val text: String,
