@@ -64,7 +64,7 @@ class MainActivity : ComponentActivity() {
             bedTimeMin = bedTimeMinute,
             120
         )
-        if (preferences.readIsNotificationsSetBefore()) {
+        if (!preferences.readIsNotificationsSetBefore()) {
             var notificationId = 1
             notificationTimeList.forEach { localTime ->
                 val reminderItem = IntakeReminderModel(
