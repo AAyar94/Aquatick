@@ -48,7 +48,7 @@ fun DailyIntakeCalculation(
                 .fillMaxWidth()
                 .padding(spacing.spaceMedium),
             verticalArrangement = Arrangement.spacedBy(spacing.spaceMedium),
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.Start
         ) {
             AnimatedVisibility(visible = viewModel.itemVisibilityState.firstItemVisibility == true) {
                 CalculationAnimationItem(string = stringResource(id = AppText.name))
