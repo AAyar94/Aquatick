@@ -34,8 +34,7 @@ import com.aayar94.settings_presentation.SettingsScreen
 
 @Composable
 fun AppNavigation(
-    startDestinationRoute: String,
-    onDeleteApp: () -> Unit
+    startDestinationRoute: String, onDeleteApp: () -> Unit
 ) {
     val navController = rememberNavController()
     val snackBarHostState = remember {
@@ -48,17 +47,13 @@ fun AppNavigation(
             bottomBarItems.forEach { bottomBarItem ->
                 if (currentRoute != null) {
                     if (currentRoute.destination.route == bottomBarItem.route) {
-                        BottomNavigationBar(
-                            navController = navController,
-                            onItemClick = { route ->
-                                navController.navigate(route)
-                            }
-                        )
+                        BottomNavigationBar(navController = navController, onItemClick = { route ->
+                            navController.navigate(route)
+                        })
                     }
                 }
             }
-        }
-    ) { paddingValues ->
+        }) { paddingValues ->
         NavHost(
             navController = navController,
             startDestination = startDestinationRoute,

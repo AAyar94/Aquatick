@@ -53,7 +53,7 @@ class MainActivity : ComponentActivity() {
             }
             Log.d("NotificationSub", msg)
         }
-
+        val isNotificationsSet: Boolean = preferences.readIsNotificationsSetBefore()
         val notificationTimeList = CalculateReminderTimes().invoke(
             getUpHour = morningHour,
             getUpMin = morningMinute,
@@ -61,18 +61,20 @@ class MainActivity : ComponentActivity() {
             bedTimeMin = bedTimeMinute,
             120
         )
-        if (!preferences.readIsNotificationsSetBefore()) {
-            var notificationId = 1
-            notificationTimeList.forEach { localTime ->
-                val reminderItem = IntakeReminderModel(
-                    time = Calendar.getInstance().apply {
-                        set(Calendar.HOUR_OF_DAY, localTime.hour)
-                        set(Calendar.MINUTE, localTime.minute)
-                    }.timeInMillis,
-                    id = notificationId,
-                )
-                notificationId += 1
-                notificationAlarmScheduler.schedule(reminderItem)
+        if (shouldShowOnboarding == false) {
+            if (isNotificationsSet == false) {
+                var notificationId = 1
+                notificationTimeList.forEach { localTime ->
+                    val reminderItem = IntakeReminderModel(
+                        time = Calendar.getInstance().apply {
+                            set(Calendar.HOUR_OF_DAY, localTime.hour)
+                            set(Calendar.MINUTE, localTime.minute)
+                        }.timeInMillis,
+                        id = notificationId,
+                    )
+                    notificationAlarmScheduler.schedule(reminderItem)
+                    notificationId += 1
+                }
                 preferences.isNotificationSetBefore(true)
             }
         }
