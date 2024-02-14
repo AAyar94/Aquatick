@@ -1,5 +1,3 @@
-import org.gradle.kotlin.dsl.`kotlin-dsl`
-
 plugins {
     `kotlin-dsl`
 }
@@ -8,11 +6,11 @@ repositories {
     google()
     mavenCentral()
     maven(url = "https://jitpack.io")
-    maven  (url = "https://oss.sonatype.org/content/repositories/snapshots/" )
+    maven(url = "https://oss.sonatype.org/content/repositories/snapshots/")
 }
 
 dependencies {
-    implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.20")
+    implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.20")
     implementation("com.android.tools.build:gradle:8.1.4")
 
     // Required to fix a missing dependency error

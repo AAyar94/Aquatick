@@ -68,7 +68,7 @@ dependencies {
     implementation(AndroidX.splashScreen)
     implementation(Compose.navigation)
 
-    implementation (platform("com.google.firebase:firebase-bom:27.1.0"))
+    implementation(platform("com.google.firebase:firebase-bom:32.7.2"))
 
     implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.firebase:firebase-messaging")
@@ -81,7 +81,7 @@ dependencies {
     implementation(JetpackGlance.jetpackGlanceM3)
 
     implementation(DaggerHilt.hiltAndroid)
-    implementation("androidx.compose.material3:material3:1.1.2")
+    implementation("androidx.compose.material3:material3:1.2.0")
     kapt(DaggerHilt.hiltCompiler)
 
     implementation("androidx.annotation:annotation:1.7.1")
