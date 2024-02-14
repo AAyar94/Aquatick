@@ -1,8 +1,5 @@
 package com.aayar94.onboarding_presentation.daily_intake_calculation
 
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.aayar94.core.domain.preferences.Preferences
@@ -11,7 +8,10 @@ import com.aayar94.onboarding_domain.usecase.CalculateDailyIntakeAmountUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -21,8 +21,8 @@ class DailyIntakeCalculationViewModel @Inject constructor(
     val preferences: Preferences
 ) : ViewModel() {
 
-    var itemVisibilityState by mutableStateOf(DailyIntakeCalculationUIState())
-        private set
+    private val _uiState = MutableStateFlow(DailyIntakeCalculationUIState())
+    val uiState = _uiState.asStateFlow()
 
     private val _uiEvent = Channel<UiEvent>()
     val uiEvent = _uiEvent.receiveAsFlow()
@@ -31,21 +31,25 @@ class DailyIntakeCalculationViewModel @Inject constructor(
 
     fun startAnim() {
         viewModelScope.launch {
-            itemVisibilityState = itemVisibilityState.copy(firstItemVisibility = true)
+            _uiState.update { it.copy(firstItemVisibility = true) }
             delay(1000)
-            itemVisibilityState = itemVisibilityState.copy(secondItemVisibility = true)
+            _uiState.update { it.copy(secondItemVisibility = true) }
             delay(1000)
-            itemVisibilityState = itemVisibilityState.copy(thirdItemVisibility = true)
+            _uiState.update { it.copy(thirdItemVisibility = true) }
             delay(1000)
-            itemVisibilityState = itemVisibilityState.copy(fourthItemVisibility = true)
+            _uiState.update { it.copy(fourthItemVisibility = true) }
             delay(1000)
-            itemVisibilityState = itemVisibilityState.copy(fifthItemVisibility = true)
+            _uiState.update { it.copy(firstItemVisibility = false, fifthItemVisibility = true) }
             delay(1000)
-            itemVisibilityState = itemVisibilityState.copy(sixthItemVisibility = true)
+            _uiState.update { it.copy(secondItemVisibility = false, sixthItemVisibility = true) }
             delay(1000)
-            itemVisibilityState = itemVisibilityState.copy(seventhItemVisibility = true)
-            delay(2000)
-            itemVisibilityState = itemVisibilityState.copy(dailyIntakeAmount = amount.toString())
+            _uiState.update {
+                it.copy(
+                    thirdItemVisibility = false,
+                    seventhItemVisibility = true,
+                    dailyIntakeAmount = amount.toString()
+                )
+            }
         }
     }
 

@@ -13,8 +13,12 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.NavigateNext
 import androidx.compose.material3.FilledTonalButton
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
@@ -42,8 +46,7 @@ import com.airbnb.lottie.compose.rememberLottieComposition
 @RequiresApi(Build.VERSION_CODES.TIRAMISU)
 @Composable
 fun NotificationPermission(
-    onNextClicked: () -> Unit,
-    viewModel: NotificationPermissionViewModel = hiltViewModel()
+    onNextClicked: () -> Unit, viewModel: NotificationPermissionViewModel = hiltViewModel()
 ) {
     LaunchedEffect(key1 = true) {
         viewModel.uiEvent.collect {
@@ -59,7 +62,8 @@ fun NotificationPermission(
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(MaterialTheme.colorScheme.background), contentAlignment = Alignment.Center
+            .background(MaterialTheme.colorScheme.background),
+        contentAlignment = Alignment.Center
     ) {
         Column(
             modifier = Modifier
@@ -68,10 +72,13 @@ fun NotificationPermission(
             verticalArrangement = Arrangement.spacedBy(spacing.spaceMedium),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.notification))
+            val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.notification_anim))
             LottieAnimation(
                 composition = composition,
-                modifier = Modifier.defaultMinSize(64.dp, 64.dp),
+                modifier = Modifier
+                    .defaultMinSize(64.dp, 64.dp)
+                    .fillMaxWidth()
+                    .height(200.dp),
                 iterations = 5
             )
             Text(
@@ -79,22 +86,22 @@ fun NotificationPermission(
                     com.aayar94.core.R.string.we_need_permission
                 ),
                 color = MaterialTheme.colorScheme.onBackground,
-                textAlign = TextAlign.Center, maxLines = 2
+                textAlign = TextAlign.Center,
+                maxLines = 2
             )
             OutlinedButton(
                 onClick = {
                     requestPermission(context).apply {
                         viewModel.saveNotificationStatus(this)
                     }
-                },
-                shape = shapes.mediumCornerRadius
+                }, shape = shapes.mediumCornerRadius
             ) {
                 Text(text = stringResource(id = com.aayar94.core.R.string.grand_permission))
             }
             FilledTonalButton(
-                onClick = viewModel::onNextClicked,
-                shape = shapes.mediumCornerRadius
+                onClick = viewModel::onNextClicked, shape = shapes.mediumCornerRadius
             ) {
+                Icon(imageVector = Icons.Filled.NavigateNext, contentDescription = null)
                 Text(text = stringResource(id = com.aayar94.core.R.string.next))
             }
 
@@ -108,9 +115,7 @@ fun requestPermission(context: Context): Boolean {
         ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS)
     if (permissionState == PackageManager.PERMISSION_DENIED) {
         ActivityCompat.requestPermissions(
-            context as Activity,
-            arrayOf(Manifest.permission.POST_NOTIFICATIONS),
-            1
+            context as Activity, arrayOf(Manifest.permission.POST_NOTIFICATIONS), 1
         )
         return true
     } else {

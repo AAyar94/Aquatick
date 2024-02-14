@@ -11,7 +11,10 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.NavigateNext
 import androidx.compose.material3.FilledTonalButton
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -51,7 +54,8 @@ fun ActivityLevelScreen(
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(spacing.spaceMedium).verticalScroll(scrollState),
+                .padding(spacing.spaceMedium)
+                .verticalScroll(scrollState),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
@@ -104,6 +108,7 @@ fun ActivityLevelScreen(
             }
             Spacer(modifier = Modifier.height(spacing.spaceMedium))
             FilledTonalButton(onClick = viewModel::onNextClick, shape = shapes.mediumCornerRadius) {
+                Icon(imageVector = Icons.Filled.NavigateNext, contentDescription = null)
                 Text(
                     text = stringResource(id = com.aayar94.core.R.string.next),
                     style = MaterialTheme.typography.bodyMedium

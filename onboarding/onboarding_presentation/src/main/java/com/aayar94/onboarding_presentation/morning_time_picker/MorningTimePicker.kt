@@ -10,8 +10,11 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.NavigateNext
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilledTonalButton
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TimePicker
@@ -20,13 +23,19 @@ import androidx.compose.material3.TimePickerState
 import androidx.compose.material3.rememberTimePickerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.aayar94.core.util.UiEvent
+import com.aayar94.core_ui.R
 import com.aayar94.core_ui.theme.LocalShape
 import com.aayar94.core_ui.theme.LocalSpacing
+import com.airbnb.lottie.compose.LottieAnimation
+import com.airbnb.lottie.compose.LottieCompositionSpec
+import com.airbnb.lottie.compose.rememberLottieComposition
 import java.text.SimpleDateFormat
 
 @SuppressLint("SimpleDateFormat")
@@ -59,6 +68,12 @@ fun MorningTimePicker(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
+            val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.get_up_anim))
+            LottieAnimation(
+                composition = composition, modifier = Modifier
+                    .fillMaxWidth()
+                    .height(200.dp)
+            )
             Text(
                 text = stringResource(id = com.aayar94.core.R.string.enter_your_get_up_time),
                 color = MaterialTheme.colorScheme.onBackground,
@@ -83,6 +98,7 @@ fun MorningTimePicker(
                 },
                 shape = shapes.mediumCornerRadius
             ) {
+                Icon(imageVector = Icons.Filled.NavigateNext, contentDescription = null)
                 Text(
                     text = stringResource(id = com.aayar94.core.R.string.next),
                     color = MaterialTheme.colorScheme.onSecondaryContainer
