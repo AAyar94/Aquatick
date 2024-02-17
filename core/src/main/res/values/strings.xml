@@ -101,4 +101,5 @@
     <string name="today">Today</string>
     <string name="yesterday">Yesterday</string>
     <string name="tomorrow">Tomorrow</string>
+    <string name="entry_not_found_for_this_date">Entry not found for this date</string>
 </resources>

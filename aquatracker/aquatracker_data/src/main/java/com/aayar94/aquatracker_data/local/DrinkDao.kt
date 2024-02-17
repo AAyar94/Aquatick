@@ -55,4 +55,7 @@ interface DrinkDao {
         prevMonth: Int,
         prevStartDay: Int
     ): List<DayTotalAmount>
+
+    @Query("SELECT * FROM drinks_table WHERE dayOfMonth = :day AND month = :month AND year = :year")
+    fun getDrinkEntitiesForDay(day: Int, month: Int, year: Int): List<DrinkEntity>
 }

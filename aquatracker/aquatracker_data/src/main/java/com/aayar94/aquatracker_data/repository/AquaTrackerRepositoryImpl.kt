@@ -61,12 +61,10 @@ class AquaTrackerRepositoryImpl(
         }
     }
 
-    override suspend fun getDrinksForLastFourWeek() {
-        TODO("Not yet implemented")
-    }
-
-    override suspend fun getDrinksForLastSixMonths() {
-        TODO("Not yet implemented")
+    override suspend fun getDrinkForDate(day: Int, month: Int, year: Int): List<ScreenDrinkItem> {
+        return dao.getDrinkEntitiesForDay(day, month, year).map {
+            it.toScreenDrinkItem()
+        }
     }
 
     override suspend fun getLast7DaysTotalAmount(

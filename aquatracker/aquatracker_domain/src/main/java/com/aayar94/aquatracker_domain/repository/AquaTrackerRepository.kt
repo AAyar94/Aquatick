@@ -23,9 +23,14 @@ interface AquaTrackerRepository {
         year: Int
     ): List<ChartModel>
 
-    suspend fun getDrinksForLastFourWeek()
+    suspend fun getDrinkForDate(day: Int, month: Int, year: Int): List<ScreenDrinkItem>
 
-    suspend fun getDrinksForLastSixMonths()
-
-    suspend fun getLast7DaysTotalAmount(year: Int, month: Int, startDay: Int, prevYear: Int, prevMonth: Int, prevStartDay: Int): List<DayTotalAmount>
+    suspend fun getLast7DaysTotalAmount(
+        year: Int,
+        month: Int,
+        startDay: Int,
+        prevYear: Int,
+        prevMonth: Int,
+        prevStartDay: Int
+    ): List<DayTotalAmount>
 }
