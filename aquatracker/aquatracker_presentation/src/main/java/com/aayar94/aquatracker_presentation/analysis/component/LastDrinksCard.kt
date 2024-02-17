@@ -1,4 +1,4 @@
-package com.aayar94.aquatracker_presentation.drink.component
+package com.aayar94.aquatracker_presentation.analysis.component
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -22,9 +22,8 @@ import androidx.compose.ui.unit.dp
 import com.aayar94.aquatracker_domain.model.DrinkType
 import com.aayar94.aquatracker_domain.usecase.ScreenDrinkItem
 import com.aayar94.core.R
-import com.aayar94.core_ui.util.DevicesPreview
 import com.aayar94.core_ui.theme.AquatickTheme
-import java.time.LocalDate
+import com.aayar94.core_ui.util.DevicesPreview
 import java.time.LocalDateTime
 
 @Composable

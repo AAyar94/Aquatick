@@ -96,4 +96,9 @@
     <string name="time_to_hydrate_yourself">"Time for hydrate yourself 💧"</string>
     <string name="this_articles_sections_requires_network">This article section, requires network connection to work</string>
     <string name="amount_ml_type_added">%d ml %s added</string>
+    <string name="next_day">Next Day</string>
+    <string name="previous_day">Previous Day</string>
+    <string name="today">Today</string>
+    <string name="yesterday">Yesterday</string>
+    <string name="tomorrow">Tomorrow</string>
 </resources>
