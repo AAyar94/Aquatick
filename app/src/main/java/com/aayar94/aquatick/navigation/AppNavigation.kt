@@ -8,6 +8,7 @@ import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -31,6 +32,7 @@ import com.aayar94.onboarding_presentation.notification_permission.NotificationP
 import com.aayar94.onboarding_presentation.weight.WeightScreen
 import com.aayar94.onboarding_presentation.welcome.WelcomeScreen
 import com.aayar94.settings_presentation.SettingsScreen
+import kotlinx.coroutines.launch
 
 @Composable
 fun AppNavigation(
@@ -40,6 +42,7 @@ fun AppNavigation(
     val snackBarHostState = remember {
         SnackbarHostState()
     }
+    val scope = rememberCoroutineScope()
     Scaffold(modifier = Modifier.fillMaxSize(),
         snackbarHost = { SnackbarHost(hostState = snackBarHostState) },
         bottomBar = {
@@ -105,7 +108,13 @@ fun AppNavigation(
                         navController.navigate(Route.ARTICLE + "/$article")
                     },
                     onNotificationIconClick = { navController.navigate(Route.NOTIFICATION) },
-                    onAnalysisButtonClick = { navController.navigate(Route.ANALYSIS) })
+                    onAnalysisButtonClick = { navController.navigate(Route.ANALYSIS) },
+                    articleLoadState = { message ->
+                        scope.launch {
+                            snackBarHostState.showSnackbar(message)
+                        }
+                    })
+
             }
             composable(Route.ARTICLE + "/{id}", arguments = listOf(navArgument("id") {
                 type = NavType.IntType

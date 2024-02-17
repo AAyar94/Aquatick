@@ -1,18 +1,24 @@
 package com.aayar94.aquatracker_presentation.home
 
+import android.content.Context
+import android.net.ConnectivityManager
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.aayar94.aquatracker_domain.usecase.CalculateTodaysIntakeUseCase
 import com.aayar94.aquatracker_domain.usecase.GetArticlesUseCase
 import com.aayar94.aquatracker_domain.usecase.GetLastIntakeUseCase
 import com.aayar94.core.util.UiEvent
+import com.aayar94.core.util.UiText
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.time.LocalDate
 import java.time.LocalTime
 import javax.inject.Inject
@@ -27,6 +33,8 @@ class HomeViewModel @Inject constructor(
 
     private val _homeState = MutableStateFlow(HomeUIState())
     val homeState = _homeState.asStateFlow()
+
+    val isConnected = mutableStateOf(false)
 
     private val _articleState = MutableStateFlow(ArticleUIState())
     val articleState = _articleState.asStateFlow()
@@ -48,7 +56,6 @@ class HomeViewModel @Inject constructor(
                 )
             }
         }
-        getArticles()
         getTodaysIntake()
         getLastIntake()
     }
@@ -98,13 +105,27 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    private fun getArticles() {
+    fun getArticles(context: Context) {
         viewModelScope.launch {
-            val response = getArticlesUseCase.invoke()
-            _articleState.update {
-                it.copy(
-                    articlesItem = response.articles.random()
-                )
+            isConnected.value = withContext(Dispatchers.IO) {
+                // Get the connectivity manager
+                val connectivityManager =
+                    context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+
+                // Check network connection
+                val networkInfo = connectivityManager.activeNetworkInfo
+                networkInfo != null && networkInfo.isConnected
+            }
+
+            if (isConnected.value) {
+                val response = getArticlesUseCase.invoke()
+                _articleState.update {
+                    it.copy(
+                        articlesItem = response.articles.random()
+                    )
+                }
+            } else {
+                _uiEvent.send(UiEvent.ShowSnackbar(message = UiText.StringResource(com.aayar94.core.R.string.this_articles_sections_requires_network)))
             }
         }
 

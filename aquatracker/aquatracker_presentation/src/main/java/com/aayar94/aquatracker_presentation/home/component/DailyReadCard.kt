@@ -86,7 +86,7 @@ fun DailyReadCard(
                         contentScale = ContentScale.Fit,
                     )
                 } else {
-                    CircularProgressIndicator()
+                    CircularProgressIndicator(modifier = Modifier.align(Alignment.CenterVertically))
                 }
             }
             Spacer(modifier = Modifier.height(spacing.spaceMedium))

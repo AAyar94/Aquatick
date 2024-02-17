@@ -20,6 +20,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.aayar94.aquatracker_presentation.home.component.AnalysisCard
@@ -37,10 +38,12 @@ fun HomeScreen(
     onDrinkNavigateClick: () -> Unit,
     onArticleClick: (articleId: Int) -> Unit,
     onNotificationIconClick: () -> Unit,
-    onAnalysisButtonClick: () -> Unit
+    onAnalysisButtonClick: () -> Unit,
+    articleLoadState: (String) -> Unit
 ) {
     val spacing = LocalSpacing.current
     val shapes = LocalShape.current
+    val context = LocalContext.current
     val systemUIController = rememberSystemUiController()
     systemUIController.setStatusBarColor(MaterialTheme.colorScheme.background)
     val scrollState = rememberScrollState()
@@ -48,10 +51,15 @@ fun HomeScreen(
         viewModel.uiEvent.collect { event ->
             when (event) {
                 is UiEvent.Success -> onDrinkNavigateClick()
+                is UiEvent.ShowSnackbar -> {
+                    articleLoadState(event.message.toString())
+                }
+
                 else -> Unit
             }
         }
         viewModel.getTodaysIntake()
+        viewModel.getArticles(context)
     }
 
     val uiState = viewModel.homeState.collectAsState()
@@ -99,18 +107,16 @@ fun HomeScreen(
                 )
             }
             Spacer(modifier = Modifier.height(spacing.spaceMedium))
-            DailyReadCard(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .defaultMinSize(200.dp, 240.dp),
+            DailyReadCard(modifier = Modifier
+                .fillMaxWidth()
+                .defaultMinSize(200.dp, 240.dp),
                 imageUrl = articleState.value.articlesItem?.image,
                 title = articleState.value.articlesItem?.Title ?: "",
                 text = articleState.value.articlesItem?.Conclusion ?: "",
                 shape = shapes.mediumCornerRadius,
                 onClick = {
                     articleState.value.articlesItem?.let { onArticleClick(it.id) }
-                }
-            )
+                })
             Spacer(modifier = Modifier.height(spacing.spaceMedium))
             AnalysisCard(
                 modifier = Modifier.fillMaxWidth(),
