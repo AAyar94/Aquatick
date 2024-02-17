@@ -26,9 +26,6 @@ class DrinkViewModel @Inject constructor(
     var drinkUIState by mutableStateOf(DrinkUIState())
         private set
 
-    var lastDrinkState by mutableStateOf(LastDrinksState().list)
-        private set
-
     private val _uiEvent = Channel<UiEvent>()
     val uiEvent = _uiEvent.receiveAsFlow()
 
@@ -38,17 +35,7 @@ class DrinkViewModel @Inject constructor(
         }
     }
 
-    fun getLastDrinks() {
-        viewModelScope.launch {
-            val response = getLastDrinksUseCase.invoke()
-            response.collect { list ->
-                lastDrinkState = list
-            }
-        }
-    }
-
     init {
         drinkUIState.list = drinkTypesWithIconUseCase.invoke()
-        getLastDrinks()
     }
 }

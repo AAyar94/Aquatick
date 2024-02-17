@@ -29,5 +29,9 @@ sealed class DrinkType(val name: String) {
                 else -> Glass_Of_Water
             }
         }
+
+        fun nameFormatter(name: String): String {
+            return name.replace("_", " ")
+        }
     }
 }
