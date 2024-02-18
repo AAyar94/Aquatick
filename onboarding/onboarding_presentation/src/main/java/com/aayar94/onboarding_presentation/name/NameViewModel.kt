@@ -31,27 +31,28 @@ class NameViewModel @Inject constructor(
 
     fun onNextClick() {
         viewModelScope.launch {
-            if (nameState.isBlank()) {
-                kotlin.run {
+            when {
+                nameState.isBlank() -> {
                     _uiEvent.send(
                         UiEvent.ShowSnackbar(
                             UiText.StringResource(com.aayar94.core.R.string.name_cannot_be_empty)
                         )
                     )
-                    return@run
                 }
-            } else if (nameState.length < 3) {
-                kotlin.run {
+
+                nameState.length < 3 -> {
                     _uiEvent.send(
                         UiEvent.ShowSnackbar(
                             UiText.StringResource(com.aayar94.core.R.string.the_name_cannot_be_shorter_than_3_characters)
                         )
                     )
-                    return@run
+                }
+
+                else -> {
+                    preferences.saveName(nameState)
+                    _uiEvent.send(UiEvent.Success)
                 }
             }
-            preferences.saveName(nameState)
-            _uiEvent.send(UiEvent.Success)
         }
     }
 }
