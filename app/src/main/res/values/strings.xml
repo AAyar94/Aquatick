@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="default_notification_channel_id">aquatick_notification</string>
+    <string name="nav_bar_item_drink">Drink</string>
+    <string name="nav_bar_item_home">Home</string>
+    <string name="nav_bar_item_settings">Settings</string>
 </resources>

@@ -17,6 +17,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.aayar94.aquatick.navigation.BottomBarItem.Companion.bottomBarItems
 import com.aayar94.aquatracker_presentation.analysis.AnalysisScreen
 import com.aayar94.aquatracker_presentation.article.ArticleScreen
 import com.aayar94.aquatracker_presentation.drink.DrinkScreen
