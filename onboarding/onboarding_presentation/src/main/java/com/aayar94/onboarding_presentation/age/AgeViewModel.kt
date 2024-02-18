@@ -32,17 +32,15 @@ class AgeViewModel @Inject constructor(
     fun onNextClick() {
         viewModelScope.launch {
             if (ageState.isEmpty()) {
-                kotlin.run {
-                    _uiEvent.send(
-                        UiEvent.ShowSnackbar(
-                            UiText.StringResource(com.aayar94.core.R.string.age_cannot_be_empty)
-                        )
+                _uiEvent.send(
+                    UiEvent.ShowSnackbar(
+                        UiText.StringResource(com.aayar94.core.R.string.age_cannot_be_empty)
                     )
-                    return@run
-                }
+                )
+            } else {
+                preferences.saveAge(ageState.toInt())
+                _uiEvent.send(UiEvent.Success)
             }
-            preferences.saveAge(ageState.toIntOrNull() ?: 0)
-            _uiEvent.send(UiEvent.Success)
         }
     }
 }
