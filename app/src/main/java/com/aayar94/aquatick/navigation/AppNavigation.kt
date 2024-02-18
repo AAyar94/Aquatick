@@ -73,13 +73,13 @@ fun AppNavigation(
             }
             composable(Route.AGE) {
                 AgeScreen(snackBarHostState = snackBarHostState,
-                    onNextClick = { navController.navigate(Route.GENDER) })
-            }
-            composable(Route.GENDER) {
-                GenderScreen(onNextClick = { navController.navigate(Route.WEIGHT) })
+                    onNextClick = { navController.navigate(Route.WEIGHT) })
             }
             composable(Route.WEIGHT) {
-                WeightScreen(onNextClick = { navController.navigate(Route.ACTIVITY_LEVEL) })
+                WeightScreen(onNextClick = { navController.navigate(Route.GENDER) })
+            }
+            composable(Route.GENDER) {
+                GenderScreen(onNextClick = { navController.navigate(Route.ACTIVITY_LEVEL) })
             }
             composable(Route.ACTIVITY_LEVEL) {
                 ActivityLevelScreen(onNextClick = { navController.navigate(Route.MORNING_TIME_PICKER) })
