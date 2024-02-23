@@ -27,6 +27,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.9"
+    }
     compileOptions {
         coreLibraryDesugaringEnabled true
 
@@ -53,7 +56,6 @@ dependencies {
     implementation Material3.material3
     implementation Material3.materialIconsExtended
     implementation Lottie.lottie
-
 
 
     implementation AccCompanist.accCompanist
