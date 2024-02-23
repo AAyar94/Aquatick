@@ -38,6 +38,7 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun AppNavigation(
+    modifier: Modifier=Modifier,
     startDestinationRoute: String, onDeleteApp: () -> Unit
 ) {
     val navController = rememberNavController()
@@ -45,7 +46,7 @@ fun AppNavigation(
         SnackbarHostState()
     }
     val scope = rememberCoroutineScope()
-    Scaffold(modifier = Modifier.fillMaxSize(),
+    Scaffold(modifier = modifier.fillMaxSize(),
         snackbarHost = { SnackbarHost(hostState = snackBarHostState) },
         bottomBar = {
             val currentRoute = navController.currentBackStackEntryAsState().value

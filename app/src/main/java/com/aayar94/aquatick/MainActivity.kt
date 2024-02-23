@@ -5,6 +5,9 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.safeDrawingPadding
+import androidx.compose.ui.Modifier
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.aayar94.aquatick.navigation.AppNavigation
 import com.aayar94.aquatick.navigation.Route
@@ -32,9 +35,11 @@ class MainActivity : ComponentActivity() {
         installSplashScreen()
 
         val shouldShowOnboarding = preferences.loadOnboardingState()
+        enableEdgeToEdge()
         setContent {
             AquatickTheme {
-                AppNavigation(startDestinationRoute = if (shouldShowOnboarding) Route.WELCOME else Route.HOME,
+                AppNavigation(modifier = Modifier.safeDrawingPadding(),
+                    startDestinationRoute = if (shouldShowOnboarding) Route.WELCOME else Route.HOME,
                     onDeleteApp = { finishActivity(500) })
             }
         }
