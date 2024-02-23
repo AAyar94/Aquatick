@@ -2,7 +2,7 @@ package com.aayar94.aquatracker_domain.repository
 
 import com.aayar94.aquatracker_domain.model.ChartModel
 import com.aayar94.aquatracker_domain.model.DayTotalAmount
-import com.aayar94.aquatracker_domain.usecase.ScreenDrinkItem
+import com.aayar94.aquatracker_domain.model.ScreenDrinkItem
 import kotlinx.coroutines.flow.Flow
 import java.time.LocalDate
 

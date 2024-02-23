@@ -1,5 +1,6 @@
 package com.aayar94.aquatracker_domain.usecase
 
+import com.aayar94.aquatracker_domain.model.ScreenDrinkItem
 import com.aayar94.aquatracker_domain.repository.AquaTrackerRepository
 import java.time.LocalDate
 import javax.inject.Inject

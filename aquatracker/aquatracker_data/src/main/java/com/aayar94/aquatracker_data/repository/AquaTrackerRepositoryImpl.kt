@@ -5,8 +5,8 @@ import com.aayar94.aquatracker_data.mapper.toDrinkEntity
 import com.aayar94.aquatracker_data.mapper.toScreenDrinkItem
 import com.aayar94.aquatracker_domain.model.ChartModel
 import com.aayar94.aquatracker_domain.model.DayTotalAmount
+import com.aayar94.aquatracker_domain.model.ScreenDrinkItem
 import com.aayar94.aquatracker_domain.repository.AquaTrackerRepository
-import com.aayar94.aquatracker_domain.usecase.ScreenDrinkItem
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import java.time.LocalDate
