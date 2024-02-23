@@ -1,10 +1,9 @@
 package com.aayar94.aquatracker_data.mapper
 
 import com.aayar94.aquatracker_data.local.entity.DrinkEntity
-import com.aayar94.aquatracker_domain.usecase.ScreenDrinkItem
 import com.aayar94.aquatracker_domain.model.DrinkType
+import com.aayar94.aquatracker_domain.model.ScreenDrinkItem
 import com.aayar94.aquatracker_domain.util.getIcon
-import java.time.LocalDate
 import java.time.LocalDateTime
 
 fun ScreenDrinkItem.toDrinkEntity(): DrinkEntity {
@@ -23,6 +22,7 @@ fun ScreenDrinkItem.toDrinkEntity(): DrinkEntity {
 
 fun DrinkEntity.toScreenDrinkItem(): ScreenDrinkItem {
     return ScreenDrinkItem(
+        idNumber = id,
         drinkType = DrinkType.fromString(drinkType),
         defaultAmount = drinkAmount,
         localDate = LocalDateTime.of(year, month, dayOfMonth, hour, minute, second),
