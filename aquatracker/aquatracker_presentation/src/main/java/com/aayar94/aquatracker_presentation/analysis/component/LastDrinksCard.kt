@@ -20,24 +20,25 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.aayar94.aquatracker_domain.model.DrinkType
-import com.aayar94.aquatracker_domain.usecase.ScreenDrinkItem
+import com.aayar94.aquatracker_domain.model.ScreenDrinkItem
 import com.aayar94.core.R
 import com.aayar94.core_ui.theme.AquatickTheme
+import com.aayar94.core_ui.theme.LocalShape
 import com.aayar94.core_ui.util.DevicesPreview
 import java.time.LocalDateTime
 
 @Composable
 fun LastDrinksCard(
-    modifier: Modifier = Modifier,
-    item: ScreenDrinkItem
+    modifier: Modifier = Modifier, item: ScreenDrinkItem
 ) {
+    val shapes = LocalShape.current
     Box(modifier = modifier) {
         Card(
             modifier = Modifier
                 .fillMaxWidth()
                 .wrapContentHeight()
                 .padding(horizontal = 16.dp, vertical = 4.dp)
-                .background(MaterialTheme.colorScheme.background)
+                .background(MaterialTheme.colorScheme.background), shape = shapes.mediumCornerRadius
         ) {
             Row(
                 modifier = Modifier.padding(8.dp),
@@ -70,8 +71,7 @@ fun PreviewLastDrinksCard() {
                 .wrapContentHeight(),
 
             ScreenDrinkItem(
-                DrinkType.Tea, 100, R.drawable.ic_drink_tea,
-                LocalDateTime.now()
+                idNumber = 1, DrinkType.Tea, 100, R.drawable.ic_drink_tea, LocalDateTime.now()
             ),
         )
     }
