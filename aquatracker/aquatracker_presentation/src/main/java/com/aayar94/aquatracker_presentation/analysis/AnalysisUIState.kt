@@ -1,6 +1,6 @@
 package com.aayar94.aquatracker_presentation.analysis
 
-import com.aayar94.aquatracker_domain.usecase.ScreenDrinkItem
+import com.aayar94.aquatracker_domain.model.ScreenDrinkItem
 import com.patrykandpatrick.vico.core.entry.ChartEntryModel
 import java.time.LocalDate
 

@@ -86,4 +86,8 @@ class AnalysisViewModel @Inject constructor(
         }
         getDrinksForDate(uiState.value.dateState)
     }
+
+    fun onDeleteItem(deleteItemId: Int) {
+
+    }
 }

@@ -91,8 +91,13 @@ fun AnalysisScreen(
                         .fillMaxWidth()
                         .weight(1f), state = lazyColumnState
                 ) {
-                    items(uiState.value.drinkList) { item ->
-                        LastDrinksCard(item = item)
+                    items(uiState.value.drinkList, key = { it.idNumber!! }) { listItem ->
+                        LastDrinksCard(item = listItem)
+                        /*SwipeToDeleteContainer(item = listItem, onDelete = { deleteItem ->
+                            viewModel.onDeleteItem(deleteItem.idNumber!!)
+                        }) { item ->
+                            LastDrinksCard(item = item)
+                        }*/
                     }
                 }
             } else {
