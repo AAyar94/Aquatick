@@ -38,8 +38,7 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun AppNavigation(
-    modifier: Modifier=Modifier,
-    startDestinationRoute: String, onDeleteApp: () -> Unit
+    modifier: Modifier = Modifier, startDestinationRoute: String, onDeleteApp: () -> Unit
 ) {
     val navController = rememberNavController()
     val snackBarHostState = remember {
@@ -111,7 +110,6 @@ fun AppNavigation(
                         navController.navigate(Route.ARTICLE + "/$article")
                     },
                     onNotificationIconClick = { navController.navigate(Route.NOTIFICATION) },
-                    onAnalysisButtonClick = { navController.navigate(Route.ANALYSIS) },
                     articleLoadState = { message ->
                         scope.launch {
                             snackBarHostState.showSnackbar(message)
@@ -129,15 +127,20 @@ fun AppNavigation(
                 NotificationScreen()
             }
             composable(Route.DRINK) {
-                DrinkScreen(onNavigate = {}, onDrinkAdd = { message ->
-                    scope.launch {
-                        snackBarHostState.showSnackbar(
-                            message = message,
-                            withDismissAction = true,
-                            duration = SnackbarDuration.Short
-                        )
-                    }
-                })
+                DrinkScreen(
+                    onNavigate = {},
+                    onDrinkAdd = { message ->
+                        scope.launch {
+                            snackBarHostState.showSnackbar(
+                                message = message,
+                                withDismissAction = true,
+                                duration = SnackbarDuration.Short
+                            )
+                        }
+
+                    },
+                    onAnalysisButtonClick = { navController.navigate(Route.ANALYSIS) },
+                )
             }
             composable(Route.SETTINGS) {
                 SettingsScreen(onDeleteApp = onDeleteApp)

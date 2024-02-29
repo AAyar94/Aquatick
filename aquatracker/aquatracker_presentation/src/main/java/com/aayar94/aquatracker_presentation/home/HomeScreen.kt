@@ -23,7 +23,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.aayar94.aquatracker_presentation.home.component.AnalysisCard
 import com.aayar94.aquatracker_presentation.home.component.DailyGoalCard
 import com.aayar94.aquatracker_presentation.home.component.DailyReadCard
 import com.aayar94.aquatracker_presentation.home.component.HomeHeader
@@ -38,7 +37,6 @@ fun HomeScreen(
     onDrinkNavigateClick: () -> Unit,
     onArticleClick: (articleId: Int) -> Unit,
     onNotificationIconClick: () -> Unit,
-    onAnalysisButtonClick: () -> Unit,
     articleLoadState: (String) -> Unit
 ) {
     val spacing = LocalSpacing.current
@@ -54,7 +52,6 @@ fun HomeScreen(
                 is UiEvent.ShowSnackbar -> {
                     articleLoadState(event.message.toString())
                 }
-
                 else -> Unit
             }
         }
@@ -117,12 +114,6 @@ fun HomeScreen(
                 onClick = {
                     articleState.value.articlesItem?.let { onArticleClick(it.id) }
                 })
-            Spacer(modifier = Modifier.height(spacing.spaceMedium))
-            AnalysisCard(
-                modifier = Modifier.fillMaxWidth(),
-                onClick = onAnalysisButtonClick,
-                contentColor = MaterialTheme.colorScheme.onPrimaryContainer
-            )
         }
     }
 }

@@ -2,8 +2,10 @@ package com.aayar94.aquatracker_presentation.drink
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.grid.GridCells
@@ -17,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.aayar94.aquatracker_domain.model.DrinkType
 import com.aayar94.aquatracker_presentation.drink.component.DrinkItem
+import com.aayar94.aquatracker_presentation.home.component.AnalysisCard
 import com.aayar94.core.util.UiEvent
 import com.aayar94.core_ui.theme.LocalShape
 import com.aayar94.core_ui.theme.LocalSpacing
@@ -25,7 +28,8 @@ import com.aayar94.core_ui.theme.LocalSpacing
 fun DrinkScreen(
     viewModel: DrinkViewModel = hiltViewModel(),
     onNavigate: () -> Unit,
-    onDrinkAdd: (String) -> Unit
+    onDrinkAdd: (String) -> Unit,
+    onAnalysisButtonClick: () -> Unit,
 ) {
     LaunchedEffect(true) {
         viewModel.uiEvent.collect { event ->
@@ -64,5 +68,11 @@ fun DrinkScreen(
                     })
             }
         }
+        Spacer(modifier = Modifier.height(spacing.spaceMedium))
+        AnalysisCard(
+            modifier = Modifier.fillMaxWidth(),
+            onClick = onAnalysisButtonClick,
+            contentColor = MaterialTheme.colorScheme.onPrimaryContainer
+        )
     }
 }
