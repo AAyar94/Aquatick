@@ -15,6 +15,7 @@ import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.aayar94.aquatracker_domain.model.DrinkType
@@ -45,7 +46,8 @@ fun DrinkScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(MaterialTheme.colorScheme.background)
+            .background(MaterialTheme.colorScheme.background),
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         LazyVerticalGrid(
             modifier = Modifier
@@ -70,7 +72,7 @@ fun DrinkScreen(
         }
         Spacer(modifier = Modifier.height(spacing.spaceMedium))
         AnalysisCard(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth(0.7f),
             onClick = onAnalysisButtonClick,
             contentColor = MaterialTheme.colorScheme.onPrimaryContainer
         )
