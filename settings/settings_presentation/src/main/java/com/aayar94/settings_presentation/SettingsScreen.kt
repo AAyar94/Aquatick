@@ -1,5 +1,6 @@
 package com.aayar94.settings_presentation
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -49,8 +50,7 @@ import com.aayar94.core.R.string as AppText
 
 @Composable
 fun SettingsScreen(
-    onDeleteApp: () -> Unit,
-    viewModel: SettingsViewModel = hiltViewModel()
+    onDeleteApp: () -> Unit, viewModel: SettingsViewModel = hiltViewModel()
 ) {
     LaunchedEffect(key1 = true) {
         viewModel.uiEvent.collect {
@@ -70,8 +70,7 @@ fun SettingsScreen(
         contentAlignment = Alignment.TopCenter
     ) {
         if (deleteAllAlarmVisibility) {
-            AlertDialog(
-                onDismissRequest = { deleteAllAlarmVisibility = false },
+            AlertDialog(onDismissRequest = { deleteAllAlarmVisibility = false },
                 title = { Text(stringResource(id = AppText.delete_all)) },
                 text = { Text(stringResource(id = AppText.this_deletes_everything)) },
                 confirmButton = {
@@ -89,16 +88,14 @@ fun SettingsScreen(
                     Button(onClick = { deleteAllAlarmVisibility = false }) {
                         Text(stringResource(id = AppText.cancel))
                     }
-                }
-            )
+                })
         }
     }
     Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(
-                horizontal = spacing.spaceMedium,
-                vertical = spacing.spaceMedium
+                horizontal = spacing.spaceMedium, vertical = spacing.spaceMedium
             ),
         verticalArrangement = Arrangement.spacedBy(spacing.spaceMedium),
         horizontalAlignment = Alignment.Start
@@ -114,16 +111,14 @@ fun SettingsScreen(
             color = MaterialTheme.colorScheme.primary
         )
         Row(
-            modifier = Modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically
+            modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
                 text = stringResource(id = AppText.notification),
                 color = MaterialTheme.colorScheme.onBackground
             )
             Spacer(modifier = Modifier.weight(1f))
-            Switch(
-                checked = uiState.value.isNotificationEnabled,
+            Switch(checked = uiState.value.isNotificationEnabled,
                 onCheckedChange = viewModel::onNotificationSwitch,
                 thumbContent = {
                     if (uiState.value.isNotificationEnabled) Icon(
@@ -143,34 +138,48 @@ fun SettingsScreen(
             )
         }
         Row(
-            modifier = Modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically
+            modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                text = stringResource(id = AppText.dark_theme),
+                text = stringResource(id = AppText.use_system_dark_mode),
                 color = MaterialTheme.colorScheme.onBackground
             )
             Spacer(modifier = Modifier.weight(1f))
             Switch(
-                checked = uiState.value.isDarkThemeEnabled,
-                onCheckedChange = viewModel::onDarkSwitch,
-                thumbContent = {
-                    if (uiState.value.isDarkThemeEnabled) Icon(
-                        imageVector = Icons.Default.NightsStay,
-                        contentDescription = null,
-                        tint = MaterialTheme.colorScheme.primary
-                    )
-                    else Icon(
-                        imageVector = Icons.Default.WbSunny,
-                        contentDescription = null,
-                        tint = MaterialTheme.colorScheme.onBackground
-                    )
-                }
+                checked = uiState.value.isSystemThemeEnabled,
+                onCheckedChange = viewModel::changeSystemThemeSettings
             )
         }
+        AnimatedVisibility(visible = !uiState.value.isSystemThemeEnabled) {
+            Row(
+                modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = if (uiState.value.isDarkThemeEnabled){
+                        stringResource(id = AppText.dark_theme)
+                    }else{
+                        stringResource(id = AppText.light_theme)},
+                    color = MaterialTheme.colorScheme.onBackground
+                )
+                Spacer(modifier = Modifier.weight(1f))
+                Switch(checked = uiState.value.isDarkThemeEnabled,
+                    onCheckedChange = viewModel::onDarkSwitch,
+                    thumbContent = {
+                        if (uiState.value.isDarkThemeEnabled) Icon(
+                            imageVector = Icons.Default.NightsStay,
+                            contentDescription = null,
+                            tint = MaterialTheme.colorScheme.primary
+                        )
+                        else Icon(
+                            imageVector = Icons.Default.WbSunny,
+                            contentDescription = null,
+                            tint = MaterialTheme.colorScheme.onBackground
+                        )
+                    })
+            }
+        }
         Row(
-            modifier = Modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically
+            modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically
         ) {
             FilledTonalButton(
                 onClick = { viewModel.deleteEverythingAndCloseApp() },

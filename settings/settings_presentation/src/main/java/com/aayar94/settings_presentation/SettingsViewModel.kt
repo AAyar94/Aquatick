@@ -36,6 +36,11 @@ class SettingsViewModel @Inject constructor(
         }
     }
 
+    fun changeSystemThemeSettings(boolean: Boolean){
+        viewModelScope.launch {
+            _uiState.update { it.copy(isSystemThemeEnabled = boolean) }
+        }
+    }
 
     fun onColorSchemeChange(color: Color) {
         viewModelScope.launch {
