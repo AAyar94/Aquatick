@@ -129,10 +129,9 @@ class HomeViewModel @Inject constructor(
             }
         }
 
-        val networkRequest = NetworkRequest.Builder()
-            .addTransportType(NetworkCapabilities.TRANSPORT_CELLULAR)
-            .addTransportType(NetworkCapabilities.TRANSPORT_WIFI)
-            .build()
+        val networkRequest =
+            NetworkRequest.Builder().addTransportType(NetworkCapabilities.TRANSPORT_CELLULAR)
+                .addTransportType(NetworkCapabilities.TRANSPORT_WIFI).build()
 
         connectivityManager.registerNetworkCallback(networkRequest, networkCallback)
 
@@ -143,7 +142,13 @@ class HomeViewModel @Inject constructor(
         } else {
             isConnected.value = false
             showNetworkMissSnackBar()
-        }
+        }/*viewModelScope.launch {
+        val response = getArticlesUseCase.invoke()
+        _articleState.update {
+            it.copy(
+                articlesItem = response.articles.random()
+            )
+        }}*/
     }
 
     fun showNetworkMissSnackBar() {

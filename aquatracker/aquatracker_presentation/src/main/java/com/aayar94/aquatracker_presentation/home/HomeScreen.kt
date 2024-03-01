@@ -50,15 +50,17 @@ fun HomeScreen(
             when (event) {
                 is UiEvent.Success -> onDrinkNavigateClick()
                 is UiEvent.ShowSnackbar -> {
-                    articleLoadState(event.message.toString())
+                    articleLoadState(event.message.asString(context))
                 }
+
                 else -> Unit
             }
         }
+    }
+    LaunchedEffect(key1 = true) {
         viewModel.getTodaysIntake()
         viewModel.getArticles(context)
     }
-
     val uiState = viewModel.homeState.collectAsState()
     val articleState = viewModel.articleState.collectAsState()
     Box(
