@@ -9,6 +9,7 @@ android {
     namespace = "com.aayar94.onboarding_presentation"
 }
 
+
 dependencies {
     implementation(project(Modules.core))
     implementation(project(Modules.coreui))
