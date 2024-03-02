@@ -21,6 +21,7 @@ import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import java.time.LocalDate
+import java.time.LocalDateTime
 import java.time.LocalTime
 import javax.inject.Inject
 
@@ -107,6 +108,8 @@ class HomeViewModel @Inject constructor(
     }
 
     fun getArticles(context: Context) {
+        val date = LocalDateTime.now()
+        val articleNumber = (date.dayOfMonth % 4)
         val connectivityManager =
             context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 
@@ -117,7 +120,7 @@ class HomeViewModel @Inject constructor(
                     val response = getArticlesUseCase.invoke()
                     _articleState.update {
                         it.copy(
-                            articlesItem = response.articles.random()
+                            articlesItem = response.articles[articleNumber]
                         )
                     }
                 }
@@ -142,7 +145,8 @@ class HomeViewModel @Inject constructor(
         } else {
             isConnected.value = false
             showNetworkMissSnackBar()
-        }/*viewModelScope.launch {
+        }
+        /*viewModelScope.launch {
         val response = getArticlesUseCase.invoke()
         _articleState.update {
             it.copy(
