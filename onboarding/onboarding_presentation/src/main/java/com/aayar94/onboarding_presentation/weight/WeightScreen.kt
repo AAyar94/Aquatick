@@ -8,6 +8,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.NavigateNext
 import androidx.compose.material3.FilledTonalButton
@@ -20,8 +22,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.aayar94.core.util.UiEvent
 import com.aayar94.core_ui.R
@@ -70,13 +75,23 @@ fun WeightScreen(
             )
             Spacer(modifier = Modifier.height(spacing.spaceMedium))
             BasicAppTextField(
-                value = viewModel.weightState.toString(),
+                modifier = Modifier
+                    .wrapContentWidth()
+                    .wrapContentHeight(),
+                value = viewModel.weightState,
                 onValueChange = {
                     viewModel.weightChange(
                         it.toFloat()
                     )
                 },
-                keyboardType = KeyboardType.Number
+                unit = "kg",
+                keyboardType = KeyboardType.Number,
+                placeholder = "Your Weight",
+                textStyle = TextStyle(
+                    color = MaterialTheme.colorScheme.onBackground,
+                    fontSize = 48.sp,
+                    textAlign = TextAlign.End
+                ),
             )
             Spacer(modifier = Modifier.height(spacing.spaceMedium))
             FilledTonalButton(onClick = viewModel::onNextClick, shape = shapes.mediumCornerRadius) {

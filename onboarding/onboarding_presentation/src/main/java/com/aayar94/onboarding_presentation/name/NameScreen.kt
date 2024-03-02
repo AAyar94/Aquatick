@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.NavigateNext
 import androidx.compose.material3.FilledTonalButton
@@ -91,7 +92,7 @@ fun NameScreen(
             Spacer(modifier = Modifier.height(spacing.spaceMedium))
             BasicAppTextField(
                 modifier = Modifier
-                    .fillMaxWidth()
+                    .wrapContentWidth()
                     .wrapContentHeight(),
                 value = viewModel.nameState,
                 onValueChange = viewModel::nameChange,
@@ -103,7 +104,7 @@ fun NameScreen(
                     fontWeight = FontWeight.Bold,
                     fontStyle = FontStyle.Italic,
                 ),
-                keyboardType = KeyboardType.Text
+                keyboardType = KeyboardType.Text, placeholder = "Your Name"
             )
             Spacer(modifier = Modifier.height(spacing.spaceLarge))
             FilledTonalButton(
