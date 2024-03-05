@@ -112,7 +112,11 @@ fun AppNavigation(
                     onNotificationIconClick = { navController.navigate(Route.NOTIFICATION) },
                     articleLoadState = { message ->
                         scope.launch {
-                            snackBarHostState.showSnackbar(message)
+                            snackBarHostState.showSnackbar(message = message)
+                        }
+                    }, drinkAdded = { message ->
+                        scope.launch {
+                            snackBarHostState.showSnackbar(message = message)
                         }
                     })
 

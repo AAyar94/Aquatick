@@ -3,15 +3,15 @@ package com.aayar94.aquatracker_domain.model
 import java.util.Locale
 
 sealed class DrinkType(val name: String) {
-    object Glass_Of_Water : DrinkType("Glass_of_water")
-    object Bottle_Of_Water : DrinkType("Bottle_of_water")
-    object A_Cup_Of_Coffee : DrinkType("A_Cup_Of_Coffee")
-    object Tea : DrinkType("Tea")
-    object Herbal_Tea : DrinkType("Herbal_tea")
-    object Carbonated_Drinks : DrinkType("Carbonated_drink")
-    object Milk : DrinkType("Milk")
-    object Smoothie : DrinkType("Smoothie")
-    object Fruit_Juice : DrinkType("Fruit_juice")
+    data object Glass_Of_Water : DrinkType("Glass_of_water")
+    data object Bottle_Of_Water : DrinkType("Bottle_of_water")
+    data object A_Cup_Of_Coffee : DrinkType("A_Cup_Of_Coffee")
+    data object Tea : DrinkType("Tea")
+    data object Herbal_Tea : DrinkType("Herbal_tea")
+    data object Carbonated_Drinks : DrinkType("Carbonated_drink")
+    data object Milk : DrinkType("Milk")
+    data object Smoothie : DrinkType("Smoothie")
+    data object Fruit_Juice : DrinkType("Fruit_juice")
 
 
     companion object {

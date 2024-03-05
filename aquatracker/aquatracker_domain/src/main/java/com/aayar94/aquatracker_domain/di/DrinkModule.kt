@@ -7,6 +7,7 @@ import com.aayar94.aquatracker_domain.usecase.DrinkTypesWithIconUseCase
 import com.aayar94.aquatracker_domain.usecase.GetDrinkForDateUseCase
 import com.aayar94.aquatracker_domain.usecase.GetLastDrinksUseCase
 import com.aayar94.aquatracker_domain.usecase.GetLastIntakeUseCase
+import com.aayar94.aquatracker_domain.usecase.SaveDrinkToDbUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -57,6 +58,12 @@ object DrinkModule {
     @Singleton
     fun provideGetDrinksForDateUseCase(repository: AquaTrackerRepository): GetDrinkForDateUseCase {
         return GetDrinkForDateUseCase(repository)
+    }
+
+    @Provides
+    @Singleton
+    fun provideSaveDrinkToDbUseCase(repository: AquaTrackerRepository): SaveDrinkToDbUseCase {
+        return SaveDrinkToDbUseCase(repository)
     }
 
 }

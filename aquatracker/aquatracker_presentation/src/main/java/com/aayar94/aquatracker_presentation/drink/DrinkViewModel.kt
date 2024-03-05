@@ -7,8 +7,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.aayar94.aquatracker_domain.model.DrinkScreenListItem
 import com.aayar94.aquatracker_domain.model.ScreenDrinkItem
-import com.aayar94.aquatracker_domain.repository.AquaTrackerRepository
 import com.aayar94.aquatracker_domain.usecase.DrinkTypesWithIconUseCase
+import com.aayar94.aquatracker_domain.usecase.SaveDrinkToDbUseCase
 import com.aayar94.core.util.UiEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
@@ -19,7 +19,7 @@ import javax.inject.Inject
 @HiltViewModel
 class DrinkViewModel @Inject constructor(
     drinkTypesWithIconUseCase: DrinkTypesWithIconUseCase,
-    private val repository: AquaTrackerRepository
+    private val saveDrinkToDbUseCase: SaveDrinkToDbUseCase
 ) : ViewModel() {
 
     var drinkUIState by mutableStateOf(DrinkUIState())
@@ -30,7 +30,7 @@ class DrinkViewModel @Inject constructor(
 
     fun onDrinkClick(drinkScreenListItem: DrinkScreenListItem) {
         viewModelScope.launch {
-            repository.insertDrink(
+            saveDrinkToDbUseCase.invoke(
                 ScreenDrinkItem(
                     drinkType = drinkScreenListItem.drinkType,
                     defaultAmount = drinkScreenListItem.defaultAmount,

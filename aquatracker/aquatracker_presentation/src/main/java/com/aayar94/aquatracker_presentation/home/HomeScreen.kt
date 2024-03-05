@@ -15,17 +15,21 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.aayar94.aquatracker_presentation.home.component.DailyGoalCard
 import com.aayar94.aquatracker_presentation.home.component.DailyReadCard
 import com.aayar94.aquatracker_presentation.home.component.HomeHeader
+import com.aayar94.aquatracker_presentation.home.component.MostUsedDrinks
 import com.aayar94.core.util.UiEvent
 import com.aayar94.core_ui.theme.LocalShape
 import com.aayar94.core_ui.theme.LocalSpacing
@@ -37,7 +41,8 @@ fun HomeScreen(
     onDrinkNavigateClick: () -> Unit,
     onArticleClick: (articleId: Int) -> Unit,
     onNotificationIconClick: () -> Unit,
-    articleLoadState: (String) -> Unit
+    articleLoadState: (String) -> Unit,
+    drinkAdded: (String) -> Unit
 ) {
     val spacing = LocalSpacing.current
     val shapes = LocalShape.current
@@ -51,6 +56,7 @@ fun HomeScreen(
                 is UiEvent.Success -> onDrinkNavigateClick()
                 is UiEvent.ShowSnackbar -> {
                     articleLoadState(event.message.asString(context))
+                    drinkAdded(event.message.toString())
                 }
 
                 else -> Unit
@@ -105,7 +111,20 @@ fun HomeScreen(
                     onDrinkClick = viewModel::onEnterDrinkClick
                 )
             }
-            Spacer(modifier = Modifier.height(spacing.spaceMedium))
+            Spacer(modifier = Modifier.height(spacing.spaceSmall))
+            Text(
+                text = stringResource(id = com.aayar94.core.R.string.most_used_drinks),
+                textAlign = TextAlign.Start,
+                modifier = Modifier.align(Alignment.Start)
+            )
+            MostUsedDrinks(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(200.dp),
+                mostUsedDrinks = uiState.value.mostUsedDrinks,
+                onItemClick = viewModel::saveDrink
+            )
+            Spacer(modifier = Modifier.height(spacing.spaceSmall))
             DailyReadCard(modifier = Modifier
                 .fillMaxWidth()
                 .defaultMinSize(200.dp, 240.dp),

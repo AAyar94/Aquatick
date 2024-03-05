@@ -8,9 +8,12 @@ import android.net.NetworkRequest
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.aayar94.aquatracker_domain.model.DrinkType
+import com.aayar94.aquatracker_domain.model.ScreenDrinkItem
 import com.aayar94.aquatracker_domain.usecase.CalculateTodaysIntakeUseCase
 import com.aayar94.aquatracker_domain.usecase.GetArticlesUseCase
 import com.aayar94.aquatracker_domain.usecase.GetLastIntakeUseCase
+import com.aayar94.aquatracker_domain.usecase.SaveDrinkToDbUseCase
 import com.aayar94.core.util.UiEvent
 import com.aayar94.core.util.UiText
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -30,7 +33,8 @@ class HomeViewModel @Inject constructor(
     preferences: com.aayar94.core.domain.preferences.Preferences,
     private val getArticlesUseCase: GetArticlesUseCase,
     private val getTodaysIntake: CalculateTodaysIntakeUseCase,
-    private val getLastIntakeUseCase: GetLastIntakeUseCase
+    private val getLastIntakeUseCase: GetLastIntakeUseCase,
+    private val saveDrinkToDbUseCase: SaveDrinkToDbUseCase
 ) : ViewModel() {
 
     private val _homeState = MutableStateFlow(HomeUIState())
@@ -93,6 +97,17 @@ class HomeViewModel @Inject constructor(
             in 12..16 -> "Good afternoon"
             in 17..20 -> "Good evening"
             else -> "Good night"
+        }
+    }
+
+    fun saveDrink(drink: ScreenDrinkItem) {
+        viewModelScope.launch {
+            saveDrinkToDbUseCase.invoke(drink)
+            _uiEvent.send(
+                UiEvent.ShowSnackbar(
+                    UiText.DynamicString("${drink.defaultAmount} ml ${DrinkType.nameFormatter(drink.drinkType.name)} added!")
+                )
+            )
         }
     }
 
