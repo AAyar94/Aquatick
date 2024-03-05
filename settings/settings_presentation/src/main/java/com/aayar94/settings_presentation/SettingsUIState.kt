@@ -6,7 +6,7 @@ import com.example.compose.BlueColorScheme
 data class SettingsUIState(
     val isNotificationEnabled: Boolean = false,
     val isDarkThemeEnabled: Boolean = false,
-    val isSystemThemeEnabled: Boolean = false,
+    val isSystemThemeEnabled: Boolean = true,
     val isProUser: Boolean = false,
     val colorSchemeModel: Color = BlueColorScheme
 )

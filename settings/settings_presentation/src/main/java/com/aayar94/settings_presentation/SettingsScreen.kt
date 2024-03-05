@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.DeleteForever
 import androidx.compose.material.icons.filled.NightsStay
 import androidx.compose.material.icons.filled.NotificationsActive
@@ -147,7 +148,11 @@ fun SettingsScreen(
             Spacer(modifier = Modifier.weight(1f))
             Switch(
                 checked = uiState.value.isSystemThemeEnabled,
-                onCheckedChange = viewModel::changeSystemThemeSettings
+                onCheckedChange = viewModel::changeSystemThemeSettings, thumbContent = {
+                    if (uiState.value.isSystemThemeEnabled) {
+                        Icon(imageVector = Icons.Default.Check, contentDescription = null)
+                    }
+                }
             )
         }
         AnimatedVisibility(visible = !uiState.value.isSystemThemeEnabled) {
@@ -155,10 +160,11 @@ fun SettingsScreen(
                 modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = if (uiState.value.isDarkThemeEnabled){
+                    text = if (uiState.value.isDarkThemeEnabled) {
                         stringResource(id = AppText.dark_theme)
-                    }else{
-                        stringResource(id = AppText.light_theme)},
+                    } else {
+                        stringResource(id = AppText.light_theme)
+                    },
                     color = MaterialTheme.colorScheme.onBackground
                 )
                 Spacer(modifier = Modifier.weight(1f))
