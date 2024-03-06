@@ -91,7 +91,6 @@ fun AnalysisScreen(
                         .fillMaxWidth()
                         .weight(1f),
                     state = lazyColumnState,
-                    reverseLayout = true,
                 ) {
                     items(uiState.value.drinkList, key = { it.idNumber!! }) { listItem ->
                         LastDrinksCard(item = listItem)

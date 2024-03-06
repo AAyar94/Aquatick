@@ -31,7 +31,7 @@ class AnalysisViewModel @Inject constructor(
             response.let { drinksList ->
                 _uiState.update {
                     it.copy(
-                        drinkList = drinksList
+                        drinkList = drinksList.reversed()
                     )
                 }
             }
