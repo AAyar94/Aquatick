@@ -1,4 +1,4 @@
-package com.example.compose
+package com.aayar94.core_ui.theme.color_schemes
 
 import androidx.compose.ui.graphics.Color
 
