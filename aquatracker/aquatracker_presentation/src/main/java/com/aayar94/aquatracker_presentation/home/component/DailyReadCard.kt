@@ -2,9 +2,11 @@ package com.aayar94.aquatracker_presentation.home.component
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -36,8 +38,8 @@ import com.aayar94.core_ui.util.DevicesPreview
 fun DailyReadCard(
     modifier: Modifier = Modifier,
     imageUrl: String?,
-    title: String,
-    text: String,
+    title: String?,
+    text: String?,
     shape: RoundedCornerShape,
     onClick: () -> Unit
 ) {
@@ -49,55 +51,57 @@ fun DailyReadCard(
             containerColor = MaterialTheme.colorScheme.background
         ), elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
     ) {
-        Column(
-            modifier = Modifier.padding(spacing.spaceMedium),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
-        ) {
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.Center
-            ) {
-                Text(
-                    text = title,
-                    modifier = Modifier
-                        .wrapContentHeight()
-                        .weight(0.7f),
-                    textAlign = TextAlign.Start,
-                    color = MaterialTheme.colorScheme.onPrimaryContainer,
-                    style = MaterialTheme.typography.bodyLarge,
-                    overflow = TextOverflow.Ellipsis,
-                    fontWeight = FontWeight.SemiBold,
-                    maxLines = 3
-                )
-                Spacer(modifier = Modifier.height(spacing.spaceMedium))
-                if (imageUrl != null) {
-                    AsyncImage(
-                        modifier = Modifier
-                            .size(64.dp)
-                            .weight(0.3f),
-                        model = ImageRequest.Builder(LocalContext.current)
-                            .data(imageUrl)
-                            .decoderFactory(SvgDecoder.Factory())
-                            .build(),
-                        contentDescription = null,
-                        alignment = Alignment.Center,
-                        contentScale = ContentScale.Fit,
+        Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+            if (imageUrl != null && title != null && text != null) {
+                Column(
+                    modifier = Modifier.padding(spacing.spaceMedium),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Center
+                ) {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.Center
+                    ) {
+                        Text(
+                            text = title,
+                            modifier = Modifier
+                                .wrapContentHeight()
+                                .weight(0.7f),
+                            textAlign = TextAlign.Start,
+                            color = MaterialTheme.colorScheme.onPrimaryContainer,
+                            style = MaterialTheme.typography.bodyLarge,
+                            overflow = TextOverflow.Ellipsis,
+                            fontWeight = FontWeight.SemiBold,
+                            maxLines = 3
+                        )
+                        Spacer(modifier = Modifier.height(spacing.spaceMedium))
+                        AsyncImage(
+                            modifier = Modifier
+                                .size(64.dp)
+                                .weight(0.3f),
+                            model = ImageRequest.Builder(LocalContext.current)
+                                .data(imageUrl)
+                                .decoderFactory(SvgDecoder.Factory())
+                                .build(),
+                            contentDescription = null,
+                            alignment = Alignment.Center,
+                            contentScale = ContentScale.Fit,
+                        )
+                    }
+                    Spacer(modifier = Modifier.height(spacing.spaceMedium))
+                    Text(
+                        text = text,
+                        modifier = Modifier,
+                        color = MaterialTheme.colorScheme.onPrimaryContainer,
+                        style = MaterialTheme.typography.bodyMedium,
+                        overflow = TextOverflow.Ellipsis,
+                        maxLines = 6
                     )
-                } else {
-                    CircularProgressIndicator(modifier = Modifier.align(Alignment.CenterVertically))
                 }
+            } else {
+                CircularProgressIndicator()
             }
-            Spacer(modifier = Modifier.height(spacing.spaceMedium))
-            Text(
-                text = text,
-                modifier = Modifier,
-                color = MaterialTheme.colorScheme.onPrimaryContainer,
-                style = MaterialTheme.typography.bodyMedium,
-                overflow = TextOverflow.Ellipsis,
-                maxLines = 6
-            )
         }
     }
 }
