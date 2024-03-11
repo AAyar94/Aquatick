@@ -11,5 +11,6 @@ android {
 
 dependencies {
     implementation(project(Modules.core))
+    implementation(project(Modules.coreui))
     implementation(project(Modules.aquaTrackerDomain))
 }
