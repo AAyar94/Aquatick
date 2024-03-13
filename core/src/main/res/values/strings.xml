@@ -35,7 +35,7 @@
     <string name="notification">Notifications</string>
     <string name="dark_theme">Dark Theme</string>
     <string name="light_theme">Light Theme</string>
-    <string name="use_system_dark_mode">Sync dark mode setting with system</string>
+    <string name="use_system_theme_mode">Sync color scheme with system</string>
     <string name="male">Male</string>
     <string name="female">Female</string>
     <string name="lgbtq">LGBTQ</string>

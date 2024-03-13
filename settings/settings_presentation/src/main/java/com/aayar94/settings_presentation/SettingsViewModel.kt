@@ -1,16 +1,20 @@
 package com.aayar94.settings_presentation
 
-import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.aayar94.core.domain.preferences.Preferences
 import com.aayar94.core.util.UiEvent
 import com.aayar94.settings_domain.use_case.DropDatabaseUseCase
+import com.aayar94.settings_domain.use_case.ReadSelectedColorSchemeUseCase
+import com.aayar94.settings_domain.use_case.ReadSystemThemePreferenceUseCase
+import com.aayar94.settings_domain.use_case.SelectColorSchemeUseCase
+import com.aayar94.settings_domain.use_case.UseSystemThemeUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -19,7 +23,11 @@ import javax.inject.Inject
 @HiltViewModel
 class SettingsViewModel @Inject constructor(
     private val preferences: Preferences,
-    private val dropDatabaseUseCase: DropDatabaseUseCase
+    private val dropDatabaseUseCase: DropDatabaseUseCase,
+    private val systemThemeUseCase: UseSystemThemeUseCase,
+    private val selectColorSchemeUseCase: SelectColorSchemeUseCase,
+    private val readSelectedColorSchemeUseCase: ReadSelectedColorSchemeUseCase,
+    private val readSystemThemePreferenceUseCase: ReadSystemThemePreferenceUseCase,
 ) : ViewModel() {
 
     private var _uiState = MutableStateFlow(SettingsUIState())
@@ -30,23 +38,19 @@ class SettingsViewModel @Inject constructor(
 
 
     init {
-        val state = preferences.readNotificationPermissionStates()
-        _uiState.update {
-            it.copy(isNotificationEnabled = state)
-        }
+        initViewModel()
     }
 
-    fun changeSystemThemeSettings(boolean: Boolean){
+    private fun initViewModel() {
         viewModelScope.launch {
-            _uiState.update { it.copy(isSystemThemeEnabled = boolean) }
-        }
-    }
-
-    fun onColorSchemeChange(color: Color) {
-        viewModelScope.launch {
+            val state = preferences.readNotificationPermissionStates()
+            val systemThemeState = readSystemThemePreferenceUseCase.invoke()
+            val selectedColorSchemeState = readSelectedColorSchemeUseCase.invoke()
             _uiState.update {
                 it.copy(
-                    colorSchemeModel = color
+                    isNotificationEnabled = state,
+                    isSystemThemeEnabled = systemThemeState.first(),
+                    colorSchemeModel = selectedColorSchemeState.first()
                 )
             }
         }
@@ -60,19 +64,30 @@ class SettingsViewModel @Inject constructor(
         }
     }
 
-    fun onDarkSwitch(boolean: Boolean) {
-        viewModelScope.launch {
-            _uiState.update {
-                it.copy(isDarkThemeEnabled = boolean)
-            }
-        }
-    }
 
     fun deleteEverythingAndCloseApp() {
         viewModelScope.launch(Dispatchers.IO) {
             preferences.deleteSharesPreferences()
             dropDatabaseUseCase.invoke()
             _uiEvent.send(UiEvent.Success)
+        }
+    }
+
+    fun saveUseSystemThemeState(boolean: Boolean) {
+        viewModelScope.launch {
+            systemThemeUseCase.invoke(boolean)
+            _uiState.update { it.copy(isSystemThemeEnabled = boolean) }
+        }
+    }
+
+    fun selectColorScheme(string: String) {
+        viewModelScope.launch {
+            selectColorSchemeUseCase.invoke(string)
+            _uiState.update {
+                it.copy(
+                    colorSchemeModel = string
+                )
+            }
         }
     }
 }

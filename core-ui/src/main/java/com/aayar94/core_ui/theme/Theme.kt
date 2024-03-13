@@ -634,10 +634,10 @@ fun AquatickTheme(
         mutableStateOf(true)
     }
     var selectedColorScheme: String by remember {
-        mutableStateOf("blue")
+        mutableStateOf("Yellow")
     }
 
-    LaunchedEffect(Unit) {
+    LaunchedEffect(true) {
         dataStore.useSystemThemeFlow.collect { value ->
             isUseSystemThemeSelected = value
         }
@@ -651,10 +651,10 @@ fun AquatickTheme(
         if (useDarkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
     } else {
         when (selectedColorScheme) {
-            "blue" -> if (useDarkTheme) BlueDarkColorScheme else BlueLightColorScheme
-            "red" -> if (useDarkTheme) RedDarkColorScheme else RedLightColorScheme
-            "yellow" -> if (useDarkTheme) YellowDarkColorScheme else YellowLightColorScheme
-            "green" -> if (useDarkTheme) GreenDarkColorScheme else GreenLightColorScheme
+            "Blue" -> if (useDarkTheme) BlueDarkColorScheme else BlueLightColorScheme
+            "Red" -> if (useDarkTheme) RedDarkColorScheme else RedLightColorScheme
+            "Yellow" -> if (useDarkTheme) YellowDarkColorScheme else YellowLightColorScheme
+            "Green" -> if (useDarkTheme) GreenDarkColorScheme else GreenLightColorScheme
             else -> if (useDarkTheme) DarkColors else LightColors
         }
 

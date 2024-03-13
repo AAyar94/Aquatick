@@ -13,10 +13,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.DeleteForever
-import androidx.compose.material.icons.filled.NightsStay
 import androidx.compose.material.icons.filled.NotificationsActive
 import androidx.compose.material.icons.filled.NotificationsOff
-import androidx.compose.material.icons.filled.WbSunny
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -41,12 +39,12 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.aayar94.core.util.UiEvent
 import com.aayar94.core_ui.theme.AquatickTheme
 import com.aayar94.core_ui.theme.LocalSpacing
+import com.aayar94.core_ui.theme.color_schemes.BlueColorScheme
+import com.aayar94.core_ui.theme.color_schemes.GreenColorScheme
+import com.aayar94.core_ui.theme.color_schemes.RedColorScheme
+import com.aayar94.core_ui.theme.color_schemes.YellowColorScheme
 import com.aayar94.core_ui.util.DevicesPreview
 import com.aayar94.settings_presentation.component.ColorScheme
-import com.example.compose.BlueColorScheme
-import com.example.compose.GreenColorScheme
-import com.example.compose.RedColorScheme
-import com.example.compose.YellowColorScheme
 import com.aayar94.core.R.string as AppText
 
 @Composable
@@ -142,13 +140,13 @@ fun SettingsScreen(
             modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                text = stringResource(id = AppText.use_system_dark_mode),
+                text = stringResource(id = AppText.use_system_theme_mode),
                 color = MaterialTheme.colorScheme.onBackground
             )
             Spacer(modifier = Modifier.weight(1f))
             Switch(
                 checked = uiState.value.isSystemThemeEnabled,
-                onCheckedChange = viewModel::changeSystemThemeSettings, thumbContent = {
+                onCheckedChange = viewModel::saveUseSystemThemeState, thumbContent = {
                     if (uiState.value.isSystemThemeEnabled) {
                         Icon(imageVector = Icons.Default.Check, contentDescription = null)
                     }
@@ -157,31 +155,34 @@ fun SettingsScreen(
         }
         AnimatedVisibility(visible = !uiState.value.isSystemThemeEnabled) {
             Row(
-                modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceAround
             ) {
-                Text(
-                    text = if (uiState.value.isDarkThemeEnabled) {
-                        stringResource(id = AppText.dark_theme)
-                    } else {
-                        stringResource(id = AppText.light_theme)
-                    },
-                    color = MaterialTheme.colorScheme.onBackground
+                ColorScheme(
+                    color = BlueColorScheme,
+                    colorSchemeName = "Blue",
+                    isSelected = uiState.value.colorSchemeModel == "Blue",
+                    onClick = viewModel::selectColorScheme
                 )
-                Spacer(modifier = Modifier.weight(1f))
-                Switch(checked = uiState.value.isDarkThemeEnabled,
-                    onCheckedChange = viewModel::onDarkSwitch,
-                    thumbContent = {
-                        if (uiState.value.isDarkThemeEnabled) Icon(
-                            imageVector = Icons.Default.NightsStay,
-                            contentDescription = null,
-                            tint = MaterialTheme.colorScheme.primary
-                        )
-                        else Icon(
-                            imageVector = Icons.Default.WbSunny,
-                            contentDescription = null,
-                            tint = MaterialTheme.colorScheme.onBackground
-                        )
-                    })
+                ColorScheme(
+                    color = GreenColorScheme,
+                    colorSchemeName = "Green",
+                    isSelected = uiState.value.colorSchemeModel == "Green",
+                    onClick = viewModel::selectColorScheme
+                )
+                ColorScheme(
+                    color = RedColorScheme,
+                    colorSchemeName = "Red",
+                    isSelected = uiState.value.colorSchemeModel == "Red",
+                    onClick = viewModel::selectColorScheme
+                )
+                ColorScheme(
+                    color = YellowColorScheme,
+                    colorSchemeName = "Yellow",
+                    isSelected = uiState.value.colorSchemeModel == "Yellow",
+                    onClick = viewModel::selectColorScheme
+                )
             }
         }
         Row(
@@ -197,32 +198,6 @@ fun SettingsScreen(
                 Icon(imageVector = Icons.Default.DeleteForever, contentDescription = null)
                 Text(text = stringResource(id = AppText.delete_all_data))
             }
-        }
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceAround
-        ) {
-            ColorScheme(
-                color = BlueColorScheme,
-                isSelected = uiState.value.colorSchemeModel == BlueColorScheme,
-                onClick = viewModel::onColorSchemeChange
-            )
-            ColorScheme(
-                color = GreenColorScheme,
-                isSelected = uiState.value.colorSchemeModel == GreenColorScheme,
-                onClick = viewModel::onColorSchemeChange
-            )
-            ColorScheme(
-                color = RedColorScheme,
-                isSelected = uiState.value.colorSchemeModel == RedColorScheme,
-                onClick = viewModel::onColorSchemeChange
-            )
-            ColorScheme(
-                color = YellowColorScheme,
-                isSelected = uiState.value.colorSchemeModel == YellowColorScheme,
-                onClick = viewModel::onColorSchemeChange
-            )
         }
     }
 }
